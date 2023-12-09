@@ -1,0 +1,81 @@
+header {
+  position: sticky;
+  top: 0;
+  width: 100%;
+}
+
+.fixed {
+  width: 100%;
+  margin: 0;
+}
+
+nav {
+  @apply bg-white;
+}
+
+.nav-links {
+  @apply text-black hover:text-blue-800 px-3 font-medium;
+}
+
+.profile-dropdown-button {
+@apply relative flex max-w-xs items-center rounded-full
+bg-gray-800 text-sm focus:outline-none focus:ring-2 focus:ring-white
+focus:ring-offset-2 focus:ring-offset-blue-800;
+}
+
+.profile-dropdown-modal {
+@apply absolute right-0 z-10 mt-2 w-48 origin-top-right
+rounded-xl
+bg-white shadow-lg ring-1 ring-blue-800 ring-opacity-5 focus:outline-none;
+}
+
+.profile-dropdown-modal-link {
+@apply relative block px-4 py-2 text-sm text-gray-700
+hover:text-blue-800;
+}
+
+.expanded input {
+  width: 100%;
+}
+
+.profile-dropdown-modal-link:before {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 2px; /* Adjust the border thickness as needed */
+  background-color: transparent;
+  transition: background-color 0.3s;
+}
+
+.profile-dropdown-modal-link:hover:before {
+  @apply bg-blue-800;
+}
+
+
+.mobile-menu {
+  @apply -mr-2 flex md:hidden items-center;
+}
+
+.mobile-menu-button {
+  @apply relative inline-flex items-center justify-center p-2 text-black
+  rounded-md
+  hover:bg-blue-800 hover:text-white focus:outline-none focus:ring-offset-0;
+}
+
+.mobile-menu-links {
+  @apply text-black hover:bg-blue-800 hover:text-white block px-3 py-2 text-base font-medium;
+}
+
+.mobile-menu-user-name {
+  @apply text-base font-medium leading-none text-white;
+}
+
+.mobile-menu-user-email {
+  @apply text-sm font-medium leading-none text-gray-400;
+}
+
+.mobile-menu-user-links {
+  @apply block px-3 py-2 text-base font-medium text-gray-400 hover:bg-blue-800 hover:text-white;
+}

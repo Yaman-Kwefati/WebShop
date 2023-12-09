@@ -1,0 +1,35 @@
+.item{
+  @apply flex p-2 hover:bg-gray-100;
+}
+
+.item-image{
+  @apply h-24 w-max flex-shrink-0 overflow-hidden rounded-md border border-gray-200;
+}
+
+.item-details{
+  @apply ml-4 flex flex-1 flex-col;
+}
+
+.item-details-title-and-price{
+  @apply flex justify-between text-base font-medium text-gray-900;
+}
+
+.item-details-price{
+  @apply ml-4;
+}
+
+.item-details-description{
+  @apply mt-1 text-sm text-gray-500;
+}
+
+.item-details-quantity-and-remove{
+  @apply flex flex-1 items-end justify-between text-sm;
+}
+
+.item-details-quantity{
+  @apply text-gray-500;
+}
+
+.item-details-remove{
+  @apply font-medium text-indigo-600 hover:text-indigo-500;
+}
