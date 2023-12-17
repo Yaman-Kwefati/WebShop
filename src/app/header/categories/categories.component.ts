@@ -10,4 +10,7 @@ import { CommonModule } from '@angular/common';
 })
 export class CategoriesComponent {
 
+    categoryClicked() {
+        console.log("Category CLcked")
+    }
 }

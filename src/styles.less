@@ -9,3 +9,10 @@ body {
   //font-family: Serif, "Helvetica Neue", sans-serif;
   background-color: rgb(28, 27, 25);
 }
+@layer base {
+  input[type="number"]::-webkit-inner-spin-button,
+  input[type="number"]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+}

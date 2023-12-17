@@ -1,0 +1,33 @@
+import {Injectable} from "@angular/core";
+import {HttpClient} from "@angular/common/http";
+import {User} from "../models/User.model";
+
+export interface ApiResponse<T> {
+  code: string;
+  payload: T;
+  message: string;
+}
+@Injectable()
+export class AuthService{
+  private loginUrl: string = "http://localhost:8080/api/v1/authenticate";
+  private registerUrl: string = "http://localhost:8080/api/v1/auth/register";
+
+  constructor(private http: HttpClient){}
+
+  signUserIn(){
+
+  }
+
+  registerUser(firstname: string, lastname: string, email: string, password: string, phoneNumber: string, city: string, street: string, postalCode: string){
+    return this.http.post<ApiResponse<User>>(this.registerUrl, {
+      firstname: firstname,
+      lastname: lastname,
+      email: email,
+      password: password,
+      phoneNumber: phoneNumber,
+      city: city,
+      street: street,
+      postalCode: postalCode,
+    });
+  }
+}

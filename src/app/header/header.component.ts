@@ -10,10 +10,11 @@ import {ShoppingCartModalComponent} from "./shopping-cart/shopping-cart-modal/sh
 import {SearchResultsComponent} from "./searchbar/search-results/search-results.component";
 import {SearchbarComponent} from "./searchbar/searchbar.component";
 import {CategoriesComponent} from "./categories/categories.component";
+import {Router, RouterLink} from "@angular/router";
 
 @Component({
   selector: 'app-header',
-  imports: [CommonModule, NgOptimizedImage, AppModule, MatButtonModule, MatMenuModule, MatIconModule, MatBadgeModule, ShoppingCartComponent, ShoppingCartModalComponent, SearchResultsComponent, SearchbarComponent, CategoriesComponent],
+  imports: [CommonModule, NgOptimizedImage, AppModule, MatButtonModule, MatMenuModule, MatIconModule, MatBadgeModule, ShoppingCartComponent, ShoppingCartModalComponent, SearchResultsComponent, SearchbarComponent, CategoriesComponent, RouterLink],
   standalone: true,
   templateUrl: './header.component.html',
   styleUrl: './header.component.less'
@@ -21,8 +22,7 @@ import {CategoriesComponent} from "./categories/categories.component";
 export class HeaderComponent {
   isProfileMenuOpen = false;
   isShoppingCartOpen = false;
-  isFixed = false;
-  searchBarEmpty = true;
+  openSearchResultsModal = false;
   isSearchBarExpanded = false;
   isCategoriesOpen = false;
 
@@ -30,11 +30,11 @@ export class HeaderComponent {
     this.isSearchBarExpanded = !this.isSearchBarExpanded;
   }
 
+  openSearchResults(){
+    this.openSearchResultsModal = !this.openSearchResultsModal;
+  }
+
   openCatrgoriesModal(){
     this.isCategoriesOpen = !this.isCategoriesOpen;
   }
-
-  @HostListener('window:scroll', []) onScroll() {
-    this.isFixed = window.scrollY > 0;
-  };
 }

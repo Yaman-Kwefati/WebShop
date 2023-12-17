@@ -10,7 +10,9 @@
       </div>
       <!-- component -->
       <div class="flex items-center">
-        <app-searchbar></app-searchbar>
+        <app-searchbar
+          (openSearchReults)="openSearchResults()"
+        (openSearchBar)="expandSearchBar()"></app-searchbar>
         <div class="mobile-menu" appDropdown (isProfileMenuOpenChange)="isProfileMenuOpen = $event">
           <!-- Mobile menu button -->
           <button type="button" class="mobile-menu-button" aria-controls="mobile-menu" aria-expanded="false">
@@ -29,26 +31,24 @@
         <div>
           <div class="ml-4 flex items-center md:ml-6">
             <!-- Profile dropdown -->
-            <div class="hidden md:block ">
+            <div class="hidden md:block">
               <div class="relative ml-3" appDropdown (isProfileMenuOpenChange)="isProfileMenuOpen = $event">
-                <button type="button" class="profile-dropdown-button" aria-expanded="false" aria-haspopup="true">
+                <button type="button" class="profile-dropdown-button hover:fill-blue-600" aria-expanded="false" aria-haspopup="true">
                   <span class="absolute -inset-1.5"></span>
                   <span class="sr-only">Open user menu</span>
-                  <img class="h-8 w-8 rounded-full"
-                       src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
-                       alt="Profile Icon">
+                  <svg xmlns="http://www.w3.org/2000/svg" height="20" width="18" viewBox="0 0 448 512"><!--!Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2023 Fonticons, Inc.--><path d="M304 128a80 80 0 1 0 -160 0 80 80 0 1 0 160 0zM96 128a128 128 0 1 1 256 0A128 128 0 1 1 96 128zM49.3 464H398.7c-8.9-63.3-63.3-112-129-112H178.3c-65.7 0-120.1 48.7-129 112zM0 482.3C0 383.8 79.8 304 178.3 304h91.4C368.2 304 448 383.8 448 482.3c0 16.4-13.3 29.7-29.7 29.7H29.7C13.3 512 0 498.7 0 482.3z"/></svg>
                 </button>
                 <div [ngClass]="{'hidden': !isProfileMenuOpen, 'block': isProfileMenuOpen}"
                      class="profile-dropdown-modal" role="menu" aria-orientation="vertical"
                      aria-labelledby="user-menu-button" tabindex="-1">
-                  <a href="#" class="profile-dropdown-modal-link" role="menuitem" tabindex="-1" id="user-menu-item-0">Your Profile</a>
+                  <a routerLink="login" class="profile-dropdown-modal-link" role="menuitem" tabindex="-1" id="user-menu-item-0">Your Profile</a>
                   <a href="#" class="profile-dropdown-modal-link" role="menuitem" tabindex="-1" id="user-menu-item-2">Sign out</a>
                 </div>
               </div>
             </div>
-            <div class="relative ml-3" >
+            <div class="relative ml-3" appDropdown (isProfileMenuOpenChange)="isShoppingCartOpen = $event">
               <button (click)="isShoppingCartOpen = !isShoppingCartOpen"
-                      class="flex text-black hover:text-blue-800">
+                      class="flex text-black hover:text-blue-600">
                 <mat-icon [matBadge]="1" matBadgeColor="warn"
                 >shopping_cart</mat-icon>
               </button>
@@ -65,11 +65,11 @@
           <div class="flex items-center">
             <div class="hidden md:block ">
               <div class="ml-10 flex items-baseline space-x-4">
-                <a href="#" class="nav-links" aria-current="page">Home</a>
-                <a href="#" class="nav-links" (mouseover)="openCatrgoriesModal()">Categories</a>
-                <a href="#" class="nav-links">Producten</a>
-                <a href="#" class="nav-links">Over ons</a>
-                <a href="#" class="nav-links">Contact</a>
+                <a routerLink="/" class="nav-links" aria-current="page">Home</a>
+                <a class="nav-links cursor-default" (mouseover)="openCatrgoriesModal()">Categories</a>
+                <a routerLink="products" class="nav-links">Producten</a>
+                <a routerLink="aboutUs" fragment="about-us" class="nav-links">Over ons</a>
+                <a routerLink="contact" class="nav-links">Contact</a>
               </div>
             </div>
           </div>
@@ -108,5 +108,6 @@
   </nav>
   <app-categories *ngIf="isCategoriesOpen"
                   (mouseleave)="isCategoriesOpen = false"></app-categories>
-  <app-search-results></app-search-results>
+  <app-search-results
+  *ngIf="openSearchResultsModal"></app-search-results>
 </div>

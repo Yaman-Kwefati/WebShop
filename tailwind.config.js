@@ -8,7 +8,8 @@ module.exports = {
     extend: {},
   },
   plugins: [
-    require("tailwindcss-inner-border")
+    require("tailwindcss-inner-border"),
+    require('@tailwindcss/forms'),
   ],
 }
 
