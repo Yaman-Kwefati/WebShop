@@ -8,6 +8,7 @@ import {filter} from "rxjs";
 import { Animate, initTE } from "tw-elements";
 import {gsap} from "gsap";
 import {ScrollTrigger} from "gsap/ScrollTrigger";
+import {CookieService} from "ngx-cookie-service";
 
 gsap.registerPlugin(ScrollTrigger);
 initTE({ Animate });
@@ -25,7 +26,8 @@ export class LandingPageComponent implements AfterViewInit, OnInit{
 
   constructor(private route: ActivatedRoute,
               private router: Router,
-              @Inject(DOCUMENT) private document: Document) {}
+              @Inject(DOCUMENT) private document: Document,
+              private cookieSerive: CookieService) {}
 
   ngAfterViewInit(): void {
     this.route.fragment.subscribe(fragment => {
@@ -56,6 +58,8 @@ export class LandingPageComponent implements AfterViewInit, OnInit{
   ngOnInit(): void {
     this.initScrollAnimations();
     this.initialAnimations();
+    console.log(this.cookieSerive.get('accessToken'));
+    console.log(this.cookieSerive.get('refreshToken'));
   }
 
   initScrollAnimations(): void{

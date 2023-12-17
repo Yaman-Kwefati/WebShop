@@ -9,13 +9,16 @@ export interface ApiResponse<T> {
 }
 @Injectable()
 export class AuthService{
-  private loginUrl: string = "http://localhost:8080/api/v1/authenticate";
+  private loginUrl: string = "http://localhost:8080/api/v1/auth/authenticate";
   private registerUrl: string = "http://localhost:8080/api/v1/auth/register";
 
   constructor(private http: HttpClient){}
 
-  signUserIn(){
-
+  signUserIn(email: string, password: string){
+    return this.http.post<ApiResponse<User>>(this.loginUrl, {
+      email: email,
+      password: password
+    });
   }
 
   registerUser(firstname: string, lastname: string, email: string, password: string, phoneNumber: string, city: string, street: string, postalCode: string){
