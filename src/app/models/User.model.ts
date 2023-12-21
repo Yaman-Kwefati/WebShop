@@ -4,30 +4,27 @@ export class User{
   _firstname: string;
   _lastname: string;
   _email: string;
-  _password: string;
   _phoneNumber: string;
   _city: string;
   _street: string;
   _postalCode: string;
-  _role: string;
-  _access_token?: string;
-  _refresh_token?: string;
+  _userRole: string;
+  _authorities?: { authority: string }[];
 
 
-  constructor(id: number, firstname: string, lastname: string, email: string, password: string, phoneNumber: string, city: string, street: string, postalCode: string, role: string,
-              accessToken?: string, refreshToken?: string) {
+  constructor(id: number, firstname: string, lastname: string, email: string,
+              phoneNumber: string, city: string, street: string,
+              postalCode: string, userRole: string, authorities?: { authority: string }[]) {
     this._id = id;
     this._firstname = firstname;
     this._lastname = lastname;
     this._email = email;
-    this._password = password;
     this._phoneNumber = phoneNumber;
     this._city = city;
     this._street = street;
     this._postalCode = postalCode;
-    this._role = role;
-    this._access_token = accessToken;
-    this._refresh_token = refreshToken;
+    this._userRole = userRole;
+    this._authorities = authorities;
   }
 
 
@@ -63,15 +60,6 @@ export class User{
     this._email = value;
   }
 
-
-  get password(): string {
-    return this._password;
-  }
-
-  set password(value: string) {
-    this._password = value;
-  }
-
   get phoneNumber(): string {
     return this._phoneNumber;
   }
@@ -104,28 +92,11 @@ export class User{
     this._postalCode = value;
   }
 
-  get role(): string {
-    return this._role;
+  get userRole(): string {
+    return this._userRole;
   }
 
-  set role(value: string) {
-    this._role = value;
-  }
-
-
-  get access_token(): any {
-    return this._access_token;
-  }
-
-  set access_token(value: string) {
-    this._access_token = value;
-  }
-
-  get refresh_token(): any {
-    return this._refresh_token;
-  }
-
-  set refresh_token(value: string) {
-    this._refresh_token = value;
+  set userRole(value: string) {
+    this._userRole = value;
   }
 }

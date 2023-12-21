@@ -4,6 +4,7 @@ import {Product} from "../../models/Product.model";
 import {gsap} from "gsap";
 import {ActivatedRoute} from "@angular/router";
 import {ProductService} from "../../services/product.service";
+import {CartProduct, ShoppingCartService} from "../../services/shopping-cart.service";
 
 @Component({
   selector: 'app-product-page',
@@ -19,7 +20,8 @@ export class ProductPageComponent implements OnInit{
 
   constructor(@Inject(DOCUMENT) private document: Document,
               private route: ActivatedRoute,
-              private productService: ProductService) {
+              private productService: ProductService,
+              private cartService: ShoppingCartService) {
   }
 
   ngOnInit(): void {
@@ -34,6 +36,10 @@ export class ProductPageComponent implements OnInit{
       }
     );
     this.initialAnimations();
+  }
+  addToShoppingCart(product: Product) {
+    let cartProduct: CartProduct = { product: product, quantity: 1, totalPrice: product.price };
+    this.cartService.addToCart(cartProduct);
   }
 
   //Carsoul

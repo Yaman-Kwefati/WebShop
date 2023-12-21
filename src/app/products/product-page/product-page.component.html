@@ -21,7 +21,7 @@
   </div>
   <div class="flex flex-col justify-center text-start pt-4 space-y-3 w-4/6 p-4">
     <h1 class="text-4xl font-bold">{{product.name}}</h1>
-    <h1 class="text-xl">€{{product.price}}</h1>
+    <h1 class="text-xl">{{product.price | currency:"EUR"}}</h1>
     <div class="flex items-center mt-2.5 mb-5">
       <div class="flex items-center space-x-1 rtl:space-x-reverse">
         <svg class="w-4 h-4 text-yellow-300" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 22 20">
@@ -47,6 +47,7 @@
       it amet, consectetur adipiscing elit</p>
     <p>{{product.description}}</p>
     <button
+      (click)="addToShoppingCart(product)"
       class="bg-blue-800 hover:bg-blue-700 w-fit p-2 rounded-3xl text-white text-xl"
     >Add to Cart</button>
   </div>

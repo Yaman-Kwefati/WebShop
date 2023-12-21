@@ -32,8 +32,8 @@
       <span class="bg-blue-100 text-blue-800 text-xs font-semibold px-2.5 py-0.5 rounded dark:bg-blue-200 dark:text-blue-800 ms-3">5.0</span>
     </div>
     <div class="flex items-center justify-between">
-      <span class="text-3xl font-bold text-gray-900">€{{product.price}}</span>
-      <a href="#" class="text-white bg-blue-800 hover:bg-blue-700 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center">Add to cart</a>
+      <span class="text-3xl font-bold text-gray-900">{{product.price | currency:"EUR"}}</span>
+      <a (click)="addToShoppingCart(product)" class="cursor-pointer text-white bg-blue-800 hover:bg-blue-700 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center">Add to cart</a>
     </div>
   </div>
 </div>

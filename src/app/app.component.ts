@@ -22,31 +22,5 @@ gsap.registerPlugin(ScrollTrigger);
   styleUrl: './app.component.less'
 })
 export class AppComponent{
-  // @ViewChild('HeadSection', {static: true}) HeadSection!: ElementRef<HTMLDivElement>;
-  // @ViewChild('ProductsSection', {static: true}) ProductsSection!: ElementRef<HTMLDivElement>;
-  // @ViewChild('ProductsDetailsSection', {static: true}) ProductsDetailsSection!: ElementRef<HTMLDivElement>;
-  // @ViewChild('aboutUsSection', {static: true}) aboutUsSection!: ElementRef<HTMLDivElement>;
-  //
-  // constructor(@Inject(DOCUMENT) private document: Document) {
-  // }
-  //
-  // ngOnInit(): void {
-  //   this.initScrollAnimations();
-  //   this.initialAnimations();
-  // }
-  //
-  // initScrollAnimations(): void{
-  //   gsap.to()
-  // }
-  //
-  // initialAnimations(): void{
-  //   gsap.from(this.HeadSection.nativeElement.childNodes, {
-  //     duration: 0.5,
-  //     opacity: 0,
-  //     y: -20,
-  //     stagger: 0.2,
-  //     delay: 0.5,
-  //   });
-  // }
 }
 

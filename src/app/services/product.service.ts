@@ -11,15 +11,15 @@ export interface ApiResponse<T> {
 }
 @Injectable()
 export class ProductService{
-    private baseUrl: string = "http://localhost:8080/api/v1/";
+  products!: Product[];
+  private baseUrl: string = "http://localhost:8080/api/v1/";
+  constructor(private http: HttpClient){}
 
-    constructor(private http: HttpClient){}
+  fetchProducts(): Observable<ApiResponse<Product[]>>{
+    return this.http.get<ApiResponse<Product[]>>(this.baseUrl + "products/all-products");
+  }
 
-    fetchProducts(): Observable<ApiResponse<Product[]>>{
-        return this.http.get<ApiResponse<Product[]>>(this.baseUrl + "products/all-products");
-    }
-
-    fetchProduct(productName: string): Observable<ApiResponse<Product>>{
-      return this.http.get<ApiResponse<Product>>(this.baseUrl + "products/" + productName);
-    }
+  fetchProduct(productName: string): Observable<ApiResponse<Product>>{
+    return this.http.get<ApiResponse<Product>>(this.baseUrl + "products/" + productName);
+  }
 }

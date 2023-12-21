@@ -6,6 +6,9 @@ import {AboutUsComponent} from "./landing-page/about-us/about-us.component";
 import {LoginComponent} from "./authentication/login/login.component";
 import {RegisterComponent} from "./authentication/register/register.component";
 import {ProductPageComponent} from "./products/product-page/product-page.component";
+import {UserScreenComponent} from "./user-screen/user-screen.component";
+import {AdminComponent} from "./admin/admin.component";
+import {ShoppingCartComponent} from "./header/shopping-cart/shopping-cart.component";
 
 export const routes: Routes = [
   {
@@ -42,5 +45,20 @@ export const routes: Routes = [
     path: 'register',
     title: 'Register - Webshop',
     component: RegisterComponent,
+  },
+  {
+    path: 'user',
+    title: 'User - Webshop',
+    component: UserScreenComponent,
+  },
+  {
+    path: 'admin',
+    title: 'Admin - Webshop',
+    component: AdminComponent,
+  },
+  {
+    path: 'shopping-cart',
+    title: 'Shopping Cart - Webshop',
+    component: ShoppingCartComponent,
   },
 ];

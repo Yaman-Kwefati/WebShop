@@ -9,17 +9,17 @@
     <div>
       <div class="item-details-title-and-price">
         <h3>
-          <a href="#">Medium Stuff Satchel</a>
+          <a [routerLink]="['/products', product.product.name] "class="hover:text-blue-700">{{product.product.name}}</a>
         </h3>
-        <p class="item-details-price">$32.00</p>
+        <p class="item-details-price">{{product.totalPrice | currency:"EUR"}}</p>
       </div>
-      <p class="item-details-description">Blue</p>
+      <p class="item-details-description">{{product.product.description}}</p>
     </div>
     <div class="item-details-quantity-and-remove">
-      <p class="item-details-quantity">Qty 1</p>
+      <p class="item-details-quantity">{{product.quantity}}</p>
 
       <div class="flex">
-        <button type="button" class="item-details-remove">Remove</button>
+        <button (click)="removeCartItem(product)" type="button" class="item-details-remove">Remove</button>
       </div>
     </div>
   </div>

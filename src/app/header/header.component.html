@@ -41,19 +41,16 @@
                 <div [ngClass]="{'hidden': !isProfileMenuOpen, 'block': isProfileMenuOpen}"
                      class="profile-dropdown-modal" role="menu" aria-orientation="vertical"
                      aria-labelledby="user-menu-button" tabindex="-1">
-                  <a routerLink="login" class="profile-dropdown-modal-link" role="menuitem" tabindex="-1" id="user-menu-item-0">Your Profile</a>
+                  <a routerLink="user" class="profile-dropdown-modal-link" role="menuitem" tabindex="-1" id="user-menu-item-0">Your Profile</a>
                   <a href="#" class="profile-dropdown-modal-link" role="menuitem" tabindex="-1" id="user-menu-item-2">Sign out</a>
                 </div>
               </div>
             </div>
-            <div class="relative ml-3" appDropdown (isProfileMenuOpenChange)="isShoppingCartOpen = $event">
-              <button (click)="isShoppingCartOpen = !isShoppingCartOpen"
-                      class="flex text-black hover:text-blue-600">
-                <mat-icon [matBadge]="1" matBadgeColor="warn"
-                >shopping_cart</mat-icon>
+            <div class="relative ml-3">
+              <button routerLink="shopping-cart" class="flex text-black hover:text-blue-600"
+              (click)="loadItems()">
+                <mat-icon [matBadge]="cartBadgeNumber" matBadgeColor="warn">shopping_cart</mat-icon>
               </button>
-              <app-shopping-cart-modal  [ngClass]="{'hidden': !isShoppingCartOpen, 'block': isShoppingCartOpen}"
-                                        class="absolute right-0"></app-shopping-cart-modal>
             </div>
           </div>
         </div>

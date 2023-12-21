@@ -7,6 +7,11 @@ export interface ApiResponse<T> {
   payload: T;
   message: string;
 }
+interface LoginResponse {
+  access_token: string;
+  refresh_token: string;
+  user: User;
+}
 @Injectable()
 export class AuthService{
   private loginUrl: string = "http://localhost:8080/api/v1/auth/authenticate";
@@ -14,8 +19,8 @@ export class AuthService{
 
   constructor(private http: HttpClient){}
 
-  signUserIn(email: string, password: string){
-    return this.http.post<ApiResponse<User>>(this.loginUrl, {
+  signUserIn(email: string, password: string) {
+    return this.http.post<ApiResponse<LoginResponse>>(this.loginUrl, {
       email: email,
       password: password
     });

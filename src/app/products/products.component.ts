@@ -1,5 +1,5 @@
-import {Component, ElementRef, Inject, OnInit, ViewChild} from '@angular/core';
-import {CommonModule, DOCUMENT} from '@angular/common';
+import {Component, OnInit} from '@angular/core';
+import {CommonModule} from '@angular/common';
 import {ProductItemComponent} from "./product-item/product-item.component";
 import {ProductService} from "../services/product.service";
 import {Product} from "../models/Product.model";
