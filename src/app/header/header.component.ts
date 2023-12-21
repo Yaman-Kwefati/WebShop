@@ -1,4 +1,4 @@
-import {AfterViewChecked, ChangeDetectorRef, Component, HostListener} from '@angular/core';
+import {AfterViewChecked, ChangeDetectorRef, Component, ElementRef, HostListener, ViewChild} from '@angular/core';
 import {CommonModule, NgOptimizedImage} from '@angular/common';
 import {AppModule} from "../app.module";
 import {MatButtonModule} from "@angular/material/button";
@@ -12,6 +12,7 @@ import {CategoriesComponent} from "./categories/categories.component";
 import {Router, RouterLink} from "@angular/router";
 import {Product} from "../models/Product.model";
 import {ShoppingCartService} from "../services/shopping-cart.service";
+import {CookieService} from "ngx-cookie-service";
 
 @Component({
   selector: 'app-header',
@@ -21,14 +22,21 @@ import {ShoppingCartService} from "../services/shopping-cart.service";
   styleUrl: './header.component.less'
 })
 export class HeaderComponent implements AfterViewChecked{
+  @ViewChild('searchbarComponent') searchbarComponent!: SearchbarComponent;
   isProfileMenuOpen = false;
   openSearchResultsModal = false;
   isSearchBarExpanded = false;
   isCategoriesOpen = false;
   cartBadgeNumber !: number | null;
+  productsResults: Product[] = [];
+  @HostListener('document:click', ['$event'])
+  onDocumentClick(event: Event){
+    this.productsResults = [];
+  }
 
   constructor(private cartService: ShoppingCartService,
-              private cdr: ChangeDetectorRef) {
+              private cdr: ChangeDetectorRef,
+              private cookieService: CookieService) {
   }
 
   expandSearchBar() {
@@ -54,5 +62,9 @@ export class HeaderComponent implements AfterViewChecked{
       this.cartBadgeNumber = null;
     }
     this.cdr.detectChanges();
+  }
+
+  getLoggedInUserRole(){
+    return this.cookieService.get('userRole');
   }
 }

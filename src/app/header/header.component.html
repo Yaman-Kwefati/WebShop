@@ -10,8 +10,8 @@
       </div>
       <!-- component -->
       <div class="flex items-center">
-        <app-searchbar
-          (openSearchReults)="openSearchResults()"
+        <app-searchbar #searchbarComponent
+          (products)="productsResults = $event"
         (openSearchBar)="expandSearchBar()"></app-searchbar>
         <div class="mobile-menu" appDropdown (isProfileMenuOpenChange)="isProfileMenuOpen = $event">
           <!-- Mobile menu button -->
@@ -106,5 +106,5 @@
   <app-categories *ngIf="isCategoriesOpen"
                   (mouseleave)="isCategoriesOpen = false"></app-categories>
   <app-search-results
-  *ngIf="openSearchResultsModal"></app-search-results>
+  [products]="productsResults"></app-search-results>
 </div>

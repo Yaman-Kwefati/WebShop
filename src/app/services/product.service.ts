@@ -22,4 +22,11 @@ export class ProductService{
   fetchProduct(productName: string): Observable<ApiResponse<Product>>{
     return this.http.get<ApiResponse<Product>>(this.baseUrl + "products/" + productName);
   }
+
+  filterProducts(searchTerm: string, products: Product[]) {
+    // Filter products based on the search term and update the productsSubject
+    return products.filter((product) =>
+      product.name.toLowerCase().includes(searchTerm.toLowerCase())
+    );
+  }
 }

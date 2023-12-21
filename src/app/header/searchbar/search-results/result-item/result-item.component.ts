@@ -1,5 +1,6 @@
-import { Component } from '@angular/core';
+import {Component, Input} from '@angular/core';
 import { CommonModule } from '@angular/common';
+import {Product} from "../../../../models/Product.model";
 
 @Component({
   selector: 'app-result-item',
@@ -9,5 +10,5 @@ import { CommonModule } from '@angular/common';
   styleUrl: './result-item.component.less'
 })
 export class ResultItemComponent {
-
+  @Input() product!: Product;
 }

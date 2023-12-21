@@ -1,6 +1,6 @@
-<div class="flex justify-center top-0">
+<div class="flex justify-center top-0" *ngIf="products && products.length > 0">
   <div class="flex flex-col gap-4 lg:p-4 p-2 rounde-lg absolute bg-white justify-center w-full">
-    <div class="lg:text-2xl md:text-xl text-lg lg:p-3 p-1 font-black text-gray-700">Selecciona el negocio</div>
-    <app-result-item></app-result-item>
+    <div class="lg:text-2xl md:text-xl text-lg lg:p-3 p-1 font-black text-gray-700">Select a Product</div>
+    <app-result-item *ngFor="let resultProduct of products" [product]="resultProduct"></app-result-item>
   </div>
 </div>

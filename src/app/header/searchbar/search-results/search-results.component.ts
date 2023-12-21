@@ -2,6 +2,7 @@ import {Component, Input} from '@angular/core';
 import { CommonModule } from '@angular/common';
 import {AppModule} from "../../../app.module";
 import {ResultItemComponent} from "./result-item/result-item.component";
+import {Product} from "../../../models/Product.model";
 
 @Component({
   selector: 'app-search-results',
@@ -11,4 +12,5 @@ import {ResultItemComponent} from "./result-item/result-item.component";
   styleUrl: './search-results.component.less'
 })
 export class SearchResultsComponent {
+  @Input() products: Product[] = [];
 }
