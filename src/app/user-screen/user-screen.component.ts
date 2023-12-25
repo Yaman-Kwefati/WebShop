@@ -42,19 +42,18 @@ export class UserScreenComponent implements OnInit{
   }
 
   ngOnInit(): void {
-    let userId = this.sessionStorage.getItem('userId');
-    let firstname = this.sessionStorage.getItem('firstname');
-    let lastname = this.sessionStorage.getItem('lastname');
-    let email = this.sessionStorage.getItem('email');
-    let phoneNumber = this.sessionStorage.getItem('phoneNumber');
-    let city = this.sessionStorage.getItem('city');
-    let street = this.sessionStorage.getItem('street');
-    let postalCode = this.sessionStorage.getItem('postalCode');
-    let userRol = this.sessionStorage.getItem('userRol');
+    let userId = this.cookieService.get('userId');
+    let firstname = this.cookieService.get('firstname');
+    let lastname = this.cookieService.get('lastname');
+    let email = this.cookieService.get('email');
+    let phoneNumber = this.cookieService.get('phoneNumber');
+    let city = this.cookieService.get('city');
+    let street = this.cookieService.get('street');
+    let postalCode = this.cookieService.get('postalCode');
+    let userRol = this.cookieService.get('userRol');
     this.user = new User(+userId!, firstname!, lastname!, email!, phoneNumber!, city!, street!, postalCode!, userRol!);
     this.name = this.user.firstname + ", " + this.user.lastname;
     this.address = this.user.postalCode + ", " + this.user.city + ", " + this.user.street;
   }
 
-  protected readonly sessionStorage = sessionStorage;
 }

@@ -41,8 +41,9 @@
                 <div [ngClass]="{'hidden': !isProfileMenuOpen, 'block': isProfileMenuOpen}"
                      class="profile-dropdown-modal" role="menu" aria-orientation="vertical"
                      aria-labelledby="user-menu-button" tabindex="-1">
-                  <a routerLink="user" class="profile-dropdown-modal-link" role="menuitem" tabindex="-1" id="user-menu-item-0">Your Profile</a>
-                  <a href="#" class="profile-dropdown-modal-link" role="menuitem" tabindex="-1" id="user-menu-item-2">Sign out</a>
+                  <a (click)="navigateToUserPanel()" class="profile-dropdown-modal-link cursor-pointer" role="menuitem" tabindex="-1" id="user-menu-item-0">Your Profile</a>
+                  <a (click)="clearCookies()" class="profile-dropdown-modal-link cursor-pointer" role="menuitem" tabindex="-1" id="user-menu-item-2"
+                  *ngIf="getLoggedInUserRole()">Sign out</a>
                 </div>
               </div>
             </div>
@@ -63,7 +64,7 @@
             <div class="hidden md:block ">
               <div class="ml-10 flex items-baseline space-x-4">
                 <a routerLink="/" class="nav-links" aria-current="page">Home</a>
-                <a class="nav-links cursor-default" (mouseover)="openCatrgoriesModal()">Categories</a>
+                <a class="nav-links cursor-default" (mouseover)="openCategoriesModal()">Categories</a>
                 <a routerLink="products" class="nav-links">Producten</a>
                 <a routerLink="aboutUs" fragment="about-us" class="nav-links">Over ons</a>
                 <a routerLink="contact" class="nav-links">Contact</a>

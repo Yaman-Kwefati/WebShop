@@ -29,22 +29,21 @@ export class LoginComponent {
     }
     this.authService.signUserIn(loginForm.value.email, loginForm.value.password).subscribe(
       resData => {
-        console.log(resData)
         this.user = resData.payload.user;
-        console.log("user: "+this.user.firstname);
-        sessionStorage.setItem('userId', String(resData.payload.user.id));
-        sessionStorage.setItem('firstname', resData.payload.user.firstname);
-        sessionStorage.setItem('lastname', resData.payload.user.lastname);
-        sessionStorage.setItem('email', resData.payload.user.email);
-        sessionStorage.setItem('phoneNumber', resData.payload.user.phoneNumber);
-        sessionStorage.setItem('city', resData.payload.user.city);
-        sessionStorage.setItem('street', resData.payload.user.street);
-        sessionStorage.setItem('postalCode', resData.payload.user.postalCode);
-        sessionStorage.setItem('userRol', resData.payload.user.userRole);
+        this.cookieService.set('userId', String(resData.payload.user.id), 1)
+        this.cookieService.set('firstname', resData.payload.user.firstname, 1);
+        this.cookieService.set('lastname', resData.payload.user.lastname, 1);
+        this.cookieService.set('email', resData.payload.user.email, 1);
+        this.cookieService.set('phoneNumber', resData.payload.user.phoneNumber, 1);
+        this.cookieService.set('city', resData.payload.user.city, 1);
+        this.cookieService.set('street', resData.payload.user.street, 1);
+        this.cookieService.set('postalCode', resData.payload.user.postalCode, 1);
+        this.cookieService.set('userRole', resData.payload.user.userRole, 1);
+        this.router.navigate(['/']);
       }, error => {
         this.error = "Email or Password incorrect!"
       }
     );
-    // this.router.navigate(['/']);
+    console.log(this.cookieService.getAll())
   }
 }

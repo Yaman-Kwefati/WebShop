@@ -58,8 +58,6 @@ export class LandingPageComponent implements AfterViewInit, OnInit{
   ngOnInit(): void {
     this.initScrollAnimations();
     this.initialAnimations();
-    console.log(this.cookieSerive.get('accessToken'));
-    console.log(this.cookieSerive.get('refreshToken'));
   }
 
   initScrollAnimations(): void{

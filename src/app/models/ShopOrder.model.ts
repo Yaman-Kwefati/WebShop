@@ -1,12 +1,14 @@
+import {User} from "./User.model";
+
 export class ShopOrder {
-  private _id: number;
-  private _userId: number;
-  private _orderStatus: string;
-  private _orderDate: Date;
+  private _id?: number;
+  private _userId: User;
+  private _orderStatus?: string;
+  private _orderDate?: Date;
   private _totalAmount: number;
 
 
-  constructor(id: number, userId: number, orderStatus: string, orderDate: Date, totalAmount: number) {
+  constructor(userId: User, totalAmount: number, orderDate?: Date, id?: number, orderStatus?: string) {
     this._id = id;
     this._userId = userId;
     this._orderStatus = orderStatus;
@@ -15,7 +17,7 @@ export class ShopOrder {
   }
 
 
-  get id(): number {
+  get id(): number | undefined{
     return this._id;
   }
 
@@ -23,15 +25,15 @@ export class ShopOrder {
     this._id = value;
   }
 
-  get userId(): number {
+  get userId(): User {
     return this._userId;
   }
 
-  set userId(value: number) {
+  set userId(value: User) {
     this._userId = value;
   }
 
-  get orderStatus(): string {
+  get orderStatus(): string | undefined{
     return this._orderStatus;
   }
 
@@ -39,7 +41,7 @@ export class ShopOrder {
     this._orderStatus = value;
   }
 
-  get orderDate(): Date{
+  get orderDate(): Date | undefined{
     return this._orderDate;
   }
   set orderDate(value: Date) {

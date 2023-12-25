@@ -1,8 +1,9 @@
 <div class="h-screen bg-white">
   <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 flex flex-row justify-between p-2 items-center h-screen">
     <div class="flex flex-col w-full h-full justify-between py-28">
-      <div class="text-4xl">
+      <div class="text-4xl space-y-1.5">
         <h1>Your Shopping Cart</h1>
+        <hr>
       </div>
       <div class="overflow-y-auto py-3" *ngIf="cartItems.length > 0">
         <app-cart-item *ngFor="let product of cartItems"
@@ -12,9 +13,13 @@
         *ngIf="cartItems.length == 0">
         <h1>Please add Products</h1>
       </div>
-      <div class="flex justify-between">
-        <button routerLink="/products" >&larr; Back to Shop</button>
-        <h1><strong>Total:</strong> {{total | currency:"EUR"}}</h1>
+      <div class="space-y-1.5">
+        <hr>
+        <div class="flex justify-between">
+          <button routerLink="/products" >&larr; Back to Shop</button>
+          <h1><strong>Total:</strong> {{total | currency:"EUR"}}</h1>
+          <button (click)="placeOrder()">Buy</button>
+        </div>
       </div>
     </div>
   </div>

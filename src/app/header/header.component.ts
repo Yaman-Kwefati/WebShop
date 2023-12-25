@@ -36,7 +36,8 @@ export class HeaderComponent implements AfterViewChecked{
 
   constructor(private cartService: ShoppingCartService,
               private cdr: ChangeDetectorRef,
-              private cookieService: CookieService) {
+              private cookieService: CookieService,
+              private router: Router) {
   }
 
   expandSearchBar() {
@@ -47,7 +48,7 @@ export class HeaderComponent implements AfterViewChecked{
     this.openSearchResultsModal = !this.openSearchResultsModal;
   }
 
-  openCatrgoriesModal(){
+  openCategoriesModal(){
     this.isCategoriesOpen = !this.isCategoriesOpen;
   }
 
@@ -62,6 +63,26 @@ export class HeaderComponent implements AfterViewChecked{
       this.cartBadgeNumber = null;
     }
     this.cdr.detectChanges();
+  }
+
+  navigateToUserPanel(){
+    let role = this.getLoggedInUserRole();
+    if (role != null && role == 'CUSTOMER'){
+      this.router.navigate(['user']);
+    }
+    else if (role != null && role == 'ADMIN'){
+      this.router.navigate(['admin']);
+    }
+    else {
+      this.router.navigate(['login']);
+    }
+  }
+
+  clearCookies(){
+    if (this.getLoggedInUserRole()){
+      this.cookieService.deleteAll();
+      this.router.navigate(['/']);
+    }
   }
 
   getLoggedInUserRole(){

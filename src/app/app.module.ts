@@ -4,6 +4,7 @@ import {IntersectionObserverDirective} from "./directives/IntersectionObserverDi
 import {HTTP_INTERCEPTORS} from "@angular/common/http";
 import {AuthInterceptor} from "./services/auth-interceptor";
 import {CartItemComponent} from "./header/shopping-cart/cart-item/cart-item.component";
+import {OrderService} from "./services/order.service";
 
 @NgModule({
   declarations: [DropdownDirective, IntersectionObserverDirective],
@@ -15,7 +16,7 @@ import {CartItemComponent} from "./header/shopping-cart/cart-item/cart-item.comp
       multi: true
     }
   ],
-  imports: [CartItemComponent]
+  imports: [CartItemComponent,]
 })
 export class AppModule{
 
