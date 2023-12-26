@@ -9,6 +9,7 @@ import {ProductPageComponent} from "./products/product-page/product-page.compone
 import {UserScreenComponent} from "./user-screen/user-screen.component";
 import {AdminComponent} from "./admin/admin.component";
 import {ShoppingCartComponent} from "./header/shopping-cart/shopping-cart.component";
+import {OrderItemsOfOrderComponent} from "./shared/order-items-of-order/order-items-of-order.component";
 
 export const routes: Routes = [
   {
@@ -60,5 +61,10 @@ export const routes: Routes = [
     path: 'shopping-cart',
     title: 'Shopping Cart - Webshop',
     component: ShoppingCartComponent,
+  },
+  {
+    path: 'order-items',
+    title: 'Order Items - Webshop',
+    component: OrderItemsOfOrderComponent,
   },
 ];

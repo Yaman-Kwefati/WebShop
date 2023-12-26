@@ -1,14 +1,14 @@
 import {ShopOrder} from "./ShopOrder.model";
 
 export class OrderItem{
-    private _id: number;
+    private _id?: number;
     private _shopOrder: ShopOrder;
     private _productId: number;
     private _quantity: number;
     private _subtotal: number;
 
 
-    constructor(id: number, shopOrder: ShopOrder, productId: number, quantity: number, subtotal: number) {
+    constructor(shopOrder: ShopOrder, productId: number, quantity: number, subtotal: number, id?: number) {
         this._id = id;
         this._shopOrder = shopOrder;
         this._productId = productId;
@@ -17,7 +17,7 @@ export class OrderItem{
     }
 
 
-    get id(): number {
+    get id(): number | undefined {
         return this._id;
     }
 

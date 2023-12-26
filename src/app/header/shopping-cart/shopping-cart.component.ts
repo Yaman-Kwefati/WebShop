@@ -4,9 +4,7 @@ import {CartItemComponent} from "./cart-item/cart-item.component";
 import {CartProduct, ShoppingCartService} from "../../services/shopping-cart.service";
 import {RouterLink} from "@angular/router";
 import {OrderService} from "../../services/order.service";
-import {ShopOrder} from "../../models/ShopOrder.model";
 import {CookieService} from "ngx-cookie-service";
-import {User} from "../../models/User.model";
 
 @Component({
   selector: 'app-shopping-cart',
@@ -51,6 +49,8 @@ export class ShoppingCartComponent implements OnInit, AfterViewChecked {
     //   console.log(user);
     //
     // }
-    this.orderService.makeOrder(this.total);
+    if (this.cookieService.get('userId') && this.cartItems){
+      this.orderService.makeOrder(this.total, this.cartItems);
+    }
   }
 }
