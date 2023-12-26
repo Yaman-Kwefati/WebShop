@@ -1,0 +1,46 @@
+<div>
+  <div class="flex flex-col min-h-full justify-center px-6 py-12 lg:px-8 bg-white h-full">
+    <div class="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
+      <form class="space-y-2" action="#" method="POST" #productForm="ngForm" (ngSubmit)="onsubmit(productForm)">
+        <div>
+          <label for="productName" class="block text-sm font-medium leading-6 text-gray-900">Product Name</label>
+          <div class="mt-2">
+            <input ngModel id="productName" name="productName" type="text" required class="block w-full rounded-md border-0 p-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
+          </div>
+        </div>
+        <div>
+          <label for="productDescription" class="block text-sm font-medium leading-6 text-gray-900">Product Description</label>
+          <div class="mt-2">
+            <textarea ngModel id="productDescription" name="productDescription" type="text" required class="block w-full rounded-md border-0 p-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"></textarea>
+          </div>
+        </div>
+        <div>
+          <label for="productPrice" class="block text-sm font-medium leading-6 text-gray-900">Product Price</label>
+          <div class="mt-2">
+            <input ngModel id="productPrice" name="productPrice" type="text" required class="block w-full rounded-md border-0 p-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
+          </div>
+        </div>
+        <div>
+          <label for="productQuantity" class="block text-sm font-medium leading-6 text-gray-900">Product Quantity</label>
+          <div class="mt-2">
+            <input ngModel id="productQuantity" name="productQuantity" type="text" required class="block w-full rounded-md border-0 p-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
+          </div>
+        </div>
+        <div>
+          <label for="productImage" class="block text-sm font-medium leading-6 text-gray-900">Product Image</label>
+          <div class="mt-2">
+            <input ngModel id="productImage" name="productImage" type="file" required multiple
+                   (change)="onFileSelected($event)" class="block w-full rounded-md border-0 p-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
+          </div>
+        </div>
+        <div>
+          <button
+            type="submit"
+            [disabled]="!productForm.valid"
+            [ngClass]="{'cursor-not-allowed': !productForm.valid}"
+            class="flex w-full justify-center rounded-md bg-blue-800 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-blue-600 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">Add Product</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

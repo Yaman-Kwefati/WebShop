@@ -3,7 +3,7 @@
   <div class="overflow-hidden relative aspect-w-1 aspect-h-1">
     <a [routerLink]="['/products', product.name]">
       <img class="p-8 rounded-t-lg transition-transform transform-gpu duration-300 ease-in-out scale-100 hover:scale-110"
-           [ngClass]="{'transform scale-110': onHover}" src="./assets/parfum1.jpg" alt="product image" />
+           [ngClass]="{'transform scale-110': onHover}" [src]="fileURL" alt="product image" />
     </a>
   </div>
   <div class="px-5 pb-5">

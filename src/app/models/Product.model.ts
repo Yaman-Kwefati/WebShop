@@ -1,22 +1,22 @@
-import {Category} from "./Category.model";
-
 export class Product{
-  private _id: number;
+  private _id?: number;
   private _name: string;
   private _description: string;
   private _price: number;
+  private _images: string[];
   private _stockQuantity: number;
 
-  constructor(id: number, name: string, description: string, price: number, stockQuantity: number) {
+  constructor(name: string, description: string, price: number, images: string[], stockQuantity: number, id?: number) {
     this._id = id;
     this._name = name;
     this._description = description;
     this._price = price;
+    this._images = images;
     this._stockQuantity = stockQuantity;
   }
 
 
-  get id(): number {
+  get id(): number | undefined {
     return this._id;
   }
 
@@ -46,6 +46,14 @@ export class Product{
 
   set price(value: number) {
     this._price = value;
+  }
+
+  get images(): string[] {
+    return this._images;
+  }
+
+  set images(value: string[]) {
+    this._images = value;
   }
 
   get stockQuantity(): number {

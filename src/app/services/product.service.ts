@@ -24,9 +24,18 @@ export class ProductService{
   }
 
   filterProducts(searchTerm: string, products: Product[]) {
-    // Filter products based on the search term and update the productsSubject
     return products.filter((product) =>
       product.name.toLowerCase().includes(searchTerm.toLowerCase())
     );
+  }
+
+  addProduct(name: string, description: string, price: number, stockQuantity: number, images: string[]){
+    return this.http.post<ApiResponse<Product>>(this.baseUrl+"products/new-product", {
+      name: name,
+      description: description,
+      price: price,
+      images: images,
+      stockQuantity: stockQuantity
+    });
   }
 }

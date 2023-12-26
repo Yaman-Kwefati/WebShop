@@ -6,13 +6,14 @@ import {MatTabsModule} from "@angular/material/tabs";
 import {UsersComponent} from "./users/users.component";
 import {ProductsTabComponent} from "./products/products-tab.component";
 import {OrdersComponent} from "./orders/orders.component";
+import {AddProductComponent} from "./add-product/add-product.component";
 
 initTE({Tab})
 
 @Component({
   selector: 'app-admin',
   standalone: true,
-  imports: [CommonModule, MatTabsModule, UsersComponent, ProductsTabComponent, OrdersComponent],
+  imports: [CommonModule, MatTabsModule, UsersComponent, ProductsTabComponent, OrdersComponent, AddProductComponent],
   providers: [UserService],
   templateUrl: './admin.component.html',
   styleUrl: './admin.component.less'
