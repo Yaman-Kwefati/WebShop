@@ -21,12 +21,13 @@
           <mat-select>
             @for (status of statuses; track status) {
               <mat-option [value]="status"
-                          (onSelectionChange)="showSaveStatusButton = true; element.orderStatus = status">{{status}}</mat-option>
+                          (onSelectionChange)="showSaveStatusButton = true; newStatus = status;
+printvalue(newStatus)">{{status}}</mat-option>
             }
           </mat-select>
         </mat-form-field>
         <button
-          (click)="changeOrderStatus(element.id, element.orderStatus)"
+          (click)="changeOrderStatus(element.id)"
           *ngIf="showSaveStatusButton">Save</button>
     </ng-container>
 

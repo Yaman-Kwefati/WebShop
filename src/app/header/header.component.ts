@@ -1,4 +1,12 @@
-import {AfterViewChecked, ChangeDetectorRef, Component, ElementRef, HostListener, ViewChild} from '@angular/core';
+import {
+  AfterViewChecked,
+  ChangeDetectorRef,
+  Component,
+  ElementRef,
+  HostListener,
+  OnInit, Renderer2,
+  ViewChild
+} from '@angular/core';
 import {CommonModule, NgOptimizedImage} from '@angular/common';
 import {AppModule} from "../app.module";
 import {MatButtonModule} from "@angular/material/button";
@@ -9,19 +17,24 @@ import {ShoppingCartComponent} from "./shopping-cart/shopping-cart.component";
 import {SearchResultsComponent} from "./searchbar/search-results/search-results.component";
 import {SearchbarComponent} from "./searchbar/searchbar.component";
 import {CategoriesComponent} from "./categories/categories.component";
-import {Router, RouterLink} from "@angular/router";
+import {Event, Router, RouterLink, RouterLinkActive} from "@angular/router";
 import {Product} from "../models/Product.model";
 import {ShoppingCartService} from "../services/shopping-cart.service";
 import {CookieService} from "ngx-cookie-service";
+import {UserService} from "../services/user.service";
+import {gsap} from "gsap";
+
+gsap.registerPlugin()
 
 @Component({
   selector: 'app-header',
-  imports: [CommonModule, NgOptimizedImage, AppModule, MatButtonModule, MatMenuModule, MatIconModule, MatBadgeModule, ShoppingCartComponent, SearchResultsComponent, SearchbarComponent, CategoriesComponent, RouterLink],
+  imports: [CommonModule, NgOptimizedImage, AppModule, MatButtonModule, MatMenuModule, MatIconModule, MatBadgeModule, ShoppingCartComponent, SearchResultsComponent, SearchbarComponent, CategoriesComponent, RouterLink, RouterLinkActive],
+  providers: [UserService],
   standalone: true,
   templateUrl: './header.component.html',
   styleUrl: './header.component.less'
 })
-export class HeaderComponent implements AfterViewChecked{
+export class HeaderComponent implements AfterViewChecked, OnInit{
   @ViewChild('searchbarComponent') searchbarComponent!: SearchbarComponent;
   isProfileMenuOpen = false;
   openSearchResultsModal = false;
@@ -29,6 +42,8 @@ export class HeaderComponent implements AfterViewChecked{
   isCategoriesOpen = false;
   cartBadgeNumber !: number | null;
   productsResults: Product[] = [];
+  userName = "";
+  userEmail = "";
   @HostListener('document:click', ['$event'])
   onDocumentClick(event: Event){
     this.productsResults = [];
@@ -37,7 +52,20 @@ export class HeaderComponent implements AfterViewChecked{
   constructor(private cartService: ShoppingCartService,
               private cdr: ChangeDetectorRef,
               private cookieService: CookieService,
-              private router: Router) {
+              private router: Router,
+              private userService: UserService) {
+  }
+
+  ngOnInit(): void {
+    let userId = this.getLoggedInUserId();
+    if (userId){
+      this.userService.fetchUser(userId).subscribe(
+        response => {
+          this.userName = response.payload.firstname + " " + response.payload.lastname;
+          this.userEmail = response.payload.email;
+        }
+      )
+    }
   }
 
   expandSearchBar() {
@@ -66,12 +94,21 @@ export class HeaderComponent implements AfterViewChecked{
   }
 
   navigateToUserPanel(){
-    let role = this.getLoggedInUserRole();
-    if (role != null && role == 'CUSTOMER'){
-      this.router.navigate(['user']);
-    }
-    else if (role != null && role == 'ADMIN'){
-      this.router.navigate(['admin']);
+    let userId = this.getLoggedInUserId();
+    if (userId){
+      this.userService.fetchUser(userId).subscribe(
+        response => {
+          let user = response.payload;
+          this.userName = user.firstname + " " + user.lastname;
+          this.userEmail = user.email;
+          if (user.userRole != null && user.userRole == 'CUSTOMER'){
+            this.router.navigate(['user']);
+          }
+          else if (user.userRole != null && user.userRole == 'ADMIN'){
+            this.router.navigate(['admin']);
+          }
+        }
+      )
     }
     else {
       this.router.navigate(['login']);
@@ -79,13 +116,59 @@ export class HeaderComponent implements AfterViewChecked{
   }
 
   clearCookies(){
-    if (this.getLoggedInUserRole()){
+    if (this.getLoggedInUserId()){
       this.cookieService.deleteAll();
       this.router.navigate(['/']);
     }
   }
 
-  getLoggedInUserRole(){
-    return this.cookieService.get('userRole');
+  getLoggedInUserId(){
+    return this.cookieService.get('userId');
+  }
+
+  //animation
+  @ViewChild('MobileNav', {static: true}) mobileNav!: ElementRef<HTMLDivElement>;
+  @ViewChild('MobileNavTop', {static: true}) mobileNavTop!: ElementRef<HTMLDivElement>;
+  @ViewChild('MobileNavBottom', {static: true}) mobileNavBottom!: ElementRef<HTMLDivElement>;
+  openMenuAnimation(): void {
+    gsap.fromTo(this.mobileNav.nativeElement,
+      { height: 0, opacity: 0 },
+      {
+        height: 'auto', opacity: 1, duration: 0.5, ease: "power2.out",
+        onComplete: () => {
+          this.mobileNav.nativeElement.style.height = 'auto';
+        }
+      }
+    );
+
+    gsap.fromTo(this.mobileNavTop.nativeElement.childNodes,
+      { opacity: 0, y: -20 },
+      { opacity: 1, y: 0, stagger: 0.1, delay: 0.1, duration: 0.3 });
+
+    gsap.fromTo(this.mobileNavBottom.nativeElement,
+      { opacity: 0, y: -20 },
+      { opacity: 1, y: 0, stagger: 0.1, delay: 0.1, duration: 0.3 });
+  }
+
+  closeMenuAnimation(): void {
+    gsap.to([this.mobileNavTop.nativeElement.childNodes, this.mobileNavBottom.nativeElement], {
+      opacity: 0, y: -20, stagger: 0.1, duration: 0.3
+    });
+
+    gsap.to(this.mobileNav.nativeElement, {
+      height: 0, opacity: 0, duration: 0.5, ease: "power2.in",
+      onComplete: () => {
+        this.isProfileMenuOpen = false;
+      }
+    });
+  }
+
+  toggleMenu() {
+    this.isProfileMenuOpen = !this.isProfileMenuOpen;
+    if (this.isProfileMenuOpen) {
+      this.openMenuAnimation();
+    } else {
+      this.closeMenuAnimation();
+    }
   }
 }

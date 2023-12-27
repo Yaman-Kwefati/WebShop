@@ -31,14 +31,14 @@ export class LoginComponent {
       resData => {
         this.user = resData.payload.user;
         this.cookieService.set('userId', String(resData.payload.user.id), 1)
-        this.cookieService.set('firstname', resData.payload.user.firstname, 1);
-        this.cookieService.set('lastname', resData.payload.user.lastname, 1);
-        this.cookieService.set('email', resData.payload.user.email, 1);
-        this.cookieService.set('phoneNumber', resData.payload.user.phoneNumber, 1);
-        this.cookieService.set('city', resData.payload.user.city, 1);
-        this.cookieService.set('street', resData.payload.user.street, 1);
-        this.cookieService.set('postalCode', resData.payload.user.postalCode, 1);
-        this.cookieService.set('userRole', resData.payload.user.userRole, 1);
+        // this.cookieService.set('firstname', resData.payload.user.firstname, 1);
+        // this.cookieService.set('lastname', resData.payload.user.lastname, 1);
+        // this.cookieService.set('email', resData.payload.user.email, 1);
+        // this.cookieService.set('phoneNumber', resData.payload.user.phoneNumber, 1);
+        // this.cookieService.set('city', resData.payload.user.city, 1);
+        // this.cookieService.set('street', resData.payload.user.street, 1);
+        // this.cookieService.set('postalCode', resData.payload.user.postalCode, 1);
+        // this.cookieService.set('userRole', resData.payload.user.userRole, 1);
         this.router.navigate(['/']);
       }, error => {
         this.error = "Email or Password incorrect!"

@@ -2,12 +2,15 @@ import {Component, OnInit} from '@angular/core';
 import { CommonModule } from '@angular/common';
 import {CookieService} from "ngx-cookie-service";
 import {User} from "../models/User.model";
+import {UserService} from "../services/user.service";
+import {OrderService} from "../services/order.service";
+import {ShopOrder} from "../models/ShopOrder.model";
 
 @Component({
   selector: 'app-user-screen',
   standalone: true,
   imports: [CommonModule],
-  providers: [CookieService],
+  providers: [CookieService, UserService, OrderService],
   templateUrl: './user-screen.component.html',
   styleUrl: './user-screen.component.less'
 })
@@ -16,44 +19,36 @@ export class UserScreenComponent implements OnInit{
   address!: string;
   name!: string;
 
-  orders = [
-    { id: 1, date: '2023-12-01', total: 120.00, status: 'Delivered' },
-    { id: 1, date: '2023-12-01', total: 120.00, status: 'Delivered' },
-    { id: 1, date: '2023-12-01', total: 120.00, status: 'Delivered' },
-    { id: 1, date: '2023-12-01', total: 120.00, status: 'Delivered' },
-    { id: 1, date: '2023-12-01', total: 120.00, status: 'Delivered' },
-    { id: 1, date: '2023-12-01', total: 120.00, status: 'Delivered' },
-    { id: 1, date: '2023-12-01', total: 120.00, status: 'Delivered' },
-    { id: 1, date: '2023-12-01', total: 120.00, status: 'Delivered' },
-    { id: 1, date: '2023-12-01', total: 120.00, status: 'Delivered' },
-    { id: 1, date: '2023-12-01', total: 120.00, status: 'Delivered' },
-    { id: 1, date: '2023-12-01', total: 120.00, status: 'Delivered' },
-    { id: 1, date: '2023-12-01', total: 120.00, status: 'Delivered' },
-    { id: 1, date: '2023-12-01', total: 120.00, status: 'Delivered' },
-    { id: 1, date: '2023-12-01', total: 120.00, status: 'Delivered' },
-    { id: 1, date: '2023-12-01', total: 120.00, status: 'Delivered' },
-    { id: 1, date: '2023-12-01', total: 120.00, status: 'Delivered' },
-    { id: 1, date: '2023-12-01', total: 120.00, status: 'Delivered' },
-    { id: 1, date: '2023-12-01', total: 120.00, status: 'Delivered' },
-    { id: 1, date: '2023-12-01', total: 120.00, status: 'Delivered' },
-  ];
+  orders: ShopOrder[] = [];
 
-  constructor(private cookieService: CookieService) {
+  constructor(private cookieService: CookieService,
+              private userService: UserService,
+              private orderService: OrderService) {
   }
 
   ngOnInit(): void {
     let userId = this.cookieService.get('userId');
-    let firstname = this.cookieService.get('firstname');
-    let lastname = this.cookieService.get('lastname');
-    let email = this.cookieService.get('email');
-    let phoneNumber = this.cookieService.get('phoneNumber');
-    let city = this.cookieService.get('city');
-    let street = this.cookieService.get('street');
-    let postalCode = this.cookieService.get('postalCode');
-    let userRol = this.cookieService.get('userRol');
-    this.user = new User(+userId!, firstname!, lastname!, email!, phoneNumber!, city!, street!, postalCode!, userRol!);
-    this.name = this.user.firstname + ", " + this.user.lastname;
-    this.address = this.user.postalCode + ", " + this.user.city + ", " + this.user.street;
+    this.userService.fetchUser(userId).subscribe(
+      response => {
+        this.user = response.payload;
+        this.name = this.user.firstname + ", " + this.user.lastname;
+        this.address = this.user.postalCode + ", " + this.user.city + ", " + this.user.street;
+        if (this.user){
+          this.orderService.getUsersOrders(this.user.email).subscribe(
+            response => {
+              this.orders = response.payload;
+            }
+          );
+        }
+      }
+    );
+    // if (this.user){
+    //   this.orderService.getUsersOrders(this.user.email).subscribe(
+    //     response => {
+    //       this.orders = response.payload;
+    //     }
+    //   );
+    // }
   }
 
 }

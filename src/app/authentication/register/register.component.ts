@@ -16,7 +16,6 @@ import {LoadingSpinnerComponent} from "../../shared/loading-spinner/loading-spin
 })
 export class RegisterComponent {
   isLoading = false;
-  user!: User;
   error!: string;
 
   constructor(private authService: AuthService,
@@ -39,9 +38,6 @@ export class RegisterComponent {
     this.authService.registerUser(firstname, lastname, email,
       phoneNumber, password, city, street, postalCode).subscribe(
       resData =>{
-        this.user = resData.payload;
-        // this.user.access_token = resData.payload.access_token;
-        // this.user.refresh_token = resData.payload.refresh_token;
         this.isLoading = false;
     }, error => {
         this.error = "User already exist";
@@ -49,5 +45,6 @@ export class RegisterComponent {
       }
     );
     registerForm.reset();
+    this.router.navigate(["/"]);
   }
 }

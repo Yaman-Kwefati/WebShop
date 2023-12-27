@@ -9,6 +9,7 @@ import { Animate, initTE } from "tw-elements";
 import {gsap} from "gsap";
 import {ScrollTrigger} from "gsap/ScrollTrigger";
 import {CookieService} from "ngx-cookie-service";
+import {provideAnimations} from "@angular/platform-browser/animations";
 
 gsap.registerPlugin(ScrollTrigger);
 initTE({ Animate });
@@ -19,6 +20,7 @@ initTE({ Animate });
   imports: [CommonModule, CartItemComponent, MatListModule, AboutUsComponent],
   templateUrl: './landing-page.component.html',
   styleUrl: './landing-page.component.less',
+  providers: [provideAnimations()]
 })
 export class LandingPageComponent implements AfterViewInit, OnInit{
   @ViewChild('aboutUsSection') aboutUsSection!: ElementRef;
@@ -26,8 +28,7 @@ export class LandingPageComponent implements AfterViewInit, OnInit{
 
   constructor(private route: ActivatedRoute,
               private router: Router,
-              @Inject(DOCUMENT) private document: Document,
-              private cookieSerive: CookieService) {}
+              @Inject(DOCUMENT) private document: Document) {}
 
   ngAfterViewInit(): void {
     this.route.fragment.subscribe(fragment => {

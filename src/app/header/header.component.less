@@ -55,21 +55,25 @@ hover:text-blue-800;
 
 
 .mobile-menu {
-  @apply -mr-2 flex md:hidden items-center;
+ @apply -mr-2 flex md:hidden items-center;
 }
 
 .mobile-menu-button {
-  @apply relative  inline-flex items-center justify-center p-2 text-black
+ @apply relative  inline-flex items-center justify-center p-2 text-black
   rounded-md
   hover:bg-blue-800 hover:text-white focus:outline-none focus:ring-offset-0;
 }
 
 .mobile-menu-links {
-  @apply text-black hover:bg-blue-800 hover:text-white block px-3 py-2 text-base font-medium;
+ @apply text-black hover:bg-blue-800 hover:text-white block px-3 py-2 text-base font-medium;
+}
+
+.active{
+ @apply bg-blue-800 text-white focus:text-white block px-3 py-2 text-base font-medium;
 }
 
 .mobile-menu-user-name {
-  @apply text-base font-medium leading-none text-white;
+  @apply text-base font-medium leading-none text-black;
 }
 
 .mobile-menu-user-email {
@@ -77,5 +81,8 @@ hover:text-blue-800;
 }
 
 .mobile-menu-user-links {
-  @apply block px-3 py-2 text-base font-medium text-gray-400 hover:bg-blue-800 hover:text-white;
+  @apply block px-3 py-2 text-base font-medium text-gray-400 hover:bg-blue-800 hover:text-white cursor-pointer;
 }
+
+
+

@@ -14,7 +14,7 @@ interface LoginResponse {
 }
 @Injectable()
 export class AuthService{
-  private loginUrl: string = "/api/v1/auth/authenticate";
+  private loginUrl: string = "http://localhost:8080/api/v1/auth/authenticate";
   private registerUrl: string = "/api/v1/auth/register";
 
   constructor(private http: HttpClient){}

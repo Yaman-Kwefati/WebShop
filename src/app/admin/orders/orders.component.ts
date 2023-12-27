@@ -21,6 +21,7 @@ export class OrdersComponent implements OnInit, AfterViewInit{
   dataSource = new MatTableDataSource<ShopOrder>();
   statuses: string[] = ['PLACED', 'SHIPPED', 'DELIVERED', 'DECLINED', 'CANCELLED'];
   showSaveStatusButton = false;
+  newStatus = "";
   @ViewChild("MatPaginator") paginator!: MatPaginator;
 
   constructor(private orderService: OrderService) {
@@ -31,6 +32,7 @@ export class OrdersComponent implements OnInit, AfterViewInit{
       orders => {
         this.dataSource.data = orders.payload;
         this.dataSource.paginator = this.paginator;
+        console.log(this.dataSource.data)
       }
     )
   }
@@ -39,7 +41,11 @@ export class OrdersComponent implements OnInit, AfterViewInit{
     this.dataSource.paginator = this.paginator;
   }
 
-  changeOrderStatus(orderId: number, orderStatus: string) {
-    this.orderService.updateOrderStatus(orderId, orderStatus);
+  changeOrderStatus(orderId: number) {
+    this.orderService.updateOrderStatus(orderId, this.newStatus);
+  }
+
+  printvalue(status: any) {
+    console.log(status);
   }
 }

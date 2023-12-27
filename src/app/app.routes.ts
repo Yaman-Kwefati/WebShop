@@ -10,6 +10,7 @@ import {UserScreenComponent} from "./user-screen/user-screen.component";
 import {AdminComponent} from "./admin/admin.component";
 import {ShoppingCartComponent} from "./header/shopping-cart/shopping-cart.component";
 import {OrderItemsOfOrderComponent} from "./shared/order-items-of-order/order-items-of-order.component";
+import {NotFoundComponent} from "./not-found/not-found.component";
 
 export const routes: Routes = [
   {
@@ -66,5 +67,15 @@ export const routes: Routes = [
     path: 'order-items',
     title: 'Order Items - Webshop',
     component: OrderItemsOfOrderComponent,
+  },
+  {
+    path: 'not-found',
+    title: 'Page Not Found',
+    component: NotFoundComponent,
+  },
+  {
+    path: '**',
+    redirectTo: '/not-found',
+    pathMatch: 'full',
   },
 ];
