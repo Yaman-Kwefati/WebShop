@@ -87,10 +87,11 @@ export class HeaderComponent implements AfterViewChecked, OnInit{
   ngAfterViewChecked(): void {
     if (this.cartService.getCartItemsCount() > 0){
       this.cartBadgeNumber = this.cartService.getCartItemsCount();
+      this.cdr.detectChanges();
     } else {
       this.cartBadgeNumber = null;
+      this.cdr.detectChanges();
     }
-    this.cdr.detectChanges();
   }
 
   navigateToUserPanel(){

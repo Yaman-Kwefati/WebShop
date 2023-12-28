@@ -40,10 +40,10 @@ export class LoginComponent {
         // this.cookieService.set('postalCode', resData.payload.user.postalCode, 1);
         // this.cookieService.set('userRole', resData.payload.user.userRole, 1);
         this.router.navigate(['/']);
+        window.location.reload();
       }, error => {
         this.error = "Email or Password incorrect!"
       }
     );
-    console.log(this.cookieService.getAll())
   }
 }

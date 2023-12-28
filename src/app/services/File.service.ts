@@ -13,6 +13,7 @@ export interface ApiResponse<T> {
 })
 export class FileService{
   private baseUrl: string = 'http://localhost:8080/api/v1/files/';
+  // private baseUrl: string = '/api/v1/files/';
 
   constructor(private http: HttpClient) { }
 
