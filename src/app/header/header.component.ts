@@ -23,13 +23,14 @@ import {ShoppingCartService} from "../services/shopping-cart.service";
 import {CookieService} from "ngx-cookie-service";
 import {UserService} from "../services/user.service";
 import {gsap} from "gsap";
+import {AuthService} from "../services/auth.service";
 
 gsap.registerPlugin()
 
 @Component({
   selector: 'app-header',
   imports: [CommonModule, NgOptimizedImage, AppModule, MatButtonModule, MatMenuModule, MatIconModule, MatBadgeModule, ShoppingCartComponent, SearchResultsComponent, SearchbarComponent, CategoriesComponent, RouterLink, RouterLinkActive],
-  providers: [UserService],
+  providers: [UserService, AuthService],
   standalone: true,
   templateUrl: './header.component.html',
   styleUrl: './header.component.less'
@@ -53,7 +54,8 @@ export class HeaderComponent implements AfterViewChecked, OnInit{
               private cdr: ChangeDetectorRef,
               private cookieService: CookieService,
               private router: Router,
-              private userService: UserService) {
+              private userService: UserService,
+              private auth: AuthService) {
   }
 
   ngOnInit(): void {
@@ -118,6 +120,11 @@ export class HeaderComponent implements AfterViewChecked, OnInit{
 
   clearCookies(){
     if (this.getLoggedInUserId()){
+      this.auth.logout().subscribe(
+        () => {
+          this.router.navigate(['/']);
+        }
+      );
       this.cookieService.deleteAll();
       this.router.navigate(['/']);
     }

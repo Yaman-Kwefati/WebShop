@@ -48,4 +48,8 @@ export class AuthService{
   refreshToken(){
     return this.http.post<Token>("http://localhost:8080/api/v1/auth/refresh-token", {});
   }
+
+  logout(){
+    return this.http.post("http://localhost:8080/api/v1/auth/logout", {});
+  }
 }
