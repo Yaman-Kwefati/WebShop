@@ -33,10 +33,9 @@ export class RegisterComponent {
     const city =   registerForm.value.city;
     const street =   registerForm.value.street;
     const postalCode =   registerForm.value.postalcode;
-    const role =  "CUSTOMER";
     this.isLoading = true;
-    this.authService.registerUser(firstname, lastname, email,
-      phoneNumber, password, city, street, postalCode).subscribe(
+    this.authService.registerUser(firstname, lastname, email,password,
+      phoneNumber, city, street, postalCode).subscribe(
       resData =>{
         this.isLoading = false;
     }, error => {
@@ -45,6 +44,6 @@ export class RegisterComponent {
       }
     );
     registerForm.reset();
-    this.router.navigate(["/"]);
+    this.router.navigate(["/login"]);
   }
 }

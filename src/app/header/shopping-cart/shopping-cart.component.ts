@@ -7,6 +7,7 @@ import {OrderService} from "../../services/order.service";
 import {CookieService} from "ngx-cookie-service";
 import {PaymentService} from "../../services/Payment.service";
 import {UserService} from "../../services/user.service";
+import {AuthService} from "../../services/auth.service";
 
 @Component({
   selector: 'app-shopping-cart',
@@ -60,9 +61,13 @@ export class ShoppingCartComponent implements OnInit, AfterViewChecked {
 
     this.paymentService.createCheckoutSession(paymentRequest).subscribe({
       next: (response) => {
+        console.log(userEmail)
+        console.log(items)
+        console.log(response)
         if (response && response.message) {
           // Redirect the user to the Stripe Checkout page
           window.location.href = response.message;
+          console.log(response.message)
         } else {
           console.error('Checkout URL is undefined or invalid');
         }
@@ -82,11 +87,4 @@ export class ShoppingCartComponent implements OnInit, AfterViewChecked {
       this.router.navigate(['/login']);
     }
   }
-
-  // placeOrder(){
-  //   if (this.cookieService.get('userId') && this.cartItems){
-  //     this.orderService.makeOrder(this.total, this.cartItems);
-  //     this.cookieService.delete('cartItems');
-  //   }
-  // }
 }
