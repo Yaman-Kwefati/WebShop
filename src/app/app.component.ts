@@ -1,6 +1,6 @@
 import {Component, ElementRef, Inject, OnInit, ViewChild} from '@angular/core';
 import {CommonModule, DOCUMENT} from '@angular/common';
-import { RouterOutlet } from '@angular/router';
+import { RouterOutlet, Router, Event, NavigationEnd } from '@angular/router';
 import {HeaderComponent} from "./header/header.component";
 import {FooterComponent} from "./footer/footer.component";
 import {AppModule} from "./app.module";
@@ -10,7 +10,6 @@ import {gsap} from "gsap";
 import {ScrollTrigger} from "gsap/ScrollTrigger";
 import {FontAwesomeModule} from "@fortawesome/angular-fontawesome";
 import {LoadingSpinnerComponent} from "./shared/loading-spinner/loading-spinner.component";
-
 gsap.registerPlugin(ScrollTrigger);
 
 @Component({

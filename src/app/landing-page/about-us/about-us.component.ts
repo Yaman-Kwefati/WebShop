@@ -21,16 +21,21 @@ export class AboutUsComponent implements OnInit{
     this.initScrollAnimations();
   }
 
-  initScrollAnimations(): void{
-    gsap.from(this.main.nativeElement, {
-      scrollTrigger: {
-        trigger: this.main.nativeElement,
-        scrub: true,
-        start: "top 140%",
-      } as gsap.plugins.ScrollTriggerInstanceVars,
-      duration: 1.5,
-      y: 100, // Adjust this value based on how much you want to reveal
-      opacity: 0,
+  initScrollAnimations(): void {
+    gsap.utils.toArray<Element>('.container > div').forEach(div => {
+      gsap.from(div, {
+        scrollTrigger: {
+          trigger: div,
+          start: 'top bottom-=100', // Adjust this value as needed
+          toggleActions: 'play none none none'
+        },
+        stagger: 1,
+        duration: 0.8,
+        y: 100,
+        opacity: 0,
+      });
     });
   }
+
+
 }

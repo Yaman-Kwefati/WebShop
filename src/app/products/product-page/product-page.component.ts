@@ -7,11 +7,12 @@ import {ProductService} from "../../services/product.service";
 import {CartProduct, ShoppingCartService} from "../../services/shopping-cart.service";
 import {FileService} from "../../services/File.service";
 import {DomSanitizer, SafeUrl} from "@angular/platform-browser";
+import {ProductAccordionComponent} from "./product-accordion/product-accordion.component";
 
 @Component({
   selector: 'app-product-page',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, ProductAccordionComponent],
   providers: [ProductService, FileService],
   templateUrl: './product-page.component.html',
   styleUrl: './product-page.component.less'

@@ -1,7 +1,6 @@
-<div class="min-h-screen bg-white mt-40 md:px-32 flex flex-col md:flex-row md:items-start md:justify-center"
-#Main>
+<div class="min-h-screen bg-white mt-12 md:mt-32 md:px-0 lg:px-28 flex flex-col md:flex-row md:items-start md:justify-center" #Main>
   <div class="p-4">
-    <div class="relative flex items-center mt-4" (mouseover)="carsoulButtonsVisible = true"
+    <div class="relative flex items-center" (mouseover)="carsoulButtonsVisible = true"
     (mouseleave)="carsoulButtonsVisible = false">
       <button (click)="showPrevImage()" class="absolute left-0 z-10 hover:bg-gray-200 p-2 rounded-full rotate-180"
       *ngIf="carsoulButtonsVisible">
@@ -19,36 +18,23 @@
       <img *ngFor="let image of fileURLArray" [src]="image" class="w-16 h-16 object-cover" alt="Small Image">
     </div>
   </div>
-  <div class="flex flex-col justify-center text-start pt-4 space-y-3 w-4/6 p-4">
+  <div class="flex flex-col justify-center text-start pt-4 space-y-3 p-4 w-full">
     <h1 class="text-4xl font-bold">{{product.name}}</h1>
     <h1 class="text-xl">{{product.price | currency:"EUR"}}</h1>
+    <p class="italic text-gray-400">Incl BTW 21%</p>
     <div class="flex items-center mt-2.5 mb-5">
-      <div class="flex items-center space-x-1 rtl:space-x-reverse">
-        <svg class="w-4 h-4 text-yellow-300" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 22 20">
-          <path d="M20.924 7.625a1.523 1.523 0 0 0-1.238-1.044l-5.051-.734-2.259-4.577a1.534 1.534 0 0 0-2.752 0L7.365 5.847l-5.051.734A1.535 1.535 0 0 0 1.463 9.2l3.656 3.563-.863 5.031a1.532 1.532 0 0 0 2.226 1.616L11 17.033l4.518 2.375a1.534 1.534 0 0 0 2.226-1.617l-.863-5.03L20.537 9.2a1.523 1.523 0 0 0 .387-1.575Z"/>
-        </svg>
-        <svg class="w-4 h-4 text-yellow-300" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 22 20">
-          <path d="M20.924 7.625a1.523 1.523 0 0 0-1.238-1.044l-5.051-.734-2.259-4.577a1.534 1.534 0 0 0-2.752 0L7.365 5.847l-5.051.734A1.535 1.535 0 0 0 1.463 9.2l3.656 3.563-.863 5.031a1.532 1.532 0 0 0 2.226 1.616L11 17.033l4.518 2.375a1.534 1.534 0 0 0 2.226-1.617l-.863-5.03L20.537 9.2a1.523 1.523 0 0 0 .387-1.575Z"/>
-        </svg>
-        <svg class="w-4 h-4 text-yellow-300" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 22 20">
-          <path d="M20.924 7.625a1.523 1.523 0 0 0-1.238-1.044l-5.051-.734-2.259-4.577a1.534 1.534 0 0 0-2.752 0L7.365 5.847l-5.051.734A1.535 1.535 0 0 0 1.463 9.2l3.656 3.563-.863 5.031a1.532 1.532 0 0 0 2.226 1.616L11 17.033l4.518 2.375a1.534 1.534 0 0 0 2.226-1.617l-.863-5.03L20.537 9.2a1.523 1.523 0 0 0 .387-1.575Z"/>
-        </svg>
-        <svg class="w-4 h-4 text-yellow-300" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 22 20">
-          <path d="M20.924 7.625a1.523 1.523 0 0 0-1.238-1.044l-5.051-.734-2.259-4.577a1.534 1.534 0 0 0-2.752 0L7.365 5.847l-5.051.734A1.535 1.535 0 0 0 1.463 9.2l3.656 3.563-.863 5.031a1.532 1.532 0 0 0 2.226 1.616L11 17.033l4.518 2.375a1.534 1.534 0 0 0 2.226-1.617l-.863-5.03L20.537 9.2a1.523 1.523 0 0 0 .387-1.575Z"/>
-        </svg>
-        <svg class="w-4 h-4 text-gray-200 dark:text-gray-600" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 22 20">
-          <path d="M20.924 7.625a1.523 1.523 0 0 0-1.238-1.044l-5.051-.734-2.259-4.577a1.534 1.534 0 0 0-2.752 0L7.365 5.847l-5.051.734A1.535 1.535 0 0 0 1.463 9.2l3.656 3.563-.863 5.031a1.532 1.532 0 0 0 2.226 1.616L11 17.033l4.518 2.375a1.534 1.534 0 0 0 2.226-1.617l-.863-5.03L20.537 9.2a1.523 1.523 0 0 0 .387-1.575Z"/>
-        </svg>
-      </div>
-      <span class="bg-blue-100 text-blue-800 text-xs font-semibold px-2.5 py-0.5 rounded dark:bg-blue-200 dark:text-blue-800 ms-3">5.0</span>
+      <span class="bg-red-200 text-red-800 text-xs font-semibold line-through px-2.5 py-0.5 rounded ">{{product.price + product.price * 0.21 | currency:"EUR"}}</span>
+      <span class="bg-green-200 text-green-800 text-xs font-semibold px-2.5 py-0.5 rounded ms-3">{{product.price | currency:"EUR"}}</span>
     </div>
-    <p>Lorem ipsum is een opvultekst die drukkers, zetters, grafisch ontwerpers en dergelijken gebruiken om te
+    <p class="text w-full">Lorem ipsum is een opvultekst die drukkers, zetters, grafisch ontwerpers en dergelijken gebruiken om te
       kijken hoe een opmaak er grafisch uitziet. De eerste woorden van de tekst luiden doorgaans Lorem ipsum dolor s
       it amet, consectetur adipiscing elit</p>
     <p>{{product.description}}</p>
     <button
       (click)="addToShoppingCart(product)"
-      class="bg-blue-800 hover:bg-blue-700 w-fit p-2 rounded-3xl text-white text-xl"
-    >Add to Cart</button>
+      class="bg-blue-800 hover:bg-blue-700 w-full p-2 rounded-md text-white text-xl font-bold flex items-center justify-center"
+    ><svg class="fill-white mr-4" xmlns="http://www.w3.org/2000/svg" height="16" width="14" viewBox="0 0 448 512"><!--!Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2023 Fonticons, Inc.--><path d="M160 112c0-35.3 28.7-64 64-64s64 28.7 64 64v48H160V112zm-48 48H48c-26.5 0-48 21.5-48 48V416c0 53 43 96 96 96H352c53 0 96-43 96-96V208c0-26.5-21.5-48-48-48H336V112C336 50.1 285.9 0 224 0S112 50.1 112 112v48zm24 48a24 24 0 1 1 0 48 24 24 0 1 1 0-48zm152 24a24 24 0 1 1 48 0 24 24 0 1 1 -48 0z"/></svg>
+      Add to Cart</button>
+    <app-product-accordion></app-product-accordion>
   </div>
 </div>
