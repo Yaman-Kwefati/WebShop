@@ -1,0 +1,51 @@
+<div class="mat-elevation-z8">
+  <table mat-table [dataSource]="dataSource">
+    <ng-container matColumnDef="orderId" >
+      <th mat-header-cell *matHeaderCellDef> Id. </th>
+      <td mat-cell *matCellDef="let element"
+          class="cursor-pointer hover:bg-blue-700"
+          routerLink="/order-items" [queryParams]="{ orderId: element.id}"
+      > {{element.id}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="User Id">
+      <th mat-header-cell *matHeaderCellDef> User Id </th>
+      <td mat-cell *matCellDef="let element"> {{element.userId.id}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="OrderStatus">
+      <th mat-header-cell *matHeaderCellDef> OrderStatus </th>
+      <td mat-cell *matCellDef="let element">
+        <mat-form-field>
+          <mat-label>{{element.orderStatus}}</mat-label>
+          <mat-select>
+            @for (status of statuses; track status) {
+              <mat-option [value]="status"
+                          (onSelectionChange)="showSaveStatusButton = true; newStatus = status;
+printvalue(newStatus)">{{status}}</mat-option>
+            }
+          </mat-select>
+        </mat-form-field>
+        <button
+          (click)="changeOrderStatus(element.id)"
+          *ngIf="showSaveStatusButton">Save</button>
+    </ng-container>
+
+    <ng-container matColumnDef="OrderDate">
+      <th mat-header-cell *matHeaderCellDef> Order Date </th>
+      <td mat-cell *matCellDef="let element"> {{element.orderDate}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="Total Amount">
+      <th mat-header-cell *matHeaderCellDef> Total Amount </th>
+      <td mat-cell *matCellDef="let element"> {{element.totalAmount | currency:"EUR"}} </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;" ></tr>
+  </table>
+  <mat-paginator #MatPaginator [pageSizeOptions]="[5, 10, 20]"
+                 showFirstLastButtons
+                 aria-label="Select page of periodic elements">
+  </mat-paginator>
+</div>

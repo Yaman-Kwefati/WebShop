@@ -1,0 +1,31 @@
+<div class="h-screen bg-white">
+  <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 flex flex-row justify-between p-2 items-center h-screen">
+    <div class="flex flex-col w-full h-full justify-between py-28">
+      <div class="text-4xl space-y-1.5">
+        <h1>Your Shopping Cart</h1>
+        <hr>
+      </div>
+      <div class="overflow-y-auto py-3" *ngIf="cartItems.length > 0">
+        <app-cart-item *ngFor="let product of cartItems"
+        [product]="product"></app-cart-item>
+      </div>
+      <div class="flex justify-center text-4xl text-gray-400"
+        *ngIf="cartItems.length == 0">
+        <h1>Please add Products</h1>
+      </div>
+      <div class="space-y-1.5">
+        <hr>
+        <div class="flex justify-between items-center space-x-3">
+          <button routerLink="/products" class="bg-black text-white rounded-md py-3 h-fit px-5 inline-block text-center font-bold">&larr; Back to Shop</button>
+          <div class="flex flex-col items-center">
+            <h1><strong>Total:</strong> {{total | currency:"EUR"}}</h1>
+            <p class="text-gray-500 italic">incl btw 21%</p>
+            <button (click)="onCheckOut()" [disabled]="cartItems.length == 0"
+                    class="bg-blue-700 hover:bg-blue-600 rounded-md py-2 px-10 inline-block text-center text-white font-bold flex items-center">
+              <span><svg class="mr-1 fill-white" xmlns="http://www.w3.org/2000/svg" height="16" width="14" viewBox="0 0 448 512"><!--!Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2023 Fonticons, Inc.--><path d="M144 144v48H304V144c0-44.2-35.8-80-80-80s-80 35.8-80 80zM80 192V144C80 64.5 144.5 0 224 0s144 64.5 144 144v48h16c35.3 0 64 28.7 64 64V448c0 35.3-28.7 64-64 64H64c-35.3 0-64-28.7-64-64V256c0-35.3 28.7-64 64-64H80z"/></svg></span>Checkout</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
