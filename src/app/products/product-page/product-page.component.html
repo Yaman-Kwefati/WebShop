@@ -1,21 +1,25 @@
-<div class="min-h-screen bg-white mt-12 md:mt-32 md:px-0 lg:px-28 flex flex-col md:flex-row md:items-start md:justify-center" #Main>
+<div class="min-h-screen overflow-x-hidden bg-white mt-12 md:mt-32 md:px-0 lg:px-28 flex flex-col md:flex-row md:items-start md:justify-center" #Main>
   <div class="p-4">
     <div class="relative flex items-center" (mouseover)="carsoulButtonsVisible = true"
     (mouseleave)="carsoulButtonsVisible = false">
-      <button (click)="showPrevImage()" class="absolute left-0 z-10 hover:bg-gray-200 p-2 rounded-full rotate-180"
+      <button (click)="showPrevImage()" class="absolute left-0 z-10 hover:bg-gray-200 hover:bg-opacity-30 p-2 rounded-full rotate-180"
       *ngIf="carsoulButtonsVisible">
         <svg xmlns="http://www.w3.org/2000/svg" height="28" width="24" viewBox="0 0 448 512">
           <path d="M438.6 278.6c12.5-12.5 12.5-32.8 0-45.3l-160-160c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L338.8 224 32 224c-17.7 0-32 14.3-32 32s14.3 32 32 32l306.7 0L233.4 393.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0l160-160z"/></svg>
       </button>
-      <img class="object-cover w-96" [src]="fileURL" alt="Carousel Image">
-      <button (click)="showNextImage()" class="absolute right-0 z-10 hover:bg-gray-200 p-2 rounded-full"
+      <img class="object-cover w-96" [src]="fileURL" alt="Carousel Image"
+           (touchstart)="handleTouchStart($event)" (touchmove)="handleTouchMove($event)" (touchend)="handleTouchEnd()">
+      <button (click)="showNextImage()" class="absolute right-0 z-10 hover:bg-gray-200 hover:bg-opacity-30 p-2 rounded-full"
               *ngIf="carsoulButtonsVisible">
         <svg xmlns="http://www.w3.org/2000/svg" height="28" width="24" viewBox="0 0 448 512">
           <path d="M438.6 278.6c12.5-12.5 12.5-32.8 0-45.3l-160-160c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L338.8 224 32 224c-17.7 0-32 14.3-32 32s14.3 32 32 32l306.7 0L233.4 393.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0l160-160z"/></svg>
       </button>
     </div>
     <div class="flex mt-2 space-x-2">
-      <img *ngFor="let image of fileURLArray" [src]="image" class="w-16 h-16 object-cover" alt="Small Image">
+      <img *ngFor="let image of fileURLArray; let i = index" [src]="image"
+           [class.highlighted]="i === currentIndex"
+           class="w-16 h-16 object-cover" alt="Small Image">
+
     </div>
   </div>
   <div class="flex flex-col justify-center text-start pt-4 space-y-3 p-4 w-full">

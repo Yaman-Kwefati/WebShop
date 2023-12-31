@@ -10,6 +10,7 @@ import {gsap} from "gsap";
 import {ScrollTrigger} from "gsap/ScrollTrigger";
 import {FontAwesomeModule} from "@fortawesome/angular-fontawesome";
 import {LoadingSpinnerComponent} from "./shared/loading-spinner/loading-spinner.component";
+import {filter} from "rxjs";
 gsap.registerPlugin(ScrollTrigger);
 
 @Component({
@@ -21,5 +22,12 @@ gsap.registerPlugin(ScrollTrigger);
   styleUrl: './app.component.less'
 })
 export class AppComponent{
+  constructor(private router: Router) {
+    this.router.events.pipe(
+      filter(event => event instanceof NavigationEnd)
+    ).subscribe(() => {
+      window.scrollTo(0, 0);
+    });
+  }
 }
 

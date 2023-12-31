@@ -21,6 +21,12 @@ export class ProductPageComponent implements OnInit{
   product!: Product;
   productName = "";
   fileURL: SafeUrl = '';
+  touchStartX = 0;
+  touchEndX = 0;
+  touchStartY = 0;
+  touchEndY = 0;
+  minSwipeDistance = 30; // Minimum distance to be considered a swipe
+
 
   constructor(@Inject(DOCUMENT) private document: Document,
               private sanitizer: DomSanitizer,
@@ -47,6 +53,31 @@ export class ProductPageComponent implements OnInit{
       }
     );
     this.initialAnimations();
+  }
+
+  handleTouchStart(event: TouchEvent) {
+    event.preventDefault();
+    this.touchStartX = event.touches[0].clientX;
+    this.touchStartY = event.touches[0].clientY;
+  }
+
+  handleTouchMove(event: TouchEvent) {
+    this.touchEndX = event.touches[0].clientX;
+    this.touchEndY = event.touches[0].clientY;
+  }
+
+  handleTouchEnd() {
+    let deltaX = this.touchStartX - this.touchEndX;
+    let deltaY = this.touchStartY - this.touchEndY;
+
+    // Check if the swipe is more horizontal than vertical
+    if (Math.abs(deltaX) > Math.abs(deltaY) && Math.abs(deltaX) > this.minSwipeDistance) {
+      if (deltaX > 0) {
+        this.showNextImage();
+      } else {
+        this.showPrevImage();
+      }
+    }
   }
 
 
