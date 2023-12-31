@@ -3,7 +3,7 @@ import {CommonModule, DOCUMENT} from '@angular/common';
 import {CartItemComponent} from "../header/shopping-cart/cart-item/cart-item.component";
 import {MatListModule} from "@angular/material/list";
 import {AboutUsComponent} from "./about-us/about-us.component";
-import {ActivatedRoute, NavigationEnd, Router} from "@angular/router";
+import {ActivatedRoute, NavigationEnd, Router, RouterLink} from "@angular/router";
 import {filter} from "rxjs";
 import { Animate, initTE } from "tw-elements";
 import {gsap} from "gsap";
@@ -17,7 +17,7 @@ initTE({ Animate });
 @Component({
   selector: 'app-landing-page',
   standalone: true,
-  imports: [CommonModule, CartItemComponent, MatListModule, AboutUsComponent],
+  imports: [CommonModule, CartItemComponent, MatListModule, AboutUsComponent, RouterLink],
   templateUrl: './landing-page.component.html',
   styleUrl: './landing-page.component.less',
   providers: [provideAnimations()]
@@ -68,7 +68,7 @@ export class LandingPageComponent implements AfterViewInit, OnInit{
       y: 100,
       opacity: 0,
     });
-    gsap.from(this.ProductsDetailsSection.nativeElement, {
+    gsap.from(this.ProductsDetailsSection.nativeElement.childNodes, {
       scrollTrigger: ".box",
       duration: 1.0,
       y: 100,

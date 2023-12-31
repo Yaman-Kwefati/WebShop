@@ -1,4 +1,4 @@
-<div class="w-full max-w-sm bg-white border border-gray-200 rounded-lg shadow m-1.5 hover:bg-gray-50"
+<div class="w-full max-w-sm bg-zinc-700 border border-amber-100 border-opacity-40 rounded-lg shadow m-1.5 "
      (mouseenter)="onHover = true" (mouseleave)="onHover = false">
   <div class="overflow-hidden relative aspect-w-1 aspect-h-1">
     <a [routerLink]="['/products', product.name]">
@@ -8,7 +8,7 @@
   </div>
   <div class="px-5 pb-5">
     <a [routerLink]="['/products', product.name]">
-      <h5 class="text-xl font-semibold tracking-tight text-gray-900 hover:text-blue-800"
+      <h5 class="text-xl font-semibold tracking-tight text-amber-100 hover:underline"
       >{{product.name}}</h5>
     </a>
     <div class="flex items-center mt-2.5 mb-5">
@@ -32,8 +32,28 @@
       <span class="bg-blue-100 text-blue-800 text-xs font-semibold px-2.5 py-0.5 rounded dark:bg-blue-200 dark:text-blue-800 ms-3">5.0</span>
     </div>
     <div class="flex items-center justify-between">
-      <span class="text-3xl font-bold text-gray-900">{{product.price | currency:"EUR"}}</span>
-      <a (click)="addToShoppingCart(product)" class="cursor-pointer text-white bg-blue-800 hover:bg-blue-700 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center">Add to cart</a>
+      <span class="text-3xl font-bold text-amber-100">{{product.price | currency:"EUR"}}</span>
+<!--      <a (click)="addToShoppingCart(product)" class="cursor-pointer text-white bg-blue-800 hover:bg-blue-700 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center">Add to cart</a>-->
+      <button
+        (click)="addToShoppingCart(product)"
+        class="overflow-hidden relative w-32 p-2 h-12 bg-black text-white border-none rounded-md text-md font-bold cursor-pointer relative z-10 group"
+      >
+        Add to Cart
+        <span
+          class="absolute w-36 h-32 -top-8 -left-2 bg-green-200 rounded-full transform scale-x-0 group-hover:scale-x-100 transition-transform group-hover:duration-500 duration-1000 origin-bottom"
+        ></span>
+        <span
+          class="absolute w-36 h-32 -top-8 -left-2 bg-green-400 rounded-full transform scale-x-0 group-hover:scale-x-100 transition-transform group-hover:duration-700 duration-700 origin-bottom"
+        ></span>
+        <span
+          class="absolute w-36 h-32 -top-8 -left-2 bg-green-600 rounded-full transform scale-x-0 group-hover:scale-x-100 transition-transform group-hover:duration-1000 duration-500 origin-bottom"
+        ></span>
+        <span
+          class="group-hover:opacity-100 group-hover:duration-1000 duration-100 opacity-0 absolute top-2.5 left-6 z-10"
+        >Thanks!</span
+        >
+      </button>
+
     </div>
   </div>
 </div>

@@ -18,10 +18,10 @@ interface Token{
 }
 @Injectable()
 export class AuthService{
-  // private loginUrl: string = "http://localhost:8080/api/v1/auth/authenticate";
-  // private registerUrl: string = "http://localhost:8080/api/v1/auth/register";
-  private loginUrl: string = "/api/v1/auth/authenticate";
-  private registerUrl: string = "/api/v1/auth/register";
+  private loginUrl: string = "http://localhost:8080/api/v1/auth/authenticate";
+  private registerUrl: string = "http://localhost:8080/api/v1/auth/register";
+  // private loginUrl: string = "/api/v1/auth/authenticate";
+  // private registerUrl: string = "/api/v1/auth/register";
 
   constructor(private http: HttpClient){}
 

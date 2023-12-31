@@ -22,7 +22,7 @@ import {Product} from "../models/Product.model";
 import {ShoppingCartService} from "../services/shopping-cart.service";
 import {CookieService} from "ngx-cookie-service";
 import {UserService} from "../services/user.service";
-import {gsap} from "gsap";
+import { gsap, Power2, Expo } from 'gsap';
 import {AuthService} from "../services/auth.service";
 
 gsap.registerPlugin()
@@ -49,6 +49,18 @@ export class HeaderComponent implements AfterViewChecked, OnInit{
   onDocumentClick(event: Event){
     this.productsResults = [];
   }
+  @ViewChild('header') header!: ElementRef<HTMLElement>;
+
+  @HostListener('window:scroll', ['$event'])
+  onScroll() {
+    const scrollPosition = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop || 0;
+
+    if (scrollPosition > 10) {
+      this.header.nativeElement.classList.add('blurred-header');
+    } else {
+      this.header.nativeElement.classList.remove('blurred-header');
+    }
+  }
 
   constructor(private cartService: ShoppingCartService,
               private cdr: ChangeDetectorRef,
@@ -59,6 +71,7 @@ export class HeaderComponent implements AfterViewChecked, OnInit{
   }
 
   ngOnInit(): void {
+    this.initializeMenuAnimations();
     let userId = this.getLoggedInUserId();
     if (userId){
       this.userService.fetchUser(userId).subscribe(
@@ -179,4 +192,69 @@ export class HeaderComponent implements AfterViewChecked, OnInit{
       this.closeMenuAnimation();
     }
   }
+  initializeMenuAnimations() {
+    const menuToggle = document.getElementById('menuToggle') as HTMLButtonElement | null;
+
+    if (!menuToggle) {
+      console.error('Menu toggle button not found');
+      return;
+    }
+
+    const menuBar = gsap.timeline({ paused: true });
+
+    menuBar.to('.bar-1', 0.5, {
+      attr: { d: 'M8,2 L2,8' },
+      x: 1,
+      ease: Power2.easeInOut
+    }, 'start')
+      .to('.bar-2', 0.5, {
+        autoAlpha: 0
+      }, 'start')
+      .to('.bar-3', 0.5, {
+        attr: { d: 'M8,8 L2,2' },
+        x: 1,
+        ease: Power2.easeInOut
+      }, 'start')
+      .reverse();
+
+    const navTl = gsap.timeline({ paused: true });
+
+    navTl.to('.fullpage-menu', {
+      duration: 0,
+      display: 'block',
+      ease: Expo.easeInOut
+    }, '<')
+      .to('.menu-bg', {
+        duration: 1,
+        opacity: 1,
+        ease: Expo.easeInOut
+      }, '<')
+      .from('.main-menu li a', {
+        duration: 1.5,
+        y: '100%',
+        rotateY: 30,
+        stagger: 0.2,
+        ease: Expo.easeInOut
+      }, '-=0.5')
+      .reverse();
+
+    menuToggle.addEventListener('click', () => {
+      menuBar.reversed(!menuBar.reversed());
+      navTl.reversed(!navTl.reversed());
+    });
+    document.querySelectorAll('.main-menu li a').forEach(link => {
+      link.addEventListener('click', () => this.closeMenu(menuBar, navTl));
+    });
+  }
+  closeMenu(menuBar: gsap.core.Timeline, navTl: gsap.core.Timeline) {
+    if (!menuBar.reversed()) {
+      menuBar.reverse();
+    }
+
+    if (!navTl.reversed()) {
+      navTl.reverse();
+    }
+  }
+
+
 }

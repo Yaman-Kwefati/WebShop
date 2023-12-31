@@ -5,12 +5,14 @@ import {User} from "../models/User.model";
 import {UserService} from "../services/user.service";
 import {OrderService} from "../services/order.service";
 import {ShopOrder} from "../models/ShopOrder.model";
+import {AuthService} from "../services/auth.service";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-user-screen',
   standalone: true,
   imports: [CommonModule],
-  providers: [CookieService, UserService, OrderService],
+  providers: [CookieService, UserService, OrderService, AuthService],
   templateUrl: './user-screen.component.html',
   styleUrl: './user-screen.component.less'
 })
@@ -23,7 +25,9 @@ export class UserScreenComponent implements OnInit{
 
   constructor(private cookieService: CookieService,
               private userService: UserService,
-              private orderService: OrderService) {
+              private orderService: OrderService,
+              private auth: AuthService,
+              private router: Router) {
   }
 
   ngOnInit(): void {
@@ -42,13 +46,20 @@ export class UserScreenComponent implements OnInit{
         }
       }
     );
-    // if (this.user){
-    //   this.orderService.getUsersOrders(this.user.email).subscribe(
-    //     response => {
-    //       this.orders = response.payload;
-    //     }
-    //   );
-    // }
+  }
+  clearCookies(){
+    if (this.getLoggedInUserId()){
+      this.auth.logout().subscribe(
+        () => {
+          this.router.navigate(['/']);
+        }
+      );
+      this.cookieService.deleteAll();
+      this.router.navigate(['/']);
+    }
+  }
+  getLoggedInUserId(){
+    return this.cookieService.get('userId');
   }
 
 }

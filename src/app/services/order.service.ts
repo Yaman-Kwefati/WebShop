@@ -18,8 +18,8 @@ export interface ApiResponse<T> {
 })
 export class OrderService{
   orders!: ShopOrder[];
-  // private baseUrl: string = "http://localhost:8080/api/v1/";
-  private baseUrl: string = "/api/v1/";
+  private baseUrl: string = "http://localhost:8080/api/v1/";
+  // private baseUrl: string = "/api/v1/";
   constructor(private http: HttpClient,
               private cookieService: CookieService,
               private userService: UserService){}

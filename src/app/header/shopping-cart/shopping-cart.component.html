@@ -15,15 +15,23 @@
       </div>
       <div class="space-y-1.5">
         <hr>
-        <div class="flex justify-between items-center space-x-3">
-          <button routerLink="/products" class="bg-black text-white rounded-md py-3 h-fit px-5 inline-block text-center font-bold">&larr; Back to Shop</button>
-          <div class="flex flex-col items-center">
+        <div class="flex flex-col sm:flex-row justify-between items-center space-x-3 space-y-3">
+          <div class="flex items-center justify-between w-full px-2">
             <h1><strong>Total:</strong> {{total | currency:"EUR"}}</h1>
             <p class="text-gray-500 italic">incl btw 21%</p>
-            <button (click)="onCheckOut()" [disabled]="cartItems.length == 0"
-                    class="bg-blue-700 hover:bg-blue-600 rounded-md py-2 px-10 inline-block text-center text-white font-bold flex items-center">
-              <span><svg class="mr-1 fill-white" xmlns="http://www.w3.org/2000/svg" height="16" width="14" viewBox="0 0 448 512"><!--!Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2023 Fonticons, Inc.--><path d="M144 144v48H304V144c0-44.2-35.8-80-80-80s-80 35.8-80 80zM80 192V144C80 64.5 144.5 0 224 0s144 64.5 144 144v48h16c35.3 0 64 28.7 64 64V448c0 35.3-28.7 64-64 64H64c-35.3 0-64-28.7-64-64V256c0-35.3 28.7-64 64-64H80z"/></svg></span>Checkout</button>
+            <!--            <button (click)="onCheckOut()" [disabled]="cartItems.length == 0"-->
+            <!--                    class="bg-blue-700 hover:bg-blue-600 rounded-md py-2 px-10 inline-block text-center text-white font-bold flex items-center">-->
+            <!--              <span><svg class="mr-1 fill-white" xmlns="http://www.w3.org/2000/svg" height="16" width="14" viewBox="0 0 448 512">&lt;!&ndash;!Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2023 Fonticons, Inc.&ndash;&gt;<path d="M144 144v48H304V144c0-44.2-35.8-80-80-80s-80 35.8-80 80zM80 192V144C80 64.5 144.5 0 224 0s144 64.5 144 144v48h16c35.3 0 64 28.7 64 64V448c0 35.3-28.7 64-64 64H64c-35.3 0-64-28.7-64-64V256c0-35.3 28.7-64 64-64H80z"/></svg></span>Checkout</button>-->
+            <button class="Btn" (click)="onCheckOut()" [disabled]="cartItems.length == 0">
+              Checkout
+              <svg class="svgIcon" viewBox="0 0 576 512"><path d="M512 80c8.8 0 16 7.2 16 16v32H48V96c0-8.8 7.2-16 16-16H512zm16 144V416c0 8.8-7.2 16-16 16H64c-8.8 0-16-7.2-16-16V224H528zM64 32C28.7 32 0 60.7 0 96V416c0 35.3 28.7 64 64 64H512c35.3 0 64-28.7 64-64V96c0-35.3-28.7-64-64-64H64zm56 304c-13.3 0-24 10.7-24 24s10.7 24 24 24h48c13.3 0 24-10.7 24-24s-10.7-24-24-24H120zm128 0c-13.3 0-24 10.7-24 24s10.7 24 24 24H360c13.3 0 24-10.7 24-24s-10.7-24-24-24H248z"></path></svg>
+            </button>
           </div>
+          <button class="btn-31 max-sm:w-full" routerLink="/products">
+            <span class="text-container">
+              <span class="text">Back To Shop</span>
+            </span>
+          </button>
         </div>
       </div>
     </div>
