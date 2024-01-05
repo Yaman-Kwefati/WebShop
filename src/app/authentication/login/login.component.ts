@@ -28,6 +28,7 @@ export class LoginComponent {
     }
     this.authService.signUserIn(loginForm.value.email, loginForm.value.password).subscribe(
       resData => {
+        console.log(resData.payload.user);
         this.cookieService.set('userId', String(resData.payload.user.id), 1)
         this.router.navigate(['/']).then(() => {
           window.location.reload();

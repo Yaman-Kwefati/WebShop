@@ -38,12 +38,16 @@ export class RegisterComponent {
       phoneNumber, city, street, postalCode).subscribe(
       resData =>{
         this.isLoading = false;
+        registerForm.reset();
+        this.router.navigate(['email-sent'], {
+          queryParams: {
+            email: email
+          }
+        });
     }, error => {
         this.error = "User already exist";
         this.isLoading = false;
       }
     );
-    registerForm.reset();
-    this.router.navigate(["/login"]);
   }
 }

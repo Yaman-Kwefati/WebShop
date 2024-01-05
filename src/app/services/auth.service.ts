@@ -1,5 +1,5 @@
 import {Injectable} from "@angular/core";
-import {HttpClient} from "@angular/common/http";
+import {HttpClient, HttpParams} from "@angular/common/http";
 import {User} from "../models/User.model";
 
 export interface ApiResponse<T> {
@@ -18,10 +18,12 @@ interface Token{
 }
 @Injectable()
 export class AuthService{
-  private loginUrl: string = "http://localhost:8080/api/v1/auth/authenticate";
-  private registerUrl: string = "http://localhost:8080/api/v1/auth/register";
-  // private loginUrl: string = "/api/v1/auth/authenticate";
-  // private registerUrl: string = "/api/v1/auth/register";
+  // private baseUrl: string = "http://localhost:8080/api/v1/auth/";
+  // private loginUrl: string = "http://localhost:8080/api/v1/auth/authenticate";
+  // private registerUrl: string = "http://localhost:8080/api/v1/auth/register";
+  private baseUrl: string = "/api/v1/auth/";
+  private loginUrl: string = "/api/v1/auth/authenticate";
+  private registerUrl: string = "/api/v1/auth/register";
 
   constructor(private http: HttpClient){}
 
@@ -51,5 +53,26 @@ export class AuthService{
 
   logout(){
     return this.http.post("http://localhost:8080/api/v1/auth/logout", {});
+  }
+
+  requestPasswordChange(userEmail: string){
+    const params = new HttpParams().append('email', userEmail);
+    return this.http.post(this.baseUrl + "resetPassword", {}, {
+      params: params,
+    });
+  }
+
+  validateToken(token: string){
+    const params = new HttpParams().append('token', token);
+    return this.http.get<ApiResponse<String>>(this.baseUrl + "changePassword", {
+      params: params,
+    });
+  }
+
+  savePassword(token: string, newPassword: string){
+    return this.http.post<ApiResponse<any>>(this.baseUrl + "savePassword", {
+      token: token,
+      newPassword: newPassword
+    });
   }
 }
