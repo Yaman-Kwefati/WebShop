@@ -1,5 +1,5 @@
 import {Injectable} from "@angular/core";
-import {HttpClient} from "@angular/common/http";
+import {HttpClient, HttpHeaders} from "@angular/common/http";
 import {Observable} from "rxjs";
 import {Product} from "../models/Product.model";
 import {User} from "../models/User.model";
@@ -14,16 +14,20 @@ export interface ApiResponse<T> {
   providedIn: 'root',
 })
 export class UserService{
-  // private baseUrl: string = "http://localhost:8080/api/v1/";
-  private baseUrl: string = "/api/v1/";
+  private baseUrl: string = "https://dbb6-84-25-165-69.ngrok-free.app/api/v1/";
+  // private baseUrl: string = "/api/v1/";
 
   constructor(private http: HttpClient){}
 
   fetchUsers(): Observable<ApiResponse<User[]>>{
-    return this.http.get<ApiResponse<User[]>>(this.baseUrl + "users/all-users");
+    return this.http.get<ApiResponse<User[]>>(this.baseUrl + "users/all-users", {
+      headers: new HttpHeaders().append("ngrok-skip-browser-warning", "true")
+    });
   }
 
   fetchUser(userId: string): Observable<ApiResponse<User>>{
-    return this.http.get<ApiResponse<User>>(this.baseUrl + "users/" + userId);
+    return this.http.get<ApiResponse<User>>(this.baseUrl + "users/" + userId, {
+      headers: new HttpHeaders().append("ngrok-skip-browser-warning", "true")
+    });
   }
 }

@@ -12,8 +12,8 @@ export interface ApiResponse<T> {
   providedIn: "root"
 })
 export class FileService{
-  // private baseUrl: string = 'http://localhost:8080/api/v1/files/';
-  private baseUrl: string = '/api/v1/files/';
+  private baseUrl: string = 'https://dbb6-84-25-165-69.ngrok-free.app/api/v1/files/';
+  // private baseUrl: string = '/api/v1/files/';
 
   constructor(private http: HttpClient) { }
 

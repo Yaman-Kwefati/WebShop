@@ -18,8 +18,8 @@ export interface ApiResponse<T> {
 })
 export class OrderService{
   orders!: ShopOrder[];
-  // private baseUrl: string = "http://localhost:8080/api/v1/";
-  private baseUrl: string = "/api/v1/";
+  private baseUrl: string = "https://dbb6-84-25-165-69.ngrok-free.app/api/v1/";
+  // private baseUrl: string = "/api/v1/";
   constructor(private http: HttpClient,
               private cookieService: CookieService,
               private userService: UserService){}
@@ -46,17 +46,18 @@ export class OrderService{
             userRole:  user.userRole,
           },
           orderStatus: 'PLACED',
-          orderDate: "2023-12-25",
+          orderDate: "",
           totalAmount: total
         };
         return this.http.post<ApiResponse<ShopOrder>>(this.baseUrl + "orders/new-order", orderData).subscribe(
           responseData => {
             let order = responseData.payload;
+            console.log(responseData)
             if (order){
               for (var cartItem of cartItems){
                 this.placeNewOrderItem(order, cartItem.product.id!, cartItem.quantity, cartItem.totalPrice).subscribe(
                   response => {
-                    console.log(response);
+                    console.log("Order Item: "+response);
                   }
                 );
               }
