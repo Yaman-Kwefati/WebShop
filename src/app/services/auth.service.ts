@@ -18,9 +18,9 @@ interface Token{
 }
 @Injectable()
 export class AuthService{
-  private baseUrl: string = "https://dbb6-84-25-165-69.ngrok-free.app/api/v1/auth/";
-  private loginUrl: string = "https://dbb6-84-25-165-69.ngrok-free.app/api/v1/auth/authenticate";
-  private registerUrl: string = "https://dbb6-84-25-165-69.ngrok-free.app/api/v1/auth/register";
+  private baseUrl: string = "https://430b-2a02-a445-1c3-0-e0ba-c652-bcfb-f09a.ngrok-free.app/api/v1/auth/";
+  private loginUrl: string = "https://430b-2a02-a445-1c3-0-e0ba-c652-bcfb-f09a.ngrok-free.app/api/v1/auth/authenticate";
+  private registerUrl: string = "https://430b-2a02-a445-1c3-0-e0ba-c652-bcfb-f09a.ngrok-free.app/api/v1/auth/register";
   // private baseUrl: string = "/api/v1/auth/";
   // private loginUrl: string = "/api/v1/auth/authenticate";
   // private registerUrl: string = "/api/v1/auth/register";
