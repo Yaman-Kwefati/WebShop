@@ -12,7 +12,7 @@ export interface ApiResponse<T> {
   providedIn: "root"
 })
 export class FileService{
-  // private baseUrl: string = 'http://localhost:8080/api/v1/files/';
+  // private baseUrl: string = 'https://430b-2a02-a445-1c3-0-e0ba-c652-bcfb-f09a.ngrok-free.app/api/v1/files/';
   private baseUrl: string = '/api/v1/files/';
 
   constructor(private http: HttpClient) { }

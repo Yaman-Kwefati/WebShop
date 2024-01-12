@@ -13,6 +13,9 @@ import {OrderItemsOfOrderComponent} from "./shared/order-items-of-order/order-it
 import {NotFoundComponent} from "./not-found/not-found.component";
 import {SuccessComponent} from "./payment/success/success.component";
 import {CancelComponent} from "./payment/cancel/cancel.component";
+import {ForgotPasswordComponent} from "./authentication/login/forgot-password/forgot-password.component";
+import {ResetPasswordComponent} from "./authentication/login/forgot-password/reset-password/reset-password.component";
+import {EmailSentComponent} from "./shared/email-sent/email-sent.component";
 
 export const routes: Routes = [
   {
@@ -44,6 +47,21 @@ export const routes: Routes = [
     path: 'login',
     title: 'Login - Webshop',
     component: LoginComponent,
+  },
+  {
+    path: 'forgot-password',
+    title: 'Reset Password - Webshop',
+    component: ForgotPasswordComponent,
+  },
+  {
+    path: 'email-sent',
+    title: 'Email Sent - Webshop',
+    component: EmailSentComponent,
+  },
+  {
+    path: 'reset-password',
+    title: 'Reset Password - Webshop',
+    component: ResetPasswordComponent,
   },
   {
     path: 'register',
