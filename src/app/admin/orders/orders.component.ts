@@ -32,7 +32,6 @@ export class OrdersComponent implements OnInit, AfterViewInit{
       orders => {
         this.dataSource.data = orders.payload;
         this.dataSource.paginator = this.paginator;
-        console.log(this.dataSource.data)
       }
     )
   }
@@ -43,9 +42,5 @@ export class OrdersComponent implements OnInit, AfterViewInit{
 
   changeOrderStatus(orderId: number) {
     this.orderService.updateOrderStatus(orderId, this.newStatus);
-  }
-
-  printvalue(status: any) {
-    console.log(status);
   }
 }

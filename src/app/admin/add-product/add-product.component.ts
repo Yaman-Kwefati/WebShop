@@ -31,7 +31,6 @@ export class AddProductComponent {
     const productQuantity = productForm.value.productQuantity;
     this.productService.addProduct(productName, productDescription, productPrice, productQuantity, this.fileNames).subscribe(
       res => {
-        console.log(res.payload);
         if (res.payload){
           this.productAdded = true;
         }
@@ -48,11 +47,9 @@ export class AddProductComponent {
         let file = files.item(i);
         this.fileService.saveFile(file!).subscribe(
           res => {
-            console.log(res)
           }
         );
       }
-      console.log(this.fileNames);
     }
   }
 }

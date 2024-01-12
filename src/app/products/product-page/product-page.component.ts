@@ -93,7 +93,7 @@ export class ProductPageComponent implements OnInit{
         this.fileURL = this.sanitizer.bypassSecurityTrustUrl(objectUrl);
       },
       error => {
-        console.error('Error loading image', error);
+        // console.error('Error loading image', error);
       }
     );
   }
@@ -106,7 +106,7 @@ export class ProductPageComponent implements OnInit{
           this.fileURLArray.push(this.sanitizer.bypassSecurityTrustUrl(objectUrl));
         },
         error => {
-          console.error('Error loading image', error);
+          // console.error('Error loading image', error);
         }
       );
     }

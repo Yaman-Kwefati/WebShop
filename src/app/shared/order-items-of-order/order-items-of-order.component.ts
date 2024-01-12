@@ -31,7 +31,6 @@ export class OrderItemsOfOrderComponent implements OnInit{
       this.orderService.getOrderItemsFromOrder(this.orderId).subscribe(
         responseData => {
           this.orderItems = responseData.payload;
-          console.log(this.orderItems);
         }
       );
     };

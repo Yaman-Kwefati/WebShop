@@ -7,12 +7,12 @@
         <div class="ml-2 md:ml-0" #HeadSection>
           <h1 class="text-5xl md:text-6xl"
           >High Authentic Parfum</h1>
-          <p class="text-sm">Nu op aanbieding</p>
+          <p class="text-sm">Now in Sale</p>
           <button class="font-bold py-2 px-4 bg-white text-black m-1 text-sm rounded-3xl
               hover:bg-blue-800 hover:inner-border-blue-500 hover:text-white"
                   (click)="navigateToProducts()" [@fadeAnimation]="'fade'"
           >
-            Koop Nu
+            Buy Now
           </button>
         </div>
       </div>
@@ -21,7 +21,7 @@
 </div>
 <div class="mx-auto p-4 flex flex-col items-center justify-center relative h-max bg-white text-6xl text-center">
   <img class="h-10" src="../../assets/diamond-icon.png">
-  <div #ProductsSection>Best Verkochte producten</div>
+  <div #ProductsSection>Best Sold Products</div>
 </div>
 
 <div class="overflow-hidden">
@@ -33,10 +33,11 @@
       <div class="flex flex-col items-end">
         <div class="w-full" #ProductsDetailsSection>
           <h1 class="">My Name</h1>
-          <p class="text-sm">Nu op aanbieding</p>
-          <button class="font-bold py-2 px-4 bg-white text-black m-1 text-sm rounded-3xl
+          <p class="text-sm">Now in Sale</p>
+          <button (click)="navigateToProducts()"
+            class="font-bold py-2 px-4 bg-white text-black m-1 text-sm rounded-3xl
                   hover:bg-blue-800 hover:inner-border-blue-500 hover:text-white">
-            Winkel Nu
+            Buy Now
           </button>
         </div>
       </div>
