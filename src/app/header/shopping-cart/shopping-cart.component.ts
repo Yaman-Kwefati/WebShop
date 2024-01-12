@@ -64,12 +64,13 @@ export class ShoppingCartComponent implements OnInit, AfterViewChecked {
         if (response && response.message) {
           // Redirect the user to the Stripe Checkout page
           window.location.href = response.message;
+          console.log(response.message)
         } else {
-          // console.error('Checkout URL is undefined or invalid');
+          console.error('Checkout URL is undefined or invalid');
         }
       },
       error: (err) => {
-        // console.error('Error creating checkout session', err);
+        console.error('Error creating checkout session', err);
       }
     });
 
