@@ -36,7 +36,7 @@ export class CartItemComponent implements OnInit{
         this.fileURL = this.sanitizer.bypassSecurityTrustUrl(objectUrl);
       },
       error => {
-        console.error('Error loading image', error);
+        // console.error('Error loading image', error);
       }
     );
   }

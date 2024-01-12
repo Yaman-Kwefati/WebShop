@@ -15,15 +15,13 @@ export class IntersectionObserverDirective implements OnInit {
             (entries) => {
                 entries.forEach((entry) => {
                     if (entry.isIntersecting) {
-                        // Section is in view
                         (this as any)[this.observerVariable] = true;
                     } else {
-                        // Section is out of view
                         (this as any)[this.observerVariable] = false;
                     }
                 });
             },
-            { threshold: 0.5 } // Adjust the threshold as needed
+            { threshold: 0.5 }
         );
 
         if (this.observer) {
