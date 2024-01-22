@@ -14,20 +14,16 @@ export interface ApiResponse<T> {
   providedIn: 'root',
 })
 export class UserService{
-  private baseUrl: string = "https://430b-2a02-a445-1c3-0-e0ba-c652-bcfb-f09a.ngrok-free.app/api/v1/";
+  private baseUrl: string = "http://localhost:8080/api/v1/";
   // private baseUrl: string = "/api/v1/";
 
   constructor(private http: HttpClient){}
 
   fetchUsers(): Observable<ApiResponse<User[]>>{
-    return this.http.get<ApiResponse<User[]>>(this.baseUrl + "users/all-users", {
-      headers: new HttpHeaders().append("ngrok-skip-browser-warning", "true")
-    });
+    return this.http.get<ApiResponse<User[]>>(this.baseUrl + "users/all-users");
   }
 
   fetchUser(userId: string): Observable<ApiResponse<User>>{
-    return this.http.get<ApiResponse<User>>(this.baseUrl + "users/" + userId, {
-      headers: new HttpHeaders().append("ngrok-skip-browser-warning", "true")
-    });
+    return this.http.get<ApiResponse<User>>(this.baseUrl + "users/" + userId);
   }
 }

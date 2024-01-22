@@ -6,7 +6,7 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class PaymentService {
-  private readonly checkoutEndpoint = 'https://430b-2a02-a445-1c3-0-e0ba-c652-bcfb-f09a.ngrok-free.app/create-checkout-session';
+  private readonly checkoutEndpoint = 'http://localhost:8080/create-checkout-session';
   // private readonly checkoutEndpoint = '/api/v1/payment/create-checkout-session';
 
   constructor(private http: HttpClient) { }

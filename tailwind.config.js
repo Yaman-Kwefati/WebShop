@@ -3,6 +3,7 @@ module.exports = {
   content: [
     "./src/**/*.{html,js}",
     'node_modules/preline/dist/*.js',
+    "./node_modules/flowbite/**/*.js",
   ],
   theme: {
     fontFamily: {
@@ -14,6 +15,7 @@ module.exports = {
     require("tailwindcss-inner-border"),
     require('@tailwindcss/forms'),
     require('preline/plugin'),
+    require('flowbite/plugin'),
   ],
 }
 

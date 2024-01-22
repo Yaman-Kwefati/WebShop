@@ -18,9 +18,9 @@ interface Token{
 }
 @Injectable()
 export class AuthService{
-  private baseUrl: string = "https://430b-2a02-a445-1c3-0-e0ba-c652-bcfb-f09a.ngrok-free.app/api/v1/auth/";
-  private loginUrl: string = "https://430b-2a02-a445-1c3-0-e0ba-c652-bcfb-f09a.ngrok-free.app/api/v1/auth/authenticate";
-  private registerUrl: string = "https://430b-2a02-a445-1c3-0-e0ba-c652-bcfb-f09a.ngrok-free.app/api/v1/auth/register";
+  private baseUrl: string = "http://localhost:8080/api/v1/auth/";
+  private loginUrl: string = "http://localhost:8080/api/v1/auth/authenticate";
+  private registerUrl: string = "http://localhost:8080/api/v1/auth/register";
   // private baseUrl: string = "/api/v1/auth/";
   // private loginUrl: string = "/api/v1/auth/authenticate";
   // private registerUrl: string = "/api/v1/auth/register";
@@ -48,11 +48,11 @@ export class AuthService{
   }
 
   refreshToken(){
-    return this.http.post<Token>("https://dbb6-84-25-165-69.ngrok-free.app/api/v1/auth/refresh-token", {});
+    return this.http.post<Token>("http://localhost:8080/api/v1/auth/refresh-token", {});
   }
 
   logout(){
-    return this.http.post("https://dbb6-84-25-165-69.ngrok-free.app/api/v1/auth/logout", {});
+    return this.http.post("http://localhost:8080/api/v1/auth/logout", {});
   }
 
   requestPasswordChange(userEmail: string){

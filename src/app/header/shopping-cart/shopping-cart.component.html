@@ -9,9 +9,10 @@
         <app-cart-item *ngFor="let product of cartItems"
         [product]="product"></app-cart-item>
       </div>
-      <div class="flex justify-center text-4xl text-gray-400"
+      <div class="flex flex-col justify-center items-center text-4xl text-gray-400"
         *ngIf="cartItems.length == 0">
         <h1>Please add Products</h1>
+        <img class="h-96" src="assets/empty-cart.svg">
       </div>
       <div class="space-y-1.5">
         <hr>

@@ -37,6 +37,7 @@ export class RegisterComponent {
     this.authService.registerUser(firstname, lastname, email,password,
       phoneNumber, city, street, postalCode).subscribe(
       resData =>{
+        console.log(resData);
         this.isLoading = false;
         registerForm.reset();
         this.router.navigate(['email-sent'], {

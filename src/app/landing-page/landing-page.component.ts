@@ -10,6 +10,7 @@ import {gsap} from "gsap";
 import {ScrollTrigger} from "gsap/ScrollTrigger";
 import {CookieService} from "ngx-cookie-service";
 import {provideAnimations} from "@angular/platform-browser/animations";
+import {OurSkillsComponent} from "../shared/our-skills/our-skills.component";
 
 gsap.registerPlugin(ScrollTrigger);
 initTE({ Animate });
@@ -17,7 +18,7 @@ initTE({ Animate });
 @Component({
   selector: 'app-landing-page',
   standalone: true,
-  imports: [CommonModule, CartItemComponent, MatListModule, AboutUsComponent, RouterLink],
+  imports: [CommonModule, CartItemComponent, MatListModule, AboutUsComponent, RouterLink, OurSkillsComponent],
   templateUrl: './landing-page.component.html',
   styleUrl: './landing-page.component.less',
   providers: [provideAnimations()]
