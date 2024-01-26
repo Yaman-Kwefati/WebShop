@@ -29,7 +29,9 @@ export class AddProductComponent {
     const productDescription = productForm.value.productDescription;
     const productPrice = productForm.value.productPrice;
     const productQuantity = productForm.value.productQuantity;
-    this.productService.addProduct(productName, productDescription, productPrice, productQuantity, this.fileNames).subscribe(
+    this.productService
+      .addProduct(productName, productDescription, productPrice, productQuantity, this.fileNames)
+      .subscribe(
       res => {
         if (res.payload){
           this.productAdded = true;
