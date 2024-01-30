@@ -1,0 +1,19 @@
+<div class="flex space-x-4 mt-3">
+  <img class="h-24 rounded-md border border-gray-200" [src]="fileURL">
+  <div>
+    <h3 class="font-bold">{{product!.name}}</h3>
+    <p class="text-gray-400">{{product!.description}}</p>
+    <p class="text-gray-400">{{orderItem.quantity}}</p>
+  </div>
+</div>
+<div class="space-y-1">
+  <div class="flex items-center justify-between">
+    <h6 class="font-bold">Subtotal:</h6>
+    <h6>{{orderItem.subtotal / 100 | currency:"EUR"}}</h6>
+  </div>
+  <div class="flex items-center justify-between">
+    <h6 class="font-bold">Shipping:</h6>
+    <h6>€0.00</h6>
+  </div>
+  <hr>
+</div>

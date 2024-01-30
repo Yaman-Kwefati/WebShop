@@ -1,6 +1,7 @@
 import {Injectable} from "@angular/core";
 import {HttpClient, HttpParams} from "@angular/common/http";
 import {User} from "../models/User.model";
+import {environment} from "../../environment /environment";
 
 export interface ApiResponse<T> {
   code: string;
@@ -48,11 +49,11 @@ export class AuthService{
   }
 
   refreshToken(){
-    return this.http.post<Token>("http://localhost:8080/api/v1/auth/refresh-token", {});
+    return this.http.post<Token>(environment.localApiRoute1+"/auth/refresh-token", {});
   }
 
   logout(){
-    return this.http.post("http://localhost:8080/api/v1/auth/logout", {});
+    return this.http.post(environment.localApiRoute1+"/auth/logout", {});
   }
 
   requestPasswordChange(userEmail: string){

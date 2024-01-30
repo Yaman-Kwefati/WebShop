@@ -1,0 +1,46 @@
+<div class="bg-white p-4 min-h-screen w-screen">
+  <div class="rounded-md bg-white h-max mt-28 shadow-2xl p-4 border border-gray-300 space-y-3
+              flex flex-col">
+    <div class="min-w-ful flex justify-between">
+      <div>
+        <h1 class="font-bold text-xl">Items</h1>
+      </div>
+      <div>
+        <svg width="25" height="25" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"
+             class="rounded-full p-0.5 hover:bg-gray-100 cursor-pointer"
+             routerLink="/user">
+          <circle cx="50" cy="50" r="45" stroke="black" stroke-width="4" fill="none" />
+          <line x1="30" y1="30" x2="70" y2="70" stroke="black" stroke-width="4"/>
+          <line x1="70" y1="30" x2="30" y2="70" stroke="black" stroke-width="4"/>
+        </svg>
+      </div>
+    </div>
+    <div *ngIf="orderItems.length > 0 && products.length > 0">
+      <app-user-order-details-product
+        *ngFor="let orderItem of orderItems"
+        [product]="getProductForOrderItem(orderItem)"
+        [productImageName]="getProductForOrderItem(orderItem)!.images[0] || 'defaultImage.jpg'"
+        [orderItem]="orderItem">
+      </app-user-order-details-product>
+<!--        <div class="flex space-x-4">-->
+<!--          <img class="h-24" [src]="fileURL">-->
+<!--          <div>-->
+<!--            <h3 class="font-bold">{{products[i].name}}</h3>-->
+<!--            <p class="text-gray-400">{{products[i].description}}</p>-->
+<!--            <p class="text-gray-400">{{orderItem.quantity}}</p>-->
+<!--          </div>-->
+<!--        </div>-->
+<!--        <div class="space-y-1">-->
+<!--          <div class="flex items-center justify-between">-->
+<!--            <h6 class="font-bold">Subtotal:</h6>-->
+<!--            <h6>{{orderItem.subtotal / 100 | currency:"EUR"}}</h6>-->
+<!--          </div>-->
+<!--          <div class="flex items-center justify-between">-->
+<!--            <h6 class="font-bold">Shipping:</h6>-->
+<!--            <h6>€0.00</h6>-->
+<!--          </div>-->
+<!--          <hr>-->
+<!--        </div>-->
+    </div>
+  </div>
+</div>

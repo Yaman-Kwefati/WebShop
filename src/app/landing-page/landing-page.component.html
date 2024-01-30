@@ -1,6 +1,6 @@
 <div class="overflow-hidden" >
   <div class="flex flex-col justify-evenly relative h-max bg-black md:text-right">
-    <img class="h-screen object-cover object-top md:object-[center_30%]"src="../../assets/lion-walking.png">
+    <img #Image class="h-screen object-cover object-top md:object-[center_30%]"src="../../assets/lion-walking.png">
     <div class="bg-black absolute z-1 w-full h-full bg-opacity-30"></div>
     <div class="absolute text-xl text-white container z-10 md:items-start">
       <div class="flex flex-col md:items-end items-center">
@@ -23,7 +23,7 @@
   <img class="h-10" src="../../assets/diamond-icon.png">
   <div #ProductsSection>Explore Our Essence</div>
 </div>
-<div class="flex flex-col lg:flex-row items-center w-full p-5 lg:px-10 lg:py-24 bg-zinc-800" #ProductsDetailsSection>
+<div class="flex flex-col mx-auto lg:flex-row items-center w-full p-5 lg:px-10 lg:py-24 bg-zinc-800" #ProductsDetailsSection>
   <div class="lg:w-1/2 items-center">
     <div>
       <img src="assets/lion-wife.png">
@@ -39,26 +39,6 @@
     </button>
   </div>
 </div>
-<!--<div class="overflow-hidden">-->
-<!--  <div class="flex flex-col justify-evenly relative h-max bg-black text-right"-->
-<!--       (mouseenter)="onHover = true" (mouseleave)="onHover = false">-->
-<!--    <img class="h-96 object-cover" [ngClass]="{'zoomed-in': onHover}" src="../../assets/parfum2.jpg">-->
-<!--    <div class="bg-black absolute z-1 w-full h-full bg-opacity-30"></div>-->
-<!--    <div class="absolute text-xl text-white container z-10 px-10 md:px-0">-->
-<!--      <div class="flex flex-col items-end">-->
-<!--        <div class="w-full" #ProductsDetailsSection>-->
-<!--          <h1 class="">My Name</h1>-->
-<!--          <p class="text-sm">Nu op aanbieding</p>-->
-<!--          <button class="font-bold py-2 px-4 bg-white text-black m-1 text-sm rounded-3xl-->
-<!--                  hover:bg-blue-800 hover:inner-border-blue-500 hover:text-white">-->
-<!--            Winkel Nu-->
-<!--          </button>-->
-<!--        </div>-->
-<!--      </div>-->
-<!--    </div>-->
-<!--  </div>-->
-<!--</div>-->
-
 <div class="border-b border-b-1 border-b-zinc-800" id="about-us" #aboutUsSection>
   <app-about-us></app-about-us>
 </div>

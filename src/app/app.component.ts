@@ -12,13 +12,14 @@ import {FontAwesomeModule} from "@fortawesome/angular-fontawesome";
 import {LoadingSpinnerComponent} from "./shared/loading-spinner/loading-spinner.component";
 import {filter} from "rxjs";
 import { initFlowbite } from 'flowbite';
+import {PopUpComponent} from "./utilities /pop-up/pop-up.component";
 gsap.registerPlugin(ScrollTrigger);
 
 @Component({
   selector: 'app-root',
   standalone: true,
   imports: [CommonModule, RouterOutlet, HeaderComponent, FooterComponent, AppModule, LandingPageComponent,
-  HttpClientModule, FontAwesomeModule, LoadingSpinnerComponent],
+    HttpClientModule, FontAwesomeModule, LoadingSpinnerComponent, PopUpComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.less'
 })

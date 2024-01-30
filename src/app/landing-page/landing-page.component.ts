@@ -32,6 +32,9 @@ export class LandingPageComponent implements AfterViewInit, OnInit{
               @Inject(DOCUMENT) private document: Document) {}
 
   ngAfterViewInit(): void {
+    this.initScrollAnimations();
+    this.initialAnimations();
+    this.imageAnimation();
     this.route.fragment.subscribe(fragment => {
       if (fragment === 'about-us' && this.aboutUsSection) {
         this.aboutUsSection.nativeElement.scrollIntoView({ behavior: 'smooth' });
@@ -53,13 +56,18 @@ export class LandingPageComponent implements AfterViewInit, OnInit{
   //animations
 
   @ViewChild('HeadSection', {static: true}) HeadSection!: ElementRef<HTMLDivElement>;
+  @ViewChild('Image', {static: true}) image!: ElementRef<HTMLDivElement>;
   @ViewChild('FisrtImage', {static: true}) FisrtImage!: ElementRef<HTMLDivElement>;
   @ViewChild('ProductsSection', {static: true}) ProductsSection!: ElementRef<HTMLDivElement>;
   @ViewChild('ProductsDetailsSection', {static: true}) ProductsDetailsSection!: ElementRef<HTMLDivElement>;
 
   ngOnInit(): void {
-    this.initScrollAnimations();
-    this.initialAnimations();
+  }
+
+  imageAnimation(){
+    gsap.fromTo(this.image.nativeElement,
+      { scale: 1.2},
+      {scale: 1, duration: 0.9});
   }
 
   initScrollAnimations(): void{

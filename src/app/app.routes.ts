@@ -16,77 +16,83 @@ import {CancelComponent} from "./payment/cancel/cancel.component";
 import {ForgotPasswordComponent} from "./authentication/login/forgot-password/forgot-password.component";
 import {ResetPasswordComponent} from "./authentication/login/forgot-password/reset-password/reset-password.component";
 import {EmailSentComponent} from "./shared/email-sent/email-sent.component";
+import {UserOrderDetailsComponent} from "./user-screen/user-order-details/user-order-details.component";
 
 export const routes: Routes = [
   {
     path: '',
-    title: 'Home - Webshop',
+    title: 'Home - CholieTalie',
     component: LandingPageComponent,
   },
   {
     path: 'products',
-    title: 'Producten - Webshop',
+    title: 'Producten - CholieTalie',
     component: ProductsComponent,
   },
   {
     path: 'products/:productName',
-    title: 'Product - Webshop',
+    title: 'Product - CholieTalie',
     component: ProductPageComponent,
   },
   {
     path: 'contact',
-    title: 'Contact - Webshop',
+    title: 'Contact - CholieTalie',
     component: ContactComponent,
   },
   {
     path: 'aboutUs',
-    title: 'Over Ons - Webshop',
+    title: 'Over Ons - CholieTalie',
     component: LandingPageComponent,
   },
   {
     path: 'login',
-    title: 'Login - Webshop',
+    title: 'Login - CholieTalie',
     component: LoginComponent,
   },
   {
     path: 'forgot-password',
-    title: 'Reset Password - Webshop',
+    title: 'Reset Password - CholieTalie',
     component: ForgotPasswordComponent,
   },
   {
     path: 'email-sent',
-    title: 'Email Sent - Webshop',
+    title: 'Email Sent - CholieTalie',
     component: EmailSentComponent,
   },
   {
     path: 'reset-password',
-    title: 'Reset Password - Webshop',
+    title: 'Reset Password - CholieTalie',
     component: ResetPasswordComponent,
   },
   {
     path: 'register',
-    title: 'Register - Webshop',
+    title: 'Register - CholieTalie',
     component: RegisterComponent,
   },
   {
     path: 'user',
-    title: 'User - Webshop',
+    title: 'User - CholieTalie',
     component: UserScreenComponent,
   },
   {
     path: 'admin',
-    title: 'Admin - Webshop',
+    title: 'Admin - CholieTalie',
     component: AdminComponent,
   },
   {
     path: 'shopping-cart',
-    title: 'Shopping Cart - Webshop',
+    title: 'Shopping Cart - CholieTalie',
     component: ShoppingCartComponent,
   },
   {
     path: 'order-items',
-    title: 'Order Items - Webshop',
+    title: 'Order Items - CholieTalie',
     component: OrderItemsOfOrderComponent,
+  },
+  {
+    path: 'order-details',
+    title: 'Order Details - CholieTalie',
+    component: UserOrderDetailsComponent,
   },
   {
     path: 'not-found',

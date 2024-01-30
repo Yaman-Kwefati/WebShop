@@ -26,4 +26,16 @@ export class UserService{
   fetchUser(userId: string): Observable<ApiResponse<User>>{
     return this.http.get<ApiResponse<User>>(this.baseUrl + "users/" + userId);
   }
+
+  updateUserInfo(user: User){
+    return this.http.put<ApiResponse<User>>(this.baseUrl + "users/" + user.id, {
+      id: user.id,
+      firstname: user.firstname,
+      lastname: user.lastname,
+      phoneNumber: user.phoneNumber,
+      city: user.city,
+      street: user.street,
+      postalCode: user.postalCode
+    });
+  }
 }

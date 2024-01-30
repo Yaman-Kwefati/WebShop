@@ -21,8 +21,8 @@
           <mat-select>
             @for (status of statuses; track status) {
               <mat-option [value]="status"
-                          (onSelectionChange)="showSaveStatusButton = true; newStatus = status;
-printvalue(newStatus)">{{status}}</mat-option>
+                          (onSelectionChange)="showSaveStatusButton = true; newStatus = status;"
+              >{{status}}</mat-option>
             }
           </mat-select>
         </mat-form-field>

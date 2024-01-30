@@ -16,7 +16,6 @@ import {MatBadgeModule} from "@angular/material/badge";
 import {ShoppingCartComponent} from "./shopping-cart/shopping-cart.component";
 import {SearchResultsComponent} from "./searchbar/search-results/search-results.component";
 import {SearchbarComponent} from "./searchbar/searchbar.component";
-import {CategoriesComponent} from "./categories/categories.component";
 import {Event, Router, RouterLink, RouterLinkActive} from "@angular/router";
 import {Product} from "../models/Product.model";
 import {ShoppingCartService} from "../services/shopping-cart.service";
@@ -24,13 +23,25 @@ import {CookieService} from "ngx-cookie-service";
 import {UserService} from "../services/user.service";
 import { gsap, Power2, Expo } from 'gsap';
 import {AuthService} from "../services/auth.service";
+import {ProductService} from "../services/product.service";
 
 gsap.registerPlugin()
 
 @Component({
   selector: 'app-header',
-  imports: [CommonModule, NgOptimizedImage, AppModule, MatButtonModule, MatMenuModule, MatIconModule, MatBadgeModule, ShoppingCartComponent, SearchResultsComponent, SearchbarComponent, CategoriesComponent, RouterLink, RouterLinkActive],
-  providers: [UserService, AuthService],
+  imports: [CommonModule,
+    NgOptimizedImage,
+    AppModule,
+    MatButtonModule,
+    MatMenuModule,
+    MatIconModule,
+    MatBadgeModule,
+    ShoppingCartComponent,
+    SearchResultsComponent,
+    SearchbarComponent,
+    RouterLink,
+    RouterLinkActive],
+  providers: [UserService, AuthService,],
   standalone: true,
   templateUrl: './header.component.html',
   styleUrl: './header.component.less'

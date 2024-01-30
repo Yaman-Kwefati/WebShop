@@ -21,7 +21,11 @@ export class ProductService{
   }
 
   fetchProduct(productName: string): Observable<ApiResponse<Product>>{
-    return this.http.get<ApiResponse<Product>>(this.baseUrl + "products/" + productName);
+    return this.http.get<ApiResponse<Product>>(this.baseUrl + "products/name/" + productName);
+  }
+
+  fetchProductById(productId: number){
+    return this.http.get<ApiResponse<Product>>(this.baseUrl + "products/id/" + productId);
   }
 
   filterProducts(searchTerm: string, products: Product[]) {

@@ -9,7 +9,11 @@ module.exports = {
     fontFamily: {
       'body': ['Quicksand'],
     },
-    extend: {},
+    extend: {
+      fontFamily: {
+        cocoBiker: ['CocoBikeR']
+      }
+    },
   },
   plugins: [
     require("tailwindcss-inner-border"),

@@ -25,7 +25,6 @@ export class ShoppingCartService{
 
   loadItemsFromCookie(){
     const storedCartItems = this.cookieService.get('cartItems');
-    console.log(storedCartItems);
     if (storedCartItems) {
       this.cartItems = JSON.parse(storedCartItems);
       // Calculate totalPrice and quantity for each item when reading from the cookie

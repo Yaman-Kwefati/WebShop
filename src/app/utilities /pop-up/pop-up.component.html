@@ -1,0 +1,7 @@
+<article *ngIf="message" class="fixed z-50 w-full left-0 mt-20">
+  <section class="flex justify-center" [ngClass]="widthMainScreenClassPlusadditionalClasses">
+    <section class="p-2 border rounded shadow-md" [ngClass]="type">
+      <p class="max-md:text-sm">{{message}}</p>
+    </section>
+  </section>
+</article>

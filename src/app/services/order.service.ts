@@ -52,12 +52,10 @@ export class OrderService{
         return this.http.post<ApiResponse<ShopOrder>>(this.baseUrl + "orders/new-order", orderData).subscribe(
           responseData => {
             let order = responseData.payload;
-            console.log(responseData)
             if (order){
               for (var cartItem of cartItems){
                 this.placeNewOrderItem(order, cartItem.product.id!, cartItem.quantity, cartItem.totalPrice).subscribe(
                   response => {
-                    console.log("Order Item: "+response);
                   }
                 );
               }

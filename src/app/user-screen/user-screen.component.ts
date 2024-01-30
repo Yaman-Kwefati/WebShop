@@ -6,13 +6,19 @@ import {UserService} from "../services/user.service";
 import {OrderService} from "../services/order.service";
 import {ShopOrder} from "../models/ShopOrder.model";
 import {AuthService} from "../services/auth.service";
-import {Router} from "@angular/router";
+import {ActivatedRoute, Router} from "@angular/router";
+import {Product} from "../models/Product.model";
+import {ProductService} from "../services/product.service";
+import {UserOrderItemComponent} from "./user-order-item/user-order-item.component";
+import {UserOrderDetailsComponent} from "./user-order-details/user-order-details.component";
+import {FormsModule} from "@angular/forms";
+import {PopupService} from "../services/PopUp.service";
 
 @Component({
   selector: 'app-user-screen',
   standalone: true,
-  imports: [CommonModule],
-  providers: [CookieService, UserService, OrderService, AuthService],
+  imports: [CommonModule, UserOrderItemComponent, UserOrderDetailsComponent, FormsModule],
+  providers: [CookieService, UserService, OrderService, AuthService, ProductService],
   templateUrl: './user-screen.component.html',
   styleUrl: './user-screen.component.less'
 })
@@ -20,14 +26,17 @@ export class UserScreenComponent implements OnInit{
   user!: User;
   address!: string;
   name!: string;
-
+  orderId!: number;
+  showEditForm = false;
+  products!: Product[];
   orders: ShopOrder[] = [];
 
   constructor(private cookieService: CookieService,
               private userService: UserService,
               private orderService: OrderService,
               private auth: AuthService,
-              private router: Router) {
+              private router: Router,
+              private popupService: PopupService) {
   }
 
   ngOnInit(): void {
@@ -47,6 +56,7 @@ export class UserScreenComponent implements OnInit{
       }
     );
   }
+
   clearCookies(){
     if (this.getLoggedInUserId()){
       this.auth.logout().subscribe(
@@ -61,5 +71,18 @@ export class UserScreenComponent implements OnInit{
   getLoggedInUserId(){
     return this.cookieService.get('userId');
   }
-
+  toggleEditForm() {
+    this.showEditForm = !this.showEditForm;
+  }
+  submitForm() {
+    this.userService.updateUserInfo(this.user).subscribe(
+      response => {
+        if (response.code != "ACCEPTED") this.popupService
+          .showMessage("Couldn't save new Info", "error", "w-4/6 max-md:w-full");
+       if (response.code == "ACCEPTED")
+          this.popupService.showMessage('Info updated successfully', 'success', 'w-4/6 max-md:w-full');
+        this.showEditForm = false;
+      }
+    );
+  }
 }
