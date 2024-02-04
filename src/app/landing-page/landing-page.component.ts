@@ -5,14 +5,12 @@ import {MatListModule} from "@angular/material/list";
 import {AboutUsComponent} from "./about-us/about-us.component";
 import {ActivatedRoute, NavigationEnd, Router, RouterLink} from "@angular/router";
 import {filter} from "rxjs";
-import { Animate, initTE } from "tw-elements";
 import {gsap} from "gsap";
 import {ScrollTrigger} from "gsap/ScrollTrigger";
 import {provideAnimations} from "@angular/platform-browser/animations";
 import {OurSkillsComponent} from "../shared/our-skills/our-skills.component";
 
 gsap.registerPlugin(ScrollTrigger);
-initTE({ Animate });
 
 @Component({
   selector: 'app-landing-page',

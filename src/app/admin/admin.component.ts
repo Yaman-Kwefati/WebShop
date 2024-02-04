@@ -1,14 +1,12 @@
 import {Component, OnInit} from '@angular/core';
 import { CommonModule } from '@angular/common';
 import {UserService} from "../services/user.service";
-import {Tab, initTE,} from "tw-elements";
 import {MatTabsModule} from "@angular/material/tabs";
 import {UsersComponent} from "./users/users.component";
 import {ProductsTabComponent} from "./products/products-tab.component";
 import {OrdersComponent} from "./orders/orders.component";
 import {AddProductComponent} from "./add-product/add-product.component";
 
-initTE({Tab})
 
 @Component({
   selector: 'app-admin',

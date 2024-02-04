@@ -11,7 +11,6 @@ import {ScrollTrigger} from "gsap/ScrollTrigger";
 import {FontAwesomeModule} from "@fortawesome/angular-fontawesome";
 import {LoadingSpinnerComponent} from "./shared/loading-spinner/loading-spinner.component";
 import {filter} from "rxjs";
-import { initFlowbite } from 'flowbite';
 import {PopUpComponent} from "./utilities /pop-up/pop-up.component";
 import {MailchimpSignupComponent} from "./shared/mailchimp-signup/mailchimp-signup.component";
 gsap.registerPlugin(ScrollTrigger);
@@ -26,14 +25,13 @@ gsap.registerPlugin(ScrollTrigger);
 })
 export class AppComponent implements OnInit{
   constructor(private router: Router) {
-    this.router.events.pipe(
-      filter(event => event instanceof NavigationEnd)
-    ).subscribe(() => {
-      window.scrollTo(0, 0);
-    });
+    // this.router.events.pipe(
+    //   filter(event => event instanceof NavigationEnd)
+    // ).subscribe(() => {
+    //   window.scrollTo(0, 0);
+    // });
   }
   ngOnInit(): void {
-    initFlowbite();
   }
 }
 

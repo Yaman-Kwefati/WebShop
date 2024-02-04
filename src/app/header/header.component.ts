@@ -3,11 +3,11 @@ import {
   ChangeDetectorRef,
   Component,
   ElementRef,
-  HostListener,
+  HostListener, Inject,
   OnInit, Renderer2,
   ViewChild
 } from '@angular/core';
-import {CommonModule, NgOptimizedImage} from '@angular/common';
+import {CommonModule, DOCUMENT, NgOptimizedImage} from '@angular/common';
 import {AppModule} from "../app.module";
 import {MatButtonModule} from "@angular/material/button";
 import {MatMenuModule} from "@angular/material/menu";
@@ -24,6 +24,7 @@ import {UserService} from "../services/user.service";
 import { gsap, Power2, Expo } from 'gsap';
 import {AuthService} from "../services/auth.service";
 import {ProductService} from "../services/product.service";
+import {Platform} from "@angular/cdk/platform";
 
 gsap.registerPlugin()
 
@@ -64,7 +65,7 @@ export class HeaderComponent implements AfterViewChecked, OnInit{
 
   @HostListener('window:scroll', ['$event'])
   onScroll() {
-    const scrollPosition = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop || 0;
+    const scrollPosition = window.pageYOffset || this.document.documentElement.scrollTop || this.document.body.scrollTop || 0;
 
     if (scrollPosition > 10) {
       this.header.nativeElement.classList.add('blurred-header');
@@ -78,11 +79,13 @@ export class HeaderComponent implements AfterViewChecked, OnInit{
               private cookieService: CookieService,
               private router: Router,
               private userService: UserService,
-              private auth: AuthService) {
+              private auth: AuthService,
+              @Inject(DOCUMENT) private document: Document,
+              private platform: Platform) {
   }
 
   ngOnInit(): void {
-    this.initializeMenuAnimations();
+    if (this.platform.isBrowser) this.initializeMenuAnimations();
     let userId = this.getLoggedInUserId();
     if (userId){
       this.userService.fetchUser(userId).subscribe(
@@ -162,49 +165,49 @@ export class HeaderComponent implements AfterViewChecked, OnInit{
   @ViewChild('MobileNav', {static: true}) mobileNav!: ElementRef<HTMLDivElement>;
   @ViewChild('MobileNavTop', {static: true}) mobileNavTop!: ElementRef<HTMLDivElement>;
   @ViewChild('MobileNavBottom', {static: true}) mobileNavBottom!: ElementRef<HTMLDivElement>;
-  openMenuAnimation(): void {
-    gsap.fromTo(this.mobileNav.nativeElement,
-      { height: 0, opacity: 0 },
-      {
-        height: 'auto', opacity: 1, duration: 0.5, ease: "power2.out",
-        onComplete: () => {
-          this.mobileNav.nativeElement.style.height = 'auto';
-        }
-      }
-    );
+  // openMenuAnimation(): void {
+  //   gsap.fromTo(this.mobileNav.nativeElement,
+  //     { height: 0, opacity: 0 },
+  //     {
+  //       height: 'auto', opacity: 1, duration: 0.5, ease: "power2.out",
+  //       onComplete: () => {
+  //         this.mobileNav.nativeElement.style.height = 'auto';
+  //       }
+  //     }
+  //   );
+  //
+  //   gsap.fromTo(this.mobileNavTop.nativeElement.childNodes,
+  //     { opacity: 0, y: -20 },
+  //     { opacity: 1, y: 0, stagger: 0.1, delay: 0.1, duration: 0.3 });
+  //
+  //   gsap.fromTo(this.mobileNavBottom.nativeElement,
+  //     { opacity: 0, y: -20 },
+  //     { opacity: 1, y: 0, stagger: 0.1, delay: 0.1, duration: 0.3 });
+  // }
+  //
+  // closeMenuAnimation(): void {
+  //   gsap.to([this.mobileNavTop.nativeElement.childNodes, this.mobileNavBottom.nativeElement], {
+  //     opacity: 0, y: -20, stagger: 0.1, duration: 0.3
+  //   });
+  //
+  //   gsap.to(this.mobileNav.nativeElement, {
+  //     height: 0, opacity: 0, duration: 0.5, ease: "power2.in",
+  //     onComplete: () => {
+  //       this.isProfileMenuOpen = false;
+  //     }
+  //   });
+  // }
 
-    gsap.fromTo(this.mobileNavTop.nativeElement.childNodes,
-      { opacity: 0, y: -20 },
-      { opacity: 1, y: 0, stagger: 0.1, delay: 0.1, duration: 0.3 });
-
-    gsap.fromTo(this.mobileNavBottom.nativeElement,
-      { opacity: 0, y: -20 },
-      { opacity: 1, y: 0, stagger: 0.1, delay: 0.1, duration: 0.3 });
-  }
-
-  closeMenuAnimation(): void {
-    gsap.to([this.mobileNavTop.nativeElement.childNodes, this.mobileNavBottom.nativeElement], {
-      opacity: 0, y: -20, stagger: 0.1, duration: 0.3
-    });
-
-    gsap.to(this.mobileNav.nativeElement, {
-      height: 0, opacity: 0, duration: 0.5, ease: "power2.in",
-      onComplete: () => {
-        this.isProfileMenuOpen = false;
-      }
-    });
-  }
-
-  toggleMenu() {
-    this.isProfileMenuOpen = !this.isProfileMenuOpen;
-    if (this.isProfileMenuOpen) {
-      this.openMenuAnimation();
-    } else {
-      this.closeMenuAnimation();
-    }
-  }
+  // toggleMenu() {
+  //   this.isProfileMenuOpen = !this.isProfileMenuOpen;
+  //   if (this.isProfileMenuOpen) {
+  //     this.openMenuAnimation();
+  //   } else {
+  //     this.closeMenuAnimation();
+  //   }
+  // }
   initializeMenuAnimations() {
-    const menuToggle = document.getElementById('menuToggle') as HTMLButtonElement | null;
+    const menuToggle = this.document.getElementById('menuToggle') as HTMLButtonElement | null;
 
     if (!menuToggle) {
       console.error('Menu toggle button not found');
@@ -253,7 +256,7 @@ export class HeaderComponent implements AfterViewChecked, OnInit{
       menuBar.reversed(!menuBar.reversed());
       navTl.reversed(!navTl.reversed());
     });
-    document.querySelectorAll('.main-menu li a').forEach(link => {
+    this.document.querySelectorAll('.main-menu li a').forEach(link => {
       link.addEventListener('click', () => this.closeMenu(menuBar, navTl));
     });
   }

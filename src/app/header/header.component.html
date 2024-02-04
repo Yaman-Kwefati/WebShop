@@ -116,7 +116,7 @@
     <div class="flex items-center space-x-6">
       <button routerLink="shopping-cart" class="flex shopping-cart"
               (click)="loadItems()">
-        <mat-icon [matBadge]="cartBadgeNumber" matBadgeColor="warn">shopping_cart</mat-icon>
+        <mat-icon [matBadge]="cartBadgeNumber" matBadgeColor="warn" aria-hidden="false">shopping_cart</mat-icon>
       </button>
       <button class="menu-toggle" id="menuToggle">
         <svg viewBox="0 0 12 10" class="hamburger" height="40px" width="40px">
