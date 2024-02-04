@@ -1,78 +1,81 @@
-<div class="min-h-screen overflow-x-hidden bg-zinc-800 pt-28 px-10 md:pt-32 md:px-10 lg:px-28 flex flex-col md:flex-row md:items-start md:justify-center"
- *ngIf="!product && !imagesLoaded">
-  <div role="status" class="w-full space-y-8 animate-pulse md:space-y-0 md:space-x-8 rtl:space-x-reverse md:flex md:items-center">
-    <div class="flex items-center justify-center w-full h-80 bg-gray-300 rounded sm:w-96 dark:bg-gray-700">
-      <svg class="w-20 h-20 text-gray-200 dark:text-gray-600" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 18">
-        <path d="M18 0H2a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2Zm-5.5 4a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3Zm4.376 10.481A1 1 0 0 1 16 15H4a1 1 0 0 1-.895-1.447l3.5-7A1 1 0 0 1 7.468 6a.965.965 0 0 1 .9.5l2.775 4.757 1.546-1.887a1 1 0 0 1 1.618.1l2.541 4a1 1 0 0 1 .028 1.011Z"/>
-      </svg>
-    </div>
-    <div class="w-full">
-      <div class="h-2.5 bg-gray-200 rounded-full dark:bg-gray-700 w-48 mb-4"></div>
-      <div class="h-2 bg-gray-200 rounded-full dark:bg-gray-700 max-w-[480px] mb-2.5"></div>
-      <div class="h-2 bg-gray-200 rounded-full dark:bg-gray-700 mb-2.5"></div>
-      <div class="h-2 bg-gray-200 rounded-full dark:bg-gray-700 max-w-[440px] mb-2.5"></div>
-      <div class="h-2 bg-gray-200 rounded-full dark:bg-gray-700 max-w-[460px] mb-2.5"></div>
-      <div class="h-2 bg-gray-200 rounded-full dark:bg-gray-700 max-w-[360px]"></div>
-    </div>
-    <span class="sr-only">Loading...</span>
-  </div>
-</div>
-<div class="min-h-screen overflow-x-hidden bg-zinc-800 pt-28 md:pt-32 md:px-0 lg:px-20 flex flex-col md:flex-row md:items-start md:justify-center" #Main
-*ngIf="product">
-  <div class="relative w-full p-4" *ngIf="imagesLoaded">
-    <div class="relative w-full overflow-hidden rounded-lg" style="padding-top: 100%;">
-      <div class="absolute top-0 left-0 w-full h-full" *ngFor="let image of fileURLArray">
-        <img [src]="fileURL" class="block w-full h-full object-cover" [alt]="image.toString()">
+<div class="pt-28 md:pt-32 ">
+  <div class="min-h-screen overflow-x-hidden bg-zinc-800 pt-28 px-10 md:pt-32 md:px-10 lg:px-28 flex flex-col md:flex-row md:items-start md:justify-center"
+       *ngIf="!product && !imagesLoaded">
+    <div role="status" class="w-full space-y-8 animate-pulse md:space-y-0 md:space-x-8 rtl:space-x-reverse md:flex md:items-center">
+      <div class="flex items-center justify-center w-full h-80 bg-gray-300 rounded sm:w-96 dark:bg-gray-700">
+        <svg class="w-20 h-20 text-gray-200 dark:text-gray-600" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 18">
+          <path d="M18 0H2a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2Zm-5.5 4a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3Zm4.376 10.481A1 1 0 0 1 16 15H4a1 1 0 0 1-.895-1.447l3.5-7A1 1 0 0 1 7.468 6a.965.965 0 0 1 .9.5l2.775 4.757 1.546-1.887a1 1 0 0 1 1.618.1l2.541 4a1 1 0 0 1 .028 1.011Z"/>
+        </svg>
       </div>
+      <div class="w-full">
+        <div class="h-2.5 bg-gray-200 rounded-full dark:bg-gray-700 w-48 mb-4"></div>
+        <div class="h-2 bg-gray-200 rounded-full dark:bg-gray-700 max-w-[480px] mb-2.5"></div>
+        <div class="h-2 bg-gray-200 rounded-full dark:bg-gray-700 mb-2.5"></div>
+        <div class="h-2 bg-gray-200 rounded-full dark:bg-gray-700 max-w-[440px] mb-2.5"></div>
+        <div class="h-2 bg-gray-200 rounded-full dark:bg-gray-700 max-w-[460px] mb-2.5"></div>
+        <div class="h-2 bg-gray-200 rounded-full dark:bg-gray-700 max-w-[360px]"></div>
+      </div>
+      <span class="sr-only">Loading...</span>
     </div>
-    <!-- Slider indicators -->
-    <div class="absolute z-30 flex -translate-x-1/2 bottom-5 left-1/2 space-x-3 rtl:space-x-reverse">
-      <button *ngFor="let image of fileURLArray; let i = index" (click)="currentIndex = i; fileURL = fileURLArray[i]"
-              [class.highlighted]="i === currentIndex"
-        type="button" class="w-3 h-3 rounded-full bg-zinc-500" [attr.aria-current]="i === 0 ? 'true' : 'false'" [attr.aria-label]="'Slide ' + (i + 1)"></button>
-    </div>
-    <!-- Slider controls -->
-    <button (click)="showPrevImage()"
-      type="button" class="absolute top-0 start-0 z-30 flex items-center justify-center h-full px-4 cursor-pointer group focus:outline-none">
+  </div>
+  <div class="min-h-screen overflow-x-hidden cholie-pruple flex flex-col md:flex-row md:items-start md:justify-center" #Main
+       *ngIf="product">
+    <div class="relative w-full p-4" *ngIf="imagesLoaded">
+      <div [@slideInFromLeft]="swipeDirection === 'right' ? currentIndex : null"
+           [@slideInFromRight]="swipeDirection === 'left' ? currentIndex : null"
+           class="relative w-full overflow-hidden rounded-lg" style="padding-top: 100%;"
+           (touchstart)="handleTouchStart($event)" (touchmove)="handleTouchMove($event)" (touchend)="handleTouchEnd()">
+        <div class="absolute top-0 left-0 w-full h-full" *ngFor="let image of fileURLArray; let i = index" [@.disabled]="!imagesLoaded">
+          <img [src]="image" class="block w-full h-full object-cover" [alt]="image.toString()" *ngIf="currentIndex === i">
+        </div>
+      </div>
+      <!-- Slider indicators -->
+      <div class="absolute z-30 flex -translate-x-1/2 bottom-5 left-1/2 space-x-3 rtl:space-x-reverse">
+        <button *ngFor="let image of fileURLArray; let i = index" (click)="currentIndex = i; fileURL = fileURLArray[i]"
+                [class.highlighted]="i === currentIndex"
+                type="button" class="w-3 h-3 rounded-full bg-zinc-500" [attr.aria-current]="i === 0 ? 'true' : 'false'" [attr.aria-label]="'Slide ' + (i + 1)"></button>
+      </div>
+      <!-- Slider controls -->
+      <button (click)="showPrevImage()"
+              type="button" class="absolute top-0 start-0 z-30 flex items-center justify-center h-full px-4 cursor-pointer group focus:outline-none">
         <span class="inline-flex items-center justify-center w-10 h-10 rounded-full bg-zinc-400 group-hover:bg-zinc-300 group-focus:ring-4 group-focus:ring-zinc-400 group-focus:outline-none">
             <svg class="w-4 h-4 text-white rtl:rotate-180" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 6 10">
                 <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 1 1 5l4 4"/>
             </svg>
             <span class="sr-only">Previous</span>
         </span>
-    </button>
-    <button (click)="showNextImage()"
-            type="button" class="absolute top-0 end-0 z-30 flex items-center justify-center h-full px-4 cursor-pointer group focus:outline-none">
+      </button>
+      <button (click)="showNextImage()"
+              type="button" class="absolute top-0 end-0 z-30 flex items-center justify-center h-full px-4 cursor-pointer group focus:outline-none">
         <span class="inline-flex items-center justify-center w-10 h-10 rounded-full bg-zinc-400 group-hover:bg-zinc-300 group-focus:ring-4 group-focus:ring-zinc-400 group-focus:outline-none">
             <svg class="w-4 h-4 text-white rtl:rotate-180" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 6 10">
                 <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 9 4-4-4-4"/>
             </svg>
             <span class="sr-only">Next</span>
         </span>
-    </button>
-  </div>
-  <div class="flex flex-col justify-center text-start pt-4 space-y-3 p-4 w-full">
-    <h1 class="text-4xl font-bold text-amber-100">{{product.name}}</h1>
-    <h1 class="text-xl text-amber-100">{{product.price | currency:"EUR"}}</h1>
-    <p class="italic text-gray-400">Incl BTW 21%</p>
-    <div class="flex items-center mt-2.5 mb-5">
-      <span class="bg-red-200 text-red-800 text-xs font-semibold line-through px-2.5 py-0.5 rounded ">{{product.price + product.price * 0.21 | currency:"EUR"}}</span>
-      <span class="bg-green-200 text-green-800 text-xs font-semibold px-2.5 py-0.5 rounded ms-3">{{product.price | currency:"EUR"}}</span>
+      </button>
     </div>
-    <p class="text w-full text-white">Lorem ipsum is een opvultekst die drukkers, zetters, grafisch ontwerpers en dergelijken gebruiken om te
+    <div class="flex flex-col justify-center text-start pt-4 space-y-3 p-4 w-full">
+      <h1 class="text-4xl font-bold text-amber-100">{{product.name}}</h1>
+      <h1 class="text-xl text-amber-100">{{product.price | currency:"EUR"}}</h1>
+      <p class="italic text-gray-400">Incl BTW 21%</p>
+      <div class="flex items-center mt-2.5 mb-5">
+        <span class="bg-red-200 text-red-800 text-xs font-semibold line-through px-2.5 py-0.5 rounded ">{{product.price + product.price * 0.21 | currency:"EUR"}}</span>
+        <span class="bg-green-200 text-green-800 text-xs font-semibold px-2.5 py-0.5 rounded ms-3">{{product.price | currency:"EUR"}}</span>
+      </div>
+      <p class="text-white">{{product.description}}</p>
+      <p class="text w-full text-white">Lorem ipsum is een opvultekst die drukkers, zetters, grafisch ontwerpers en dergelijken gebruiken om te
       kijken hoe een opmaak er grafisch uitziet. De eerste woorden van de tekst luiden doorgaans Lorem ipsum dolor s
       it amet, consectetur adipiscing elit</p>
-    <p class="text-white">{{product.description}}</p>
-    <button class="CartBtn"
-            (click)="addToShoppingCart(product)">
+      <button class="CartBtn"
+              (click)="addToShoppingCart(product)">
   <span class="IconContainer">
     <svg xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 576 512" fill="rgb(17, 17, 17)" class="cart"><path d="M0 24C0 10.7 10.7 0 24 0H69.5c22 0 41.5 12.8 50.6 32h411c26.3 0 45.5 25 38.6 50.4l-41 152.3c-8.5 31.4-37 53.3-69.5 53.3H170.7l5.4 28.5c2.2 11.3 12.1 19.5 23.6 19.5H488c13.3 0 24 10.7 24 24s-10.7 24-24 24H199.7c-34.6 0-64.3-24.6-70.7-58.5L77.4 54.5c-.7-3.8-4-6.5-7.9-6.5H24C10.7 48 0 37.3 0 24zM128 464a48 48 0 1 1 96 0 48 48 0 1 1 -96 0zm336-48a48 48 0 1 1 0 96 48 48 0 1 1 0-96z"></path></svg>
   </span>
-      <p class="text2">Add to Cart</p>
-    </button>
-    <app-product-accordion></app-product-accordion>
+        <p class="text2">Add to Cart</p>
+      </button>
+      <app-product-accordion></app-product-accordion>
+    </div>
   </div>
-</div>
-<div>
   <app-our-skills></app-our-skills>
 </div>

@@ -23,7 +23,6 @@ export class PopUpComponent {
       this.type = type;
       this.widthMainScreenClassPlusadditionalClasses = widthMainScreenClassPlusadditionalClasses;
     });
-    console.log(popupService)
   }
 
   ngOnDestroy(): void {

@@ -1,46 +1,44 @@
-<div class="overflow-hidden" >
-  <div class="flex flex-col justify-evenly relative h-max bg-black md:text-right">
-    <img #Image class="h-screen object-cover object-top md:object-[center_30%]"src="../../assets/lion-walking.png">
-    <div class="bg-black absolute z-1 w-full h-full bg-opacity-30"></div>
-    <div class="absolute text-xl text-white container z-10 md:items-start">
-      <div class="flex flex-col md:items-end items-center">
-        <div class="ml-2 md:ml-0" #HeadSection>
-          <h1 class="text-5xl md:text-6xl"
-          >High Authentic Parfum</h1>
-          <p class="text-sm">Nu op aanbieding</p>
-          <button class="font-bold py-2 px-4 bg-white text-black m-1 text-sm rounded-3xl
-              hover:bg-amber-100 hover:inner-border-amber-100 hover:text-zinc-800"
-                  (click)="navigateToProducts()" [@fadeAnimation]="'fade'"
-          >
-            Koop Nu
-          </button>
+<div class="min-h-screen w-screen">
+  <div class="relative overflow-hidden h-screen">
+    <div class="fixed top-0 left-0 w-full h-screen z-0" #Image>
+      <img class="h-screen w-screen object-cover" src="../../assets/landing-home.jpg" alt="">
+      <div class="bg-black absolute top-0 left-0 w-full h-full bg-opacity-30"></div>
+    </div>
+    <div class="flex flex-col justify-evenly h-screen md:text-right z-10 relative">
+      <div class="absolute top-0 left-0 w-full h-screen"></div> <!-- This empty div is used to maintain the space for the fixed image, ensuring the layout does not collapse -->
+      <div class="absolute text-xl text-white container md:items-start">
+        <div class="flex flex-col md:items-end items-center">
+          <div class="ml-2 md:ml-0" #HeadSection>
+            <h1 class="text-5xl md:text-6xl">High Authentic Parfum</h1>
+            <p class="text-sm">Nu op aanbieding</p>
+            <button class="font-bold py-2 px-4 bg-white text-black m-1 text-sm rounded-3xl hover:bg-amber-100 hover:inner-border-amber-100 hover:text-zinc-800" (click)="navigateToProducts()" [@fadeAnimation]="'fade'">Koop Nu</button>
+          </div>
         </div>
       </div>
     </div>
   </div>
-</div>
-<div class="mx-auto p-4 flex flex-col items-center justify-center relative h-max bg-amber-100 text-6xl text-center">
-  <img class="h-10" src="../../assets/diamond-icon.png">
-  <div #ProductsSection>Explore Our Essence</div>
-</div>
-<div class="flex flex-col mx-auto lg:flex-row items-center w-full p-5 lg:px-10 lg:py-24 bg-zinc-800" #ProductsDetailsSection>
-  <div class="lg:w-1/2 items-center">
-    <div>
-      <img src="assets/lion-wife.png">
-    </div>
+  <div class="mx-auto p-4 flex flex-col items-center justify-center relative h-max cholie-pruple text-gray-300 text-6xl text-center">
+    <svg class="fill-gray-300" height="100" width="100" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--!Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.--><path d="M168.5 72L256 165l87.5-93h-175zM383.9 99.1L311.5 176h129L383.9 99.1zm50 124.9H256 78.1L256 420.3 433.9 224zM71.5 176h129L128.1 99.1 71.5 176zm434.3 40.1l-232 256c-4.5 5-11 7.9-17.8 7.9s-13.2-2.9-17.8-7.9l-232-256c-7.7-8.5-8.3-21.2-1.5-30.4l112-152c4.5-6.1 11.7-9.8 19.3-9.8H376c7.6 0 14.8 3.6 19.3 9.8l112 152c6.8 9.2 6.1 21.9-1.5 30.4z"/></svg>
+    <div #ProductsSection>Explore Our Essence</div>
   </div>
-  <div class="lg:w-1/2 flex flex-col items-center">
-    <div class="text-center text-amber-100 p-10 leading-relaxed space-y-10">
-      <h1 class="text-4xl font-bold">Make Your Story</h1>
-      <h1>In the heart of a lush, fragrant jungle, there lived a majestic lion known for his unique scent, a blend of wild herbs and exotic flowers. Intrigued by his aroma, a renowned perfumer ventured into the jungle, seeking the secret behind the lion's scent. After observing the lion's habits, the perfumer discovered a hidden grove where the lion rolled in a bed of rare blossoms and aromatic leaves. Inspired, the perfumer created a luxurious perfume, capturing the essence of the jungle's king. The scent became a sensation, revered for its bold, natural elegance, just like the lion himself.</h1>
-    </div>
-    <button class="button">
-      <a routerLink="/products">Buy Now</a>
-    </button>
+  <div class="flex relative flex-col h-fit mx-auto lg:flex-row items-center w-full bg-zinc-800 shadow-inner-2xl">
+    <!--  <img class="h-screen object-cover" src="../../assets/gray-background.jpg">-->
+    <img class="min-h-screen w-screen object-cover md:hidden" src="assets/story.jpg">
+    <img class="h-full w-screen object-scale-down hidden md:block" src="assets/story-pc.jpg">
+    <!--    <div class="lg:w-1/2 flex flex-col items-center">-->
+    <!--      <div class="text-center text-amber-100 p-10 leading-relaxed space-y-10">-->
+    <!--        <h1 class="text-4xl font-bold">Make Your Story</h1>-->
+    <!--        <h1>In the heart of a lush, fragrant jungle, there lived a majestic lion known for his unique scent, a blend of wild herbs and exotic flowers. Intrigued by his aroma, a renowned perfumer ventured into the jungle, seeking the secret behind the lion's scent. After observing the lion's habits, the perfumer discovered a hidden grove where the lion rolled in a bed of rare blossoms and aromatic leaves. Inspired, the perfumer created a luxurious perfume, capturing the essence of the jungle's king. The scent became a sensation, revered for its bold, natural elegance, just like the lion himself.</h1>-->
+    <!--      </div>-->
+    <!--      <button class="button">-->
+    <!--        <a routerLink="/products">Buy Now</a>-->
+    <!--      </button>-->
+    <!--    </div>-->
   </div>
+  <!--<div class="border-b border-b-1 border-b-zinc-800 h-screen">-->
+  <!--  <app-our-skills></app-our-skills>-->
+  <div class="border-b border-b-1 border-b-zinc-800 h-full" id="about-us" #aboutUsSection>
+    <app-about-us></app-about-us>
+  </div>
+  <!--</div>-->
 </div>
-<div class="border-b border-b-1 border-b-zinc-800" id="about-us" #aboutUsSection>
-  <app-about-us></app-about-us>
-</div>
-<app-our-skills></app-our-skills>
-

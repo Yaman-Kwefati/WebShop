@@ -8,7 +8,6 @@ import {filter} from "rxjs";
 import { Animate, initTE } from "tw-elements";
 import {gsap} from "gsap";
 import {ScrollTrigger} from "gsap/ScrollTrigger";
-import {CookieService} from "ngx-cookie-service";
 import {provideAnimations} from "@angular/platform-browser/animations";
 import {OurSkillsComponent} from "../shared/our-skills/our-skills.component";
 
@@ -72,8 +71,13 @@ export class LandingPageComponent implements AfterViewInit, OnInit{
 
   initScrollAnimations(): void{
     gsap.from(this.ProductsSection.nativeElement, {
-      scrollTrigger: ".box",
-      duration: 1.0,
+      scrollTrigger: {
+        trigger: ".box",
+        start: 'top bottom-=100', // Adjust this value as needed
+        toggleActions: 'play none none none'
+      },
+      stagger: 1,
+      duration: 0.8,
       y: 100,
       opacity: 0,
     });

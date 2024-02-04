@@ -7,8 +7,8 @@
   </div>
   <div class="flex flex-col min-h-full justify-center px-6 py-12 lg:px-8 mt-28 bg-white min-h-screen md:mt-0 md:flex-row md:items-center">
     <div class="sm:mx-auto sm:w-full sm:max-w-sm flex flex-col justify-start">
-      <img class="mx-auto h-48  md:w-auto md:h-auto" src="./assets/lion-logo.jpg" alt="Your Company">
-      <h2 class="mt-10 text-center text-2xl font-bold leading-9 tracking-tight text-gray-900">Sign up and become a Customer</h2>
+      <img class="mx-auto h-48  md:w-auto md:h-auto" src="./assets/logo-no-text.png" alt="Your Company">
+      <h2 class="mt-10 text-center text-2xl font-bold leading-9 tracking-tight text-gray-900">Meld u aan en word klant</h2>
     </div>
 
     <div class="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
@@ -18,72 +18,72 @@
       <form class="space-y-2" action="#" method="POST" #registerForm="ngForm" (ngSubmit)="onsubmit(registerForm)"
             *ngIf="!isLoading">
         <div>
-          <label for="email" class="block text-sm font-medium leading-6 text-gray-900">Email address</label>
+          <label for="email" class="block text-sm font-medium leading-6 text-gray-900">Email adres</label>
           <div class="mt-2">
-            <input email ngModel id="email" name="email" type="email" autocomplete="email" required class="block w-full rounded-md border-0 p-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
+            <input email ngModel id="email" name="email" type="email" autocomplete="email" required class="block w-full rounded-md border-0 p-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-black sm:text-sm sm:leading-6">
           </div>
         </div>
 
         <div>
           <div>
             <div class="flex items-center justify-between">
-              <label for="password" class="block text-sm font-medium leading-6 text-gray-900">Password</label>
+              <label for="password" class="block text-sm font-medium leading-6 text-gray-900">Wachtwoord</label>
             </div>
             <div class="mt-2">
-              <input ngModel minlength="6" id="password" name="password" type="password" autocomplete="current-password" required class="block w-full rounded-md border-0 p-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
+              <input ngModel minlength="6" id="password" name="password" type="password" autocomplete="current-password" required class="block w-full rounded-md border-0 p-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-black sm:text-sm sm:leading-6">
             </div>
           </div>
         </div>
         <div class="flex flex-col md:flex-row justify-between">
           <div>
             <div class="flex items-center justify-between">
-              <label for="firstname" class="block text-sm font-medium leading-6 text-gray-900">Firstname</label>
+              <label for="firstname" class="block text-sm font-medium leading-6 text-gray-900">Voornaam</label>
             </div>
             <div class="mt-2">
-              <input ngModel id="firstname" name="firstname" type="text" required class="block w-full rounded-md border-0 p-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
+              <input ngModel id="firstname" name="firstname" type="text" required class="block w-full rounded-md border-0 p-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-black sm:text-sm sm:leading-6">
             </div>
           </div>
           <div>
             <div class="flex items-center justify-between">
-              <label for="lastname" class="block text-sm font-medium leading-6 text-gray-900">Lastname</label>
+              <label for="lastname" class="block text-sm font-medium leading-6 text-gray-900">Achternaam</label>
             </div>
             <div class="mt-2">
-              <input ngModel id="lastname" name="lastname" type="text" required class="block w-full rounded-md border-0 p-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
+              <input ngModel id="lastname" name="lastname" type="text" required class="block w-full rounded-md border-0 p-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-black sm:text-sm sm:leading-6">
             </div>
           </div>
         </div>
         <div>
           <div class="flex flex-col md:flex-row justify-between">
-            <label for="phonenumber" class="block text-sm font-medium leading-6 text-gray-900">Phonenumber</label>
+            <label for="phonenumber" class="block text-sm font-medium leading-6 text-gray-900">Mobiel nummer</label>
           </div>
           <div class="mt-2">
-            <input ngModel id="phonenumber" name="phonenumber" type="number" required class="block w-full rounded-md border-0 p-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
+            <input ngModel id="phonenumber" name="phonenumber" type="number" required class="block w-full rounded-md border-0 p-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-black sm:text-sm sm:leading-6">
           </div>
         </div>
         <div class="flex flex-col md:flex-row justify-between">
           <div>
             <div class="flex items-center justify-between">
-              <label for="postalcode" class="block text-sm font-medium leading-6 text-gray-900">Postal Code</label>
+              <label for="postalcode" class="block text-sm font-medium leading-6 text-gray-900">Postcode</label>
             </div>
             <div class="mt-2">
-              <input ngModel id="postalcode" name="postalcode" type="text" required class="block w-full rounded-md border-0 p-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
+              <input ngModel id="postalcode" name="postalcode" type="text" required class="block w-full rounded-md border-0 p-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-black sm:text-sm sm:leading-6">
             </div>
           </div>
           <div>
             <div class="flex items-center justify-between">
-              <label for="city" class="block text-sm font-medium leading-6 text-gray-900">City</label>
+              <label for="city" class="block text-sm font-medium leading-6 text-gray-900">Stad</label>
             </div>
             <div class="mt-2">
-              <input ngModel id="city" name="city" type="text" required class="block w-full rounded-md border-0 p-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
+              <input ngModel id="city" name="city" type="text" required class="block w-full rounded-md border-0 p-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-black sm:text-sm sm:leading-6">
             </div>
           </div>
         </div>
         <div>
           <div class="flex items-center justify-between">
-            <label for="street" class="block text-sm font-medium leading-6 text-gray-900">Street</label>
+            <label for="street" class="block text-sm font-medium leading-6 text-gray-900">Straat</label>
           </div>
           <div class="mt-2">
-            <input ngModel id="street" name="street" type="text" required class="block w-full rounded-md border-0 p-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
+            <input ngModel id="street" name="street" type="text" required class="block w-full rounded-md border-0 p-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-black sm:text-sm sm:leading-6">
           </div>
         </div>
         <div>
@@ -91,13 +91,15 @@
             type="submit"
             [disabled]="!registerForm.valid"
             [ngClass]="{'cursor-not-allowed': !registerForm.valid}"
-            class="flex w-full justify-center rounded-md bg-blue-800 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-blue-600 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">Sign Up</button>
+            class="flex w-full justify-center rounded-md bg-black px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-white hover:inner-border-2 hover:text-black
+          hover:inner-border-black transition duration-200
+          focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">Sign Up</button>
         </div>
       </form>
 
       <p class="mt-10 text-center text-sm text-gray-500">
-        Already a Customer?
-        <a routerLink="/login" class="font-semibold leading-6 text-blue-800 hover:text-blue-600">Sign in!</a>
+        Al een klant?
+        <a routerLink="/login" class="font-semibold leading-6 gold hover:underline">Login!</a>
       </p>
     </div>
   </div>

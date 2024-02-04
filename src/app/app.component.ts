@@ -13,13 +13,14 @@ import {LoadingSpinnerComponent} from "./shared/loading-spinner/loading-spinner.
 import {filter} from "rxjs";
 import { initFlowbite } from 'flowbite';
 import {PopUpComponent} from "./utilities /pop-up/pop-up.component";
+import {MailchimpSignupComponent} from "./shared/mailchimp-signup/mailchimp-signup.component";
 gsap.registerPlugin(ScrollTrigger);
 
 @Component({
   selector: 'app-root',
   standalone: true,
   imports: [CommonModule, RouterOutlet, HeaderComponent, FooterComponent, AppModule, LandingPageComponent,
-    HttpClientModule, FontAwesomeModule, LoadingSpinnerComponent, PopUpComponent],
+    HttpClientModule, FontAwesomeModule, LoadingSpinnerComponent, PopUpComponent, MailchimpSignupComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.less'
 })

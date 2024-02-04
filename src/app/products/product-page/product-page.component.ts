@@ -9,6 +9,7 @@ import {FileService} from "../../services/File.service";
 import {DomSanitizer, SafeUrl} from "@angular/platform-browser";
 import {ProductAccordionComponent} from "./product-accordion/product-accordion.component";
 import {OurSkillsComponent} from "../../shared/our-skills/our-skills.component";
+import {environment, slideInFromRightAnimation, slideInFromLeftAnimation} from "../../../environment /environment";
 
 @Component({
   selector: 'app-product-page',
@@ -16,7 +17,8 @@ import {OurSkillsComponent} from "../../shared/our-skills/our-skills.component";
   imports: [CommonModule, ProductAccordionComponent, NgOptimizedImage, OurSkillsComponent],
   providers: [ProductService, FileService],
   templateUrl: './product-page.component.html',
-  styleUrl: './product-page.component.less'
+  styleUrl: './product-page.component.less',
+  animations: [slideInFromRightAnimation, slideInFromLeftAnimation],
 })
 export class ProductPageComponent implements OnInit{
   product!: Product;
@@ -25,13 +27,19 @@ export class ProductPageComponent implements OnInit{
   fileURLArray: SafeUrl[] = [];
   fileURL: SafeUrl = '';
   imagesLoaded = false;
+  touchStartX = 0;
+  touchEndX = 0;
+  touchStartY = 0;
+  touchEndY = 0;
+  minSwipeDistance = 30;
+  swipeDirection: 'left' | 'right' = 'left';
 
   constructor(@Inject(DOCUMENT) private document: Document,
               private sanitizer: DomSanitizer,
               private route: ActivatedRoute,
               private productService: ProductService,
               private cartService: ShoppingCartService,
-              private fileService: FileService) {
+              private fileService: FileService,) {
   }
 
   ngOnInit(): void {
@@ -80,11 +88,13 @@ export class ProductPageComponent implements OnInit{
   currentIndex = 0;
 
   showPrevImage() {
+    this.swipeDirection = 'right';
     this.currentIndex = (this.currentIndex + this.images.length - 1) % this.images.length;
     this.loadFile(this.images[this.currentIndex]);
   }
 
   showNextImage() {
+    this.swipeDirection = 'left';
     this.currentIndex = (this.currentIndex + 1) % this.images.length;
     this.loadFile(this.images[this.currentIndex]);
   }
@@ -110,5 +120,29 @@ export class ProductPageComponent implements OnInit{
       stagger: 0.2,
       delay: 0.5,
     });
+  }
+  handleTouchStart(event: TouchEvent) {
+    event.preventDefault();
+    this.touchStartX = event.touches[0].clientX;
+    this.touchStartY = event.touches[0].clientY;
+  }
+
+  handleTouchMove(event: TouchEvent) {
+    this.touchEndX = event.touches[0].clientX;
+    this.touchEndY = event.touches[0].clientY;
+  }
+
+  handleTouchEnd() {
+    let deltaX = this.touchStartX - this.touchEndX;
+    let deltaY = this.touchStartY - this.touchEndY;
+
+    // Check if the swipe is more horizontal than vertical
+    if (Math.abs(deltaX) > Math.abs(deltaY) && Math.abs(deltaX) > this.minSwipeDistance) {
+      if (deltaX > 0) {
+        this.showNextImage();
+      } else {
+        this.showPrevImage();
+      }
+    }
   }
 }

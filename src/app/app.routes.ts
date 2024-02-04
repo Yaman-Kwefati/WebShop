@@ -17,6 +17,7 @@ import {ForgotPasswordComponent} from "./authentication/login/forgot-password/fo
 import {ResetPasswordComponent} from "./authentication/login/forgot-password/reset-password/reset-password.component";
 import {EmailSentComponent} from "./shared/email-sent/email-sent.component";
 import {UserOrderDetailsComponent} from "./user-screen/user-order-details/user-order-details.component";
+import {ThankYouComponent} from "./utilities /thank-you/thank-you.component";
 
 export const routes: Routes = [
   {
@@ -108,6 +109,11 @@ export const routes: Routes = [
     path: 'cancel',
     title: 'Order Canceled',
     component: CancelComponent,
+  },
+  {
+    path: 'thank-you',
+    title: 'Bedankt voor Abonneren',
+    component: ThankYouComponent,
   },
   {
     path: '**',
