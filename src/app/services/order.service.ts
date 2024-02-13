@@ -6,6 +6,7 @@ import {CartProduct} from "./shopping-cart.service";
 import {OrderItem} from "../models/OrderItem.model";
 import {User} from "../models/User.model";
 import {UserService} from "./user.service";
+import {environment} from "../../environment /environment";
 
 export interface ApiResponse<T> {
   code: string;
@@ -18,14 +19,14 @@ export interface ApiResponse<T> {
 })
 export class OrderService{
   orders!: ShopOrder[];
-  // private baseUrl: string = "http://localhost:8080/api/v1/";
-  private baseUrl: string = "/api/v1/";
+  // private baseUrl: string = "http://localhost:8080/api/v1";
+  private baseUrl: string = environment.serverApiRoute;
   constructor(private http: HttpClient,
               private cookieService: CookieService,
               private userService: UserService){}
 
   fetchOrders(){
-    return this.http.get<ApiResponse<ShopOrder[]>>(this.baseUrl+"orders/all-orders");
+    return this.http.get<ApiResponse<ShopOrder[]>>(this.baseUrl+"/orders/all-orders");
   }
 
   makeOrder(total: number, cartItems: CartProduct[]){
@@ -49,7 +50,7 @@ export class OrderService{
           orderDate: "",
           totalAmount: total
         };
-        return this.http.post<ApiResponse<ShopOrder>>(this.baseUrl + "orders/new-order", orderData).subscribe(
+        return this.http.post<ApiResponse<ShopOrder>>(this.baseUrl + "/orders/new-order", orderData).subscribe(
           responseData => {
             let order = responseData.payload;
             if (order){
@@ -67,7 +68,7 @@ export class OrderService{
   }
 
   placeNewOrderItem(shopOrderId: ShopOrder, productId: number, quantity: number, subtotal: number){
-    return this.http.post<ApiResponse<OrderItem>>(this.baseUrl + "order-items/new-order-item", {
+    return this.http.post<ApiResponse<OrderItem>>(this.baseUrl + "/order-items/new-order-item", {
       shopOrderId: shopOrderId,
       productId: productId,
       quantity: quantity,
@@ -76,11 +77,11 @@ export class OrderService{
   }
 
   getOrderItemsFromOrder(orderId: number){
-    return this.http.get<ApiResponse<OrderItem[]>>(this.baseUrl + "order-items/by-order/" + orderId);
+    return this.http.get<ApiResponse<OrderItem[]>>(this.baseUrl + "/order-items/by-order/" + orderId);
   }
 
   updateOrderStatus(orderId: number, orderStatus: string){
-    return this.http.put<ApiResponse<ShopOrder>>(this.baseUrl + "orders/" + orderId, {
+    return this.http.put<ApiResponse<ShopOrder>>(this.baseUrl + "/orders/" + orderId, {
       orderId: orderId,
       userId: {},
       orderStatus: orderStatus,
@@ -90,6 +91,6 @@ export class OrderService{
   }
 
   getUsersOrders(email: string){
-    return this.http.get<ApiResponse<ShopOrder[]>>(this.baseUrl + "orders/user/" + email);
+    return this.http.get<ApiResponse<ShopOrder[]>>(this.baseUrl + "/orders/user/" + email);
   }
 }

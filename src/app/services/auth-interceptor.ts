@@ -1,15 +1,21 @@
-import { Injectable, Injector } from '@angular/core';
+import {Inject, Injectable, Injector, PLATFORM_ID} from '@angular/core';
 import { HttpInterceptor, HttpRequest, HttpHandler, HttpEvent, HttpErrorResponse } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
 import { catchError, switchMap } from 'rxjs/operators';
 import { AuthService } from './auth.service';
 import {Router} from "@angular/router";
+import {isPlatformServer} from "@angular/common";
 
 @Injectable()
 export class AuthInterceptor implements HttpInterceptor {
-  constructor(private injector: Injector, private router: Router) {}
+  constructor(private injector: Injector,
+              private router: Router,
+              @Inject(PLATFORM_ID) private platformId: Object) {}
 
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
+    if (isPlatformServer(this.platformId)) {
+      return next.handle(req);
+    }
     const authReq = req.clone({
       withCredentials: true,
     });

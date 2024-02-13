@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import {CookieService} from "ngx-cookie-service";
 import {OrderService} from "../../services/order.service";
 import {gsap} from "gsap";
+import {Platform} from "@angular/cdk/platform";
 
 @Component({
   selector: 'app-success',
@@ -13,10 +14,12 @@ import {gsap} from "gsap";
   styleUrl: './success.component.less'
 })
 export class SuccessComponent implements OnInit{
-  constructor(private cookieService: CookieService) {}
+  constructor(private cookieService: CookieService,
+              private platform: Platform) {}
   ngOnInit(): void {
     this.clearCartItems();
-    gsap.from(".text-center", { duration: 1, y: -100, opacity: 0 });
+    if (this.platform.isBrowser)
+      gsap.from(".text-center", { duration: 1, y: -100, opacity: 0 });
   }
 
   clearCartItems(){

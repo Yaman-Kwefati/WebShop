@@ -4,6 +4,7 @@ import {MatPaginator, MatPaginatorModule} from "@angular/material/paginator";
 import {MatTableDataSource, MatTableModule} from "@angular/material/table";
 import {Product} from "../../models/Product.model";
 import {ProductService} from "../../services/product.service";
+import {PopupService} from "../../services/PopUp.service";
 
 @Component({
   selector: 'app-products-tab',
@@ -18,7 +19,8 @@ export class ProductsTabComponent implements OnInit, AfterViewInit{
   dataSource = new MatTableDataSource<Product>();
   @ViewChild("MatPaginator") paginator!: MatPaginator;
 
-  constructor(private productService: ProductService) {
+  constructor(private productService: ProductService,
+              private popupService: PopupService) {
   }
 
   ngOnInit(): void {
@@ -32,5 +34,16 @@ export class ProductsTabComponent implements OnInit, AfterViewInit{
 
   ngAfterViewInit() {
     this.dataSource.paginator = this.paginator;
+  }
+
+  deleteProduct(productId: number) {
+    this.productService.deleteProduct(productId).subscribe(
+      res => {
+        if (res.code != "ACCEPTED") this.popupService
+          .showMessage("Couldn't delete product", "error", "w-4/6 max-md:w-full");
+        if (res.code == "ACCEPTED")
+          this.popupService.showMessage('Product deleted', 'success', 'w-4/6 max-md:w-full');
+      }
+    )
   }
 }

@@ -1,5 +1,5 @@
-import {AfterViewInit, Component, OnInit, ViewChild} from '@angular/core';
-import { CommonModule } from '@angular/common';
+import {AfterViewInit, Component, Inject, OnInit, PLATFORM_ID, ViewChild} from '@angular/core';
+import {CommonModule, isPlatformBrowser} from '@angular/common';
 import {MatPaginator, MatPaginatorModule} from "@angular/material/paginator";
 import {MatTableDataSource, MatTableModule} from "@angular/material/table";
 import {OrderService} from "../../services/order.service";
@@ -24,11 +24,12 @@ export class OrdersComponent implements OnInit, AfterViewInit{
   newStatus = "";
   @ViewChild("MatPaginator") paginator!: MatPaginator;
 
-  constructor(private orderService: OrderService) {
+  constructor(private orderService: OrderService,
+              @Inject(PLATFORM_ID) private platformId: Object) {
   }
 
   ngOnInit(): void {
-    this.orderService.fetchOrders().subscribe(
+    if (isPlatformBrowser(this.platformId)) this.orderService.fetchOrders().subscribe(
       orders => {
         this.dataSource.data = orders.payload;
         this.dataSource.paginator = this.paginator;

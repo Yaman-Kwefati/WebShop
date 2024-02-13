@@ -1,4 +1,13 @@
-import {AfterViewInit, Component, ElementRef, Inject, OnInit, ViewChild} from '@angular/core';
+import {
+  afterRender,
+  AfterViewChecked,
+  AfterViewInit,
+  Component,
+  ElementRef,
+  Inject,
+  OnInit,
+  ViewChild
+} from '@angular/core';
 import {CommonModule, DOCUMENT} from '@angular/common';
 import {CartItemComponent} from "../header/shopping-cart/cart-item/cart-item.component";
 import {MatListModule} from "@angular/material/list";
@@ -9,6 +18,8 @@ import {gsap} from "gsap";
 import {ScrollTrigger} from "gsap/ScrollTrigger";
 import {provideAnimations} from "@angular/platform-browser/animations";
 import {OurSkillsComponent} from "../shared/our-skills/our-skills.component";
+import {Platform} from "@angular/cdk/platform";
+import {platform} from "node:os";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -26,24 +37,27 @@ export class LandingPageComponent implements AfterViewInit, OnInit{
 
   constructor(private route: ActivatedRoute,
               private router: Router,
-              @Inject(DOCUMENT) private document: Document) {}
+              @Inject(DOCUMENT) private document: Document,
+              private platform: Platform) {}
 
   ngAfterViewInit(): void {
-    this.initScrollAnimations();
-    this.initialAnimations();
-    this.imageAnimation();
-    this.route.fragment.subscribe(fragment => {
-      if (fragment === 'about-us' && this.aboutUsSection) {
-        this.aboutUsSection.nativeElement.scrollIntoView({ behavior: 'smooth' });
-      }
-    });
-    this.router.events
-      .pipe(filter((event): event is NavigationEnd => event instanceof NavigationEnd))
-      .subscribe((event: NavigationEnd) => {
-        if (event.url === '/home' || event.url === '/') {
-          window.scrollTo({ top: 0, behavior: 'smooth' });
+    if (this.platform.isBrowser){
+      this.initScrollAnimations();
+      this.initialAnimations();
+      this.imageAnimation();
+      this.route.fragment.subscribe(fragment => {
+        if (fragment === 'about-us' && this.aboutUsSection) {
+          this.aboutUsSection.nativeElement.scrollIntoView({ behavior: 'smooth' });
         }
       });
+      this.router.events
+        .pipe(filter((event): event is NavigationEnd => event instanceof NavigationEnd))
+        .subscribe((event: NavigationEnd) => {
+          if (event.url === '/home' || event.url === '/') {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+          }
+        });
+    }
   }
 
   navigateToProducts() {
@@ -76,12 +90,6 @@ export class LandingPageComponent implements AfterViewInit, OnInit{
       },
       stagger: 1,
       duration: 0.8,
-      y: 100,
-      opacity: 0,
-    });
-    gsap.from(this.ProductsDetailsSection.nativeElement.childNodes, {
-      scrollTrigger: ".box",
-      duration: 1.0,
       y: 100,
       opacity: 0,
     });

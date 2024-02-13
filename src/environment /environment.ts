@@ -1,5 +1,6 @@
 import {animate, animateChild, group, query, style, transition, trigger} from "@angular/animations";
-
+import { InjectionToken } from '@angular/core';
+export const WINDOW = new InjectionToken<Window>('Window');
 export const environment = {
   localApiRoute1: "http://localhost:8080/api/v1",
   localApiRoute: "/api/v1",

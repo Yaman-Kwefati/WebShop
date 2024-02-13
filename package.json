@@ -7,7 +7,8 @@
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
-    "serve:ssr:webshop": "node dist/webshop/server/server.mjs"
+    "build:ssr": "ng build && ng run webshop:server",
+    "serve:ssr:webshop": "node dist/webshop/server/main.js"
   },
   "private": true,
   "dependencies": {

@@ -25,6 +25,7 @@ import { gsap, Power2, Expo } from 'gsap';
 import {AuthService} from "../services/auth.service";
 import {ProductService} from "../services/product.service";
 import {Platform} from "@angular/cdk/platform";
+import {WINDOW} from "../../environment /environment";
 
 gsap.registerPlugin()
 
@@ -65,7 +66,7 @@ export class HeaderComponent implements AfterViewChecked, OnInit{
 
   @HostListener('window:scroll', ['$event'])
   onScroll() {
-    const scrollPosition = window.pageYOffset || this.document.documentElement.scrollTop || this.document.body.scrollTop || 0;
+    const scrollPosition = this.window.pageYOffset || this.document.documentElement.scrollTop || this.document.body.scrollTop || 0;
 
     if (scrollPosition > 10) {
       this.header.nativeElement.classList.add('blurred-header');
@@ -81,13 +82,14 @@ export class HeaderComponent implements AfterViewChecked, OnInit{
               private userService: UserService,
               private auth: AuthService,
               @Inject(DOCUMENT) private document: Document,
+              @Inject(WINDOW) private window: Window,
               private platform: Platform) {
   }
 
   ngOnInit(): void {
     if (this.platform.isBrowser) this.initializeMenuAnimations();
     let userId = this.getLoggedInUserId();
-    if (userId){
+    if (userId && this.platform.isBrowser){
       this.userService.fetchUser(userId).subscribe(
         response => {
           this.userName = response.payload.firstname + " " + response.payload.lastname;
@@ -125,7 +127,7 @@ export class HeaderComponent implements AfterViewChecked, OnInit{
 
   navigateToUserPanel(){
     let userId = this.getLoggedInUserId();
-    if (userId){
+    if (userId && this.platform.isBrowser){
       this.userService.fetchUser(userId).subscribe(
         response => {
           let user = response.payload;

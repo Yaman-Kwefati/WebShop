@@ -19,12 +19,12 @@ interface Token{
 }
 @Injectable()
 export class AuthService{
-  private baseUrl: string = "http://localhost:8080/api/v1/auth/";
-  private loginUrl: string = "http://localhost:8080/api/v1/auth/authenticate";
-  private registerUrl: string = "http://localhost:8080/api/v1/auth/register";
-  // private baseUrl: string = "/api/v1/auth/";
-  // private loginUrl: string = "/api/v1/auth/authenticate";
-  // private registerUrl: string = "/api/v1/auth/register";
+  // private baseUrl: string = "http://localhost:8080/api/v1/auth/";
+  // private loginUrl: string = "http://localhost:8080/api/v1/auth/authenticate";
+  // private registerUrl: string = "http://localhost:8080/api/v1/auth/register";
+  private baseUrl: string = environment.serverApiRoute+"/auth/";
+  private loginUrl: string = environment.serverApiRoute+"/auth/authenticate";
+  private registerUrl: string = environment.serverApiRoute+"/auth/register";
 
   constructor(private http: HttpClient){}
 
@@ -49,11 +49,11 @@ export class AuthService{
   }
 
   refreshToken(){
-    return this.http.post<Token>(environment.localApiRoute1+"/auth/refresh-token", {});
+    return this.http.post<Token>(environment.serverApiRoute+"/auth/refresh-token", {});
   }
 
   logout(){
-    return this.http.post(environment.localApiRoute1+"/auth/logout", {});
+    return this.http.post(environment.serverApiRoute+"/auth/logout", {});
   }
 
   requestPasswordChange(userEmail: string){

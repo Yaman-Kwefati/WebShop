@@ -1,4 +1,4 @@
-import {AfterViewChecked, AfterViewInit, ChangeDetectorRef, Component, OnInit} from '@angular/core';
+import {AfterViewChecked, AfterViewInit, ChangeDetectorRef, Component, Inject, OnInit} from '@angular/core';
 import { CommonModule } from '@angular/common';
 import {CartItemComponent} from "./cart-item/cart-item.component";
 import {CartProduct, ShoppingCartService} from "../../services/shopping-cart.service";
@@ -8,6 +8,8 @@ import {CookieService} from "ngx-cookie-service";
 import {PaymentService} from "../../services/Payment.service";
 import {UserService} from "../../services/user.service";
 import {AuthService} from "../../services/auth.service";
+import {WINDOW} from "../../../environment /environment";
+import {Platform} from "@angular/cdk/platform";
 
 @Component({
   selector: 'app-shopping-cart',
@@ -26,7 +28,9 @@ export class ShoppingCartComponent implements OnInit, AfterViewChecked {
               private cookieService: CookieService,
               private paymentService: PaymentService,
               private userService: UserService,
-              private router: Router) {
+              @Inject(WINDOW) private window: Window,
+              private router: Router,
+              private platform: Platform) {
   }
 
   ngOnInit(): void {
@@ -63,7 +67,7 @@ export class ShoppingCartComponent implements OnInit, AfterViewChecked {
       next: (response) => {
         if (response && response.message) {
           // Redirect the user to the Stripe Checkout page
-          window.location.href = response.message;
+          this.window.location.href = response.message;
         } else {
           console.error('Checkout URL is undefined or invalid');
         }
@@ -77,7 +81,7 @@ export class ShoppingCartComponent implements OnInit, AfterViewChecked {
 
   onCheckOut(){
     let userId = this.cookieService.get('userId');
-    if (userId){
+    if (userId && this.platform.isBrowser){
       this.startPaymentProcess();
     } else {
       this.router.navigate(['/login']);

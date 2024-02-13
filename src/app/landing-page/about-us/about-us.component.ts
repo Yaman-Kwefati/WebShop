@@ -2,6 +2,7 @@ import {AfterViewInit, Component, ElementRef, Inject, OnInit, ViewChild} from '@
 import {CommonModule, DOCUMENT} from '@angular/common';
 import {gsap} from "gsap";
 import {ScrollTrigger} from "gsap/ScrollTrigger";
+import {Platform} from "@angular/cdk/platform";
 
 gsap.registerPlugin(ScrollTrigger);
 @Component({
@@ -11,14 +12,17 @@ gsap.registerPlugin(ScrollTrigger);
   templateUrl: './about-us.component.html',
   styleUrl: './about-us.component.less'
 })
-export class AboutUsComponent implements OnInit{
+export class AboutUsComponent implements AfterViewInit{
   @ViewChild('Main', {static: true}) main!: ElementRef<HTMLDivElement>;
 
-  constructor(@Inject(DOCUMENT) private document: Document) {
+  constructor(@Inject(DOCUMENT) private document: Document,
+              private platform: Platform) {
   }
 
-  ngOnInit(): void {
-    this.initScrollAnimations();
+  ngAfterViewInit(): void {
+    if (this.platform.isBrowser){
+      this.initScrollAnimations();
+    }
   }
 
   initScrollAnimations(): void {

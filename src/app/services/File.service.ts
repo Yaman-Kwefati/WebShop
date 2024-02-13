@@ -2,6 +2,7 @@ import {Injectable} from "@angular/core";
 import {Observable} from "rxjs";
 import {HttpClient, HttpHeaders} from "@angular/common/http";
 import {CookieService} from "ngx-cookie-service";
+import {environment} from "../../environment /environment";
 
 export interface ApiResponse<T> {
   code: string;
@@ -12,8 +13,8 @@ export interface ApiResponse<T> {
   providedIn: "root"
 })
 export class FileService{
-  private baseUrl: string = 'http://localhost:8080/api/v1/files/';
-  // private baseUrl: string = '/api/v1/files/';
+  // private baseUrl: string = 'http://localhost:8080/api/v1/files/';
+  private baseUrl: string = environment.serverApiRoute+"/files/";
 
   constructor(private http: HttpClient) { }
 

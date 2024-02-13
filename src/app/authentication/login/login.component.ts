@@ -1,10 +1,12 @@
-import { Component } from '@angular/core';
+import {Component, Inject} from '@angular/core';
 import { CommonModule } from '@angular/common';
 import {Router, RouterLink} from "@angular/router";
 import {FormsModule, NgForm} from "@angular/forms";
 import {AuthService} from "../../services/auth.service";
 import {CookieService} from "ngx-cookie-service";
 import {User} from "../../models/User.model";
+import {Platform} from "@angular/cdk/platform";
+import {WINDOW} from "../../../environment /environment";
 
 @Component({
   selector: 'app-login',
@@ -19,7 +21,9 @@ export class LoginComponent {
 
   constructor(private authService: AuthService,
               private cookieService: CookieService,
-              private router: Router) {
+              private router: Router,
+              private platform: Platform,
+              @Inject(WINDOW) private window: Window) {
   }
 
   onsubmit(loginForm: NgForm){
@@ -30,7 +34,7 @@ export class LoginComponent {
       resData => {
         this.cookieService.set('userId', String(resData.payload.user.id), 1)
         this.router.navigate(['/']).then(() => {
-          window.location.reload();
+          if (this.platform.isBrowser) this.window.location.reload();
         });
       }, error => {
         this.error = "Email or Password incorrect!"

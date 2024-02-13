@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, Inject, OnInit} from '@angular/core';
 import {CommonModule,} from '@angular/common';
 import { RouterOutlet, Router, NavigationEnd } from '@angular/router';
 import {HeaderComponent} from "./header/header.component";
@@ -13,6 +13,8 @@ import {LoadingSpinnerComponent} from "./shared/loading-spinner/loading-spinner.
 import {filter} from "rxjs";
 import {PopUpComponent} from "./utilities /pop-up/pop-up.component";
 import {MailchimpSignupComponent} from "./shared/mailchimp-signup/mailchimp-signup.component";
+import {Platform} from "@angular/cdk/platform";
+import {WINDOW} from "../environment /environment";
 gsap.registerPlugin(ScrollTrigger);
 
 @Component({
@@ -24,12 +26,14 @@ gsap.registerPlugin(ScrollTrigger);
   styleUrl: './app.component.less'
 })
 export class AppComponent implements OnInit{
-  constructor(private router: Router) {
-    // this.router.events.pipe(
-    //   filter(event => event instanceof NavigationEnd)
-    // ).subscribe(() => {
-    //   window.scrollTo(0, 0);
-    // });
+  constructor(private router: Router,
+              private platform: Platform,
+              @Inject(WINDOW) private window: Window) {
+    this.router.events.pipe(
+      filter(event => event instanceof NavigationEnd)
+    ).subscribe(() => {
+      if (this.platform.isBrowser) this.window.scrollTo(0, 0);
+    });
   }
   ngOnInit(): void {
   }

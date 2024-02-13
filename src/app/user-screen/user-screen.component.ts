@@ -13,6 +13,7 @@ import {UserOrderItemComponent} from "./user-order-item/user-order-item.componen
 import {UserOrderDetailsComponent} from "./user-order-details/user-order-details.component";
 import {FormsModule} from "@angular/forms";
 import {PopupService} from "../services/PopUp.service";
+import {Platform} from "@angular/cdk/platform";
 
 @Component({
   selector: 'app-user-screen',
@@ -36,25 +37,28 @@ export class UserScreenComponent implements OnInit{
               private orderService: OrderService,
               private auth: AuthService,
               private router: Router,
-              private popupService: PopupService) {
+              private popupService: PopupService,
+              private platform: Platform) {
   }
 
   ngOnInit(): void {
     let userId = this.cookieService.get('userId');
-    this.userService.fetchUser(userId).subscribe(
-      response => {
-        this.user = response.payload;
-        this.name = this.user.firstname + ", " + this.user.lastname;
-        this.address = this.user.postalCode + ", " + this.user.city + ", " + this.user.street;
-        if (this.user){
-          this.orderService.getUsersOrders(this.user.email).subscribe(
-            response => {
-              this.orders = response.payload;
-            }
-          );
+    if (userId && this.platform.isBrowser){
+      this.userService.fetchUser(userId).subscribe(
+        response => {
+          this.user = response.payload;
+          this.name = this.user.firstname + ", " + this.user.lastname;
+          this.address = this.user.postalCode + ", " + this.user.city + ", " + this.user.street;
+          if (this.user){
+            this.orderService.getUsersOrders(this.user.email).subscribe(
+              response => {
+                this.orders = response.payload;
+              }
+            );
+          }
         }
-      }
-    );
+      );
+    }
   }
 
   clearCookies(){

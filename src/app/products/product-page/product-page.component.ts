@@ -10,6 +10,7 @@ import {DomSanitizer, SafeUrl} from "@angular/platform-browser";
 import {ProductAccordionComponent} from "./product-accordion/product-accordion.component";
 import {OurSkillsComponent} from "../../shared/our-skills/our-skills.component";
 import {environment, slideInFromRightAnimation, slideInFromLeftAnimation} from "../../../environment /environment";
+import {Platform} from "@angular/cdk/platform";
 
 @Component({
   selector: 'app-product-page',
@@ -39,7 +40,8 @@ export class ProductPageComponent implements OnInit{
               private route: ActivatedRoute,
               private productService: ProductService,
               private cartService: ShoppingCartService,
-              private fileService: FileService,) {
+              private fileService: FileService,
+              private platform: Platform) {
   }
 
   ngOnInit(): void {
@@ -62,7 +64,7 @@ export class ProductPageComponent implements OnInit{
         }
       }
     );
-    if (this.product != null){
+    if (this.product != null && this.platform.isBrowser){
       this.initialAnimations();
     }
   }
