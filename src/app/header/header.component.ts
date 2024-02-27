@@ -46,7 +46,8 @@ gsap.registerPlugin()
   providers: [UserService, AuthService,],
   standalone: true,
   templateUrl: './header.component.html',
-  styleUrl: './header.component.less'
+  styleUrl: './header.component.less',
+  host: {ngSkipHydration: 'true'},
 })
 export class HeaderComponent implements AfterViewChecked, OnInit{
   @ViewChild('searchbarComponent') searchbarComponent!: SearchbarComponent;

@@ -12,7 +12,8 @@ import {FileService} from "../../../services/File.service";
   imports: [CommonModule, RouterLink],
   providers: [FileService],
   templateUrl: './cart-item.component.html',
-  styleUrl: './cart-item.component.less'
+  styleUrl: './cart-item.component.less',
+  host: {ngSkipHydration: 'true'},
 })
 export class CartItemComponent implements OnInit{
   @Input() product!: CartProduct;

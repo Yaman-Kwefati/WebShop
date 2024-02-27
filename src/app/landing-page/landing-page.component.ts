@@ -1,7 +1,7 @@
 import {
   afterRender,
   AfterViewChecked,
-  AfterViewInit,
+  AfterViewInit, ChangeDetectorRef,
   Component,
   ElementRef,
   Inject,
@@ -38,7 +38,8 @@ export class LandingPageComponent implements AfterViewInit, OnInit{
   constructor(private route: ActivatedRoute,
               private router: Router,
               @Inject(DOCUMENT) private document: Document,
-              private platform: Platform) {}
+              private platform: Platform,
+              private cdr: ChangeDetectorRef) {}
 
   ngAfterViewInit(): void {
     if (this.platform.isBrowser){
@@ -73,6 +74,15 @@ export class LandingPageComponent implements AfterViewInit, OnInit{
   @ViewChild('ProductsDetailsSection', {static: true}) ProductsDetailsSection!: ElementRef<HTMLDivElement>;
 
   ngOnInit(): void {
+    this.router.events.pipe(filter(event => event instanceof NavigationEnd)).subscribe(() => {
+      this.reInitAnimations();
+    });
+  }
+  reInitAnimations(): void {
+    this.imageAnimation();
+    this.initialAnimations();
+    this.initScrollAnimations();
+    this.cdr.detectChanges();
   }
 
   imageAnimation(){
@@ -101,7 +111,7 @@ export class LandingPageComponent implements AfterViewInit, OnInit{
       opacity: 0,
       y: -20,
       stagger: 0.2,
-      delay: 0.5,
+      delay: 0.2,
     });
   }
 }

@@ -29,13 +29,13 @@ export class AppComponent implements OnInit{
   constructor(private router: Router,
               private platform: Platform,
               @Inject(WINDOW) private window: Window) {
-    this.router.events.pipe(
-      filter(event => event instanceof NavigationEnd)
-    ).subscribe(() => {
-      if (this.platform.isBrowser) this.window.scrollTo(0, 0);
-    });
   }
   ngOnInit(): void {
+    if (this.platform.isBrowser) this.router.events.pipe(
+      filter(event => event instanceof NavigationEnd)
+    ).subscribe(() => {
+      this.window.scrollTo(0, 0);
+    });
   }
 }
 

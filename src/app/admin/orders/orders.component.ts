@@ -29,7 +29,15 @@ export class OrdersComponent implements OnInit, AfterViewInit{
   }
 
   ngOnInit(): void {
-    if (isPlatformBrowser(this.platformId)) this.orderService.fetchOrders().subscribe(
+    if (isPlatformBrowser(this.platformId)) this.fetchOrders();
+  }
+
+  ngAfterViewInit() {
+    this.dataSource.paginator = this.paginator;
+  }
+
+  fetchOrders() {
+    this.orderService.fetchOrders().subscribe(
       orders => {
         this.dataSource.data = orders.payload;
         this.dataSource.paginator = this.paginator;
@@ -37,11 +45,12 @@ export class OrdersComponent implements OnInit, AfterViewInit{
     )
   }
 
-  ngAfterViewInit() {
-    this.dataSource.paginator = this.paginator;
-  }
-
   changeOrderStatus(orderId: number) {
-    this.orderService.updateOrderStatus(orderId, this.newStatus);
+    this.orderService.updateOrderStatus(orderId, this.newStatus).subscribe(
+      res => {
+        this.fetchOrders();
+        this.newStatus = "";
+      }
+    );
   }
 }

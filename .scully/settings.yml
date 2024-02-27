@@ -1,0 +1,10 @@
+identifier: l4s7k7d73fi8j7l6
+appPort: 1864
+staticPort: 1668
+reloadPort: 2667
+hostName: localhost
+projectName: webshop
+homeFolder: /Users/yamankwefati/Documents/Werk/webshop
+distFolder: ./dist/webshop
+outDir: /Users/yamankwefati/Documents/Werk/webshop/dist/static
+handle404: ''

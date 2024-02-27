@@ -2,7 +2,6 @@ import { Routes } from '@angular/router';
 import {LandingPageComponent} from "./landing-page/landing-page.component";
 import {ProductsComponent} from "./products/products.component";
 import {ContactComponent} from "./contact/contact.component";
-import {AboutUsComponent} from "./landing-page/about-us/about-us.component";
 import {LoginComponent} from "./authentication/login/login.component";
 import {RegisterComponent} from "./authentication/register/register.component";
 import {ProductPageComponent} from "./products/product-page/product-page.component";
@@ -28,7 +27,7 @@ export const routes: Routes = [
   },
   {
     path: 'products',
-    title: 'Producten - CholieTalie',
+    title: 'Products - CholieTalie',
     component: ProductsComponent,
     data: {prerender: false}
   },
@@ -44,7 +43,7 @@ export const routes: Routes = [
   },
   {
     path: 'aboutUs',
-    title: 'Over Ons - CholieTalie',
+    title: 'About Us - CholieTalie',
     component: LandingPageComponent,
   },
   {
@@ -114,7 +113,7 @@ export const routes: Routes = [
   },
   {
     path: 'thank-you',
-    title: 'Bedankt voor Abonneren',
+    title: 'Thanks for subscribing',
     component: ThankYouComponent,
   },
   {

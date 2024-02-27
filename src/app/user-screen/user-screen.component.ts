@@ -21,7 +21,8 @@ import {Platform} from "@angular/cdk/platform";
   imports: [CommonModule, UserOrderItemComponent, UserOrderDetailsComponent, FormsModule],
   providers: [CookieService, UserService, OrderService, AuthService, ProductService],
   templateUrl: './user-screen.component.html',
-  styleUrl: './user-screen.component.less'
+  styleUrl: './user-screen.component.less',
+  host: {ngSkipHydration: 'true'},
 })
 export class UserScreenComponent implements OnInit{
   user!: User;

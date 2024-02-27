@@ -8,7 +8,8 @@ import {Platform} from "@angular/cdk/platform";
   standalone: true,
   imports: [CommonModule],
   templateUrl: './cancel.component.html',
-  styleUrl: './cancel.component.less'
+  styleUrl: './cancel.component.less',
+  host: {ngSkipHydration: 'true'},
 })
 export class CancelComponent implements OnInit{
   constructor(private platform: Platform) {

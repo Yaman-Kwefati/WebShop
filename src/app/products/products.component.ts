@@ -10,7 +10,8 @@ import {Product} from "../models/Product.model";
   imports: [CommonModule, ProductItemComponent],
   providers: [ProductService],
   templateUrl: './products.component.html',
-  styleUrl: './products.component.less'
+  styleUrl: './products.component.less',
+  host: {ngSkipHydration: 'true'},
 })
 export class ProductsComponent implements OnInit{
   products!: Product[];

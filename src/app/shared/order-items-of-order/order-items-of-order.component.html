@@ -3,8 +3,17 @@
     <div class="my-2">
       <h1 class="text-4xl">Order {{orderId}}</h1>
     </div>
+    <div *ngIf="user" class="w-full drop-shadow-2xl">
+      <h1>User:</h1>
+      <h3>firstname: {{user.firstname}}</h3>
+      <h3>lastname: {{user.lastname}}</h3>
+      <h3>email: {{user.email}}</h3>
+      <h3>phoneNumber: {{user.phoneNumber}}</h3>
+      <h3>city: {{user.city}}</h3>
+      <h3>postalCode: {{user.postalCode}}</h3>
+      <h3>street: {{user.street}}</h3>
+    </div>
     <table mat-table [dataSource]="orderItems" class="mat-elevation-z8">
-
       <!-- Position Column -->
       <ng-container matColumnDef="orderItemId">
         <th mat-header-cell *matHeaderCellDef> Order Item Id </th>
@@ -26,7 +35,7 @@
       <!-- Symbol Column -->
       <ng-container matColumnDef="subtotal">
         <th mat-header-cell *matHeaderCellDef> Subtotal </th>
-        <td mat-cell *matCellDef="let element">€{{element.subtotal / 100}} </td>
+        <td mat-cell *matCellDef="let element">{{element.subtotal / 100 | currency:"EUR"}} </td>
       </ng-container>
 
       <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>

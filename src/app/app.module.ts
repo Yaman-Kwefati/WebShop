@@ -8,6 +8,7 @@ import {UserService} from "./services/user.service";
 import {AuthService} from "./services/auth.service";
 import {CommonModule, isPlatformBrowser} from '@angular/common';
 import {WINDOW} from "../environment /environment";
+import {ScullyLibModule} from "@scullyio/ng-lib";
 
 export function windowFactory(platformId: Object): Window | Object {
   return isPlatformBrowser(platformId) ? window : {};

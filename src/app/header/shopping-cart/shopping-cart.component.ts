@@ -17,7 +17,8 @@ import {Platform} from "@angular/cdk/platform";
   imports: [CommonModule, CartItemComponent, RouterLink],
   providers: [OrderService, PaymentService, UserService],
   templateUrl: './shopping-cart.component.html',
-  styleUrl: './shopping-cart.component.less'
+  styleUrl: './shopping-cart.component.less',
+  host: {ngSkipHydration: 'true'},
 })
 export class ShoppingCartComponent implements OnInit, AfterViewChecked {
   cartItems: CartProduct[] = this.cartService.getCartItems();

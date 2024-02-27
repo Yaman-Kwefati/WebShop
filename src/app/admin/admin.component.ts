@@ -14,7 +14,8 @@ import {AddProductComponent} from "./add-product/add-product.component";
   imports: [CommonModule, MatTabsModule, UsersComponent, ProductsTabComponent, OrdersComponent, AddProductComponent],
   providers: [UserService],
   templateUrl: './admin.component.html',
-  styleUrl: './admin.component.less'
+  styleUrl: './admin.component.less',
+  host: {ngSkipHydration: 'true'},
 })
 export class AdminComponent implements OnInit{
 
