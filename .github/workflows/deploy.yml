@@ -22,10 +22,10 @@ jobs:
         run: npm install
 
       - name: Build Angular App
-        run: npm run build -- --configuration production
+        run: npm run build:prod
 
       - name: Deploy to GitHub Pages
         uses: JamesIves/github-pages-deploy-action@v4
         with:
-          branch: gh-pages  # The branch where the site will be deployed
+          branch: deployment  # The branch where the site will be deployed
           folder: dist/webshop  # The folder to deploy
