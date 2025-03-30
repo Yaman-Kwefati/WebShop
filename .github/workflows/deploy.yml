@@ -3,7 +3,7 @@ name: Deploy Angular App to GitHub Pages
 on:
   push:
     branches:
-      - deployment
+      - deployment # or main, depending on where you want to trigger
 
 jobs:
   build-deploy:
@@ -19,13 +19,13 @@ jobs:
           node-version: '18'
 
       - name: Install Dependencies
-        run: npm install
+        run: npm ci
 
       - name: Build Angular App
-        run: npm run build:prod
+        run: npm run build -- --configuration production --base-href /WebShop/
 
       - name: Deploy to GitHub Pages
         uses: JamesIves/github-pages-deploy-action@v4
         with:
-          branch: deployment  # The branch where the site will be deployed
-          folder: dist/webshop  # The folder to deploy
+          branch: gh-pages
+          folder: dist/webshop
