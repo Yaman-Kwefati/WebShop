@@ -28,4 +28,4 @@ jobs:
         uses: JamesIves/github-pages-deploy-action@v4
         with:
           branch: gh-pages  # The branch where the site will be deployed
-          folder: dist/my-angular-app  # The folder to deploy
+          folder: dist/webshop  # The folder to deploy
